@@ -669,7 +669,7 @@ ul { list-style:none; }
 .psych-avatar { padding:24px 24px 0; display:flex; justify-content:center; }
 .psych-img {
     width:92px; height:92px; border-radius:50%;
-    object-fit:cover; display:block;
+    object-fit:cover; object-position:top center; display:block;
     border:3px solid white;
     box-shadow:0 6px 18px rgba(15, 23, 42, 0.12);
     transition:transform 0.3s ease;

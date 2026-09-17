@@ -1,0 +1,735 @@
+/* ==========================================================================
+   HALODOC EXACT CLONE DESIGN SYSTEM
+   Faithfully modeled after Halodoc Indonesia's Web & Mobile Web UI
+   Primary Halodoc Color: #E0004D (Signature Halodoc Magenta-Red) / #ED1C24
+   Font: 'Plus Jakarta Sans', -apple-system, Roboto, sans-serif
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --hd-red: #E0004D;
+  --hd-red-hover: #C50043;
+  --hd-red-light: #FDEBF2;
+  --hd-red-50: #FFF5F8;
+  --hd-red-border: #F8B4CF;
+
+  --hd-navy: #0B132B;
+  --hd-dark: #1F2937;
+  --hd-text-main: #212121;
+  --hd-text-muted: #5E6977;
+  --hd-text-subtle: #8F9BB3;
+  --hd-border: #E8ECEF;
+  --hd-border-light: #F1F3F5;
+  --hd-bg: #F7F9FA;
+  --hd-card-bg: #FFFFFF;
+
+  --hd-green: #00A86B;
+  --hd-green-light: #E6F7F0;
+  --hd-blue: #0077FF;
+  --hd-blue-light: #EDF5FF;
+  --hd-amber: #FF9800;
+  --hd-amber-light: #FFF8E7;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
+  --shadow-header: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+  --font-base: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.halodoc-app {
+  font-family: var(--font-base);
+  background-color: var(--hd-bg);
+  color: var(--hd-text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 1. Top Utility Header (Halodoc Style) */
+.hd-top-utility {
+  background-color: #0F172A;
+  color: #E2E8F0;
+  font-size: 0.75rem;
+  padding: 0.45rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hd-top-utility a {
+  color: #38BDF8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hd-top-utility a:hover {
+  text-decoration: underline;
+}
+
+/* 2. Halodoc Main Navbar */
+.hd-navbar {
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--hd-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-header);
+}
+
+.hd-nav-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hd-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.hd-logo-symbol {
+  width: 38px;
+  height: 38px;
+  background: var(--hd-red);
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  box-shadow: 0 4px 12px rgba(224, 0, 77, 0.3);
+}
+
+.hd-logo-text {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--hd-red);
+  letter-spacing: -0.03em;
+  font-family: var(--font-base);
+}
+
+.hd-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.hd-nav-menu li a {
+  text-decoration: none;
+  font-size: 0.925rem;
+  font-weight: 600;
+  color: var(--hd-text-muted);
+  transition: color 0.15s;
+}
+
+.hd-nav-menu li a:hover,
+.hd-nav-menu li a.active {
+  color: var(--hd-red);
+}
+
+.hd-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hd-btn-primary {
+  background-color: var(--hd-red);
+  color: white;
+  border: 1px solid var(--hd-red);
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.hd-btn-primary:hover {
+  background-color: var(--hd-red-hover);
+  box-shadow: 0 4px 12px rgba(224, 0, 77, 0.25);
+  color: white;
+}
+
+.hd-btn-outline {
+  background-color: transparent;
+  color: var(--hd-red);
+  border: 1.5px solid var(--hd-red);
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.hd-btn-outline:hover {
+  background-color: var(--hd-red-50);
+}
+
+/* 3. Hero Section */
+.hd-hero {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F5F7FA 100%);
+  padding: 3.5rem 1.5rem 2.5rem 1.5rem;
+  border-bottom: 1px solid var(--hd-border);
+}
+
+.hd-hero-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hd-hero-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--hd-dark);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.hd-hero-title span {
+  color: var(--hd-red);
+}
+
+.hd-hero-desc {
+  font-size: 1.075rem;
+  color: var(--hd-text-muted);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Halodoc Search Bar */
+.hd-search-bar {
+  background: #FFFFFF;
+  border: 1.5px solid var(--hd-border);
+  border-radius: var(--radius-full);
+  padding: 0.375rem 0.5rem 0.375rem 1.25rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.hd-search-bar:focus-within {
+  border-color: var(--hd-red);
+  box-shadow: 0 4px 20px rgba(224, 0, 77, 0.15);
+}
+
+.hd-search-input {
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  font-family: inherit;
+  flex: 1;
+  color: var(--hd-text-main);
+  background: transparent;
+}
+
+.hd-search-btn {
+  background: var(--hd-red);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.65rem 1.5rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.hd-search-btn:hover {
+  background: var(--hd-red-hover);
+}
+
+/* 4. Iconic Halodoc Squircle Icons Grid */
+.hd-quick-icons-section {
+  max-width: 1240px;
+  margin: -2.5rem auto 3rem auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 20;
+}
+
+.hd-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
+}
+
+.hd-icon-card {
+  background: #FFFFFF;
+  border: 1px solid var(--hd-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 0.875rem;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.hd-icon-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--hd-red-border);
+}
+
+.hd-icon-badge {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.85rem;
+  margin-bottom: 0.875rem;
+  transition: transform 0.2s;
+}
+
+.hd-icon-card:hover .hd-icon-badge {
+  transform: scale(1.08);
+}
+
+.hd-icon-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--hd-dark);
+  line-height: 1.3;
+}
+
+.hd-icon-sub {
+  font-size: 0.6875rem;
+  color: var(--hd-text-subtle);
+  margin-top: 0.25rem;
+}
+
+/* 5. Promotional / Campaign Banner Carousel */
+.hd-promo-banner {
+  background: linear-gradient(135deg, #FFE8F0 0%, #FFF5F8 100%);
+  border: 1px solid #FBCFE8;
+  border-radius: var(--radius-xl);
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.hd-promo-tag {
+  background: var(--hd-red);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+/* 6. Doctor / Psychologist Cards (Halodoc Style) */
+.hd-container {
+  max-width: 1240px;
+  margin: 0 auto 3.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.hd-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.hd-section-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--hd-dark);
+  margin-bottom: 0.25rem;
+}
+
+.hd-section-subtitle {
+  font-size: 0.875rem;
+  color: var(--hd-text-muted);
+}
+
+.hd-pill-filters {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.hd-pill-btn {
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--hd-border);
+  background: #FFFFFF;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--hd-text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.hd-pill-btn:hover {
+  border-color: var(--hd-red);
+  color: var(--hd-red);
+}
+
+.hd-pill-btn.active {
+  background: var(--hd-red);
+  border-color: var(--hd-red);
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+/* Doctor Cards Grid */
+.hd-doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.25rem;
+}
+
+.hd-doctor-card {
+  background: #FFFFFF;
+  border: 1px solid var(--hd-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hd-doctor-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: #CBD5E1;
+}
+
+.hd-doc-top {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hd-doc-avatar-box {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.hd-doc-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid var(--hd-border);
+}
+
+.hd-online-indicator {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  background: var(--hd-green);
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+.hd-doc-meta h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--hd-dark);
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.hd-verified-tick {
+  color: var(--hd-green);
+  font-size: 0.875rem;
+}
+
+.hd-doc-specialty {
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: var(--hd-text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.hd-doc-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--hd-text-muted);
+}
+
+.hd-doc-rating {
+  color: #D97706;
+  font-weight: 700;
+}
+
+.hd-doc-topics {
+  font-size: 0.75rem;
+  color: var(--hd-text-muted);
+  background: var(--hd-bg);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+}
+
+.hd-doc-bottom {
+  border-top: 1px solid var(--hd-border-light);
+  padding-top: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hd-doc-price {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--hd-dark);
+}
+
+.hd-doc-price span {
+  font-size: 0.725rem;
+  font-weight: 500;
+  color: var(--hd-text-subtle);
+  display: block;
+}
+
+/* 7. Articles / Edu Section (Halodoc Style) */
+.hd-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.hd-article-card {
+  background: #FFFFFF;
+  border: 1px solid var(--hd-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.hd-article-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.hd-article-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.hd-article-content {
+  padding: 1.25rem;
+}
+
+.hd-article-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--hd-red);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.hd-article-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--hd-dark);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.hd-article-author {
+  font-size: 0.75rem;
+  color: var(--hd-text-subtle);
+}
+
+/* 8. Halodoc Download App Section */
+.hd-app-banner {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  color: white;
+  border-radius: var(--radius-xl);
+  padding: 3rem 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+}
+
+.hd-app-content h3 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.hd-app-content p {
+  color: #94A3B8;
+  font-size: 0.95rem;
+  max-width: 480px;
+  margin-bottom: 1.5rem;
+}
+
+.hd-app-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.hd-store-btn {
+  background: #000000;
+  border: 1px solid #334155;
+  color: white;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+/* 9. Halodoc Detailed Footer */
+.hd-footer {
+  background: #FFFFFF;
+  border-top: 1px solid var(--hd-border);
+  padding: 3.5rem 1.5rem 2rem 1.5rem;
+  color: var(--hd-text-muted);
+  font-size: 0.875rem;
+}
+
+.hd-footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.hd-footer-top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.hd-footer-col h5 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--hd-dark);
+  margin-bottom: 1rem;
+}
+
+.hd-footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.hd-footer-col a {
+  color: var(--hd-text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.hd-footer-col a:hover {
+  color: var(--hd-red);
+}
+
+.hd-footer-bottom {
+  border-top: 1px solid var(--hd-border-light);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.775rem;
+  color: var(--hd-text-subtle);
+}
+
+/* 10. Floating WhatsApp Customer Care */
+.hd-floating-wa {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: #25D366;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+  text-decoration: none;
+  z-index: 999;
+  transition: transform 0.2s;
+}
+
+.hd-floating-wa:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 992px) {
+  .hd-hero-inner { grid-template-columns: 1fr; }
+  .hd-icons-grid { grid-template-columns: repeat(3, 1fr); }
+  .hd-footer-top { grid-template-columns: 1fr 1fr; }
+  .hd-articles-grid { grid-template-columns: 1fr; }
+  .hd-app-banner { flex-direction: column; text-align: center; gap: 1.5rem; }
+  .hd-nav-menu { display: none; }
+}

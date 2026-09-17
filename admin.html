@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curhati Admin & Management Portal — Backend Console</title>
+  <meta name="description" content="Portal administrasi dan konsol manajemen Curhati untuk Admin, Psikolog, Teman Cerita, Tim Asesmen, Finance, dan Owner.">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <!-- Curhati SaaS Stylesheet -->
+  <link rel="stylesheet" href="curhati.css">
+  <style>
+    /* Styling khusus Admin Login Screen Gate */
+    .admin-login-wrapper {
+      min-height: 100vh;
+      background: radial-gradient(circle at top right, #1e1b4b 0%, #0f172a 60%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+    }
+
+    .admin-login-card {
+      background: rgba(30, 41, 59, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-xl);
+      max-width: 440px;
+      width: 100%;
+      padding: 2.5rem 2.25rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      color: #ffffff;
+      animation: fadeInScale 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .admin-login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .admin-login-badge {
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, #4f46e5 0%, #0d9488 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin: 0 auto 1rem auto;
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+    }
+
+    .admin-login-header h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 0.35rem;
+    }
+
+    .admin-login-header p {
+      font-size: 0.8125rem;
+      color: #94a3b8;
+    }
+
+    .admin-input-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .admin-input-label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 0.5rem;
+    }
+
+    .admin-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      color: #ffffff;
+      font-size: 0.875rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .admin-input:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+    }
+
+    .admin-password-wrapper {
+      position: relative;
+    }
+
+    .toggle-password-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .admin-error-alert {
+      background: rgba(225, 29, 72, 0.15);
+      border: 1px solid rgba(225, 29, 72, 0.4);
+      color: #fecdd3;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.8125rem;
+      margin-bottom: 1.25rem;
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .admin-btn-login {
+      width: 100%;
+      padding: 0.875rem;
+      background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+    }
+
+    .admin-btn-login:hover {
+      background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%);
+      transform: translateY(-1px);
+    }
+
+    .admin-login-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.8125rem;
+    }
+
+    .admin-login-footer a {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. ADMIN AUTHENTICATION GATE / LOGIN SCREEN
+       Password required: curhatin2026
+       ========================================================================= -->
+  <div id="adminLoginScreen" class="admin-login-wrapper">
+    <div class="admin-login-card">
+      <div class="admin-login-header">
+        <img src="/logo.png" alt="Shine Journey Logo" style="max-height: 85px; margin: 0 auto 1.25rem auto; display: block; filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));">
+        <h2>Portal Staf &amp; Admin</h2>
+        <p style="font-size: 0.8125rem; color: #FCD34D; font-weight: 600; margin-top: 0.35rem;">
+          Teman Dalam Perjalananmu ❤️
+        </p>
+      </div>
+
+      <div id="loginErrorAlert" class="admin-error-alert">
+        <span>⚠️</span>
+        <span id="loginErrorMessage">Password salah. Silakan coba lagi.</span>
+      </div>
+
+      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+        <div class="admin-input-group">
+          <label class="admin-input-label" for="adminEmail">Email / Username Staf</label>
+          <input type="text" id="adminEmail" class="admin-input" value="admin@curhati.id" required autocomplete="username">
+        </div>
+
+        <div class="admin-input-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <label class="admin-input-label" for="adminPassword" style="margin-bottom: 0;">Password Admin</label>
+            <span style="font-size: 0.75rem; color: #94a3b8;">Password: <code>curhatin2026</code></span>
+          </div>
+          <div class="admin-password-wrapper">
+            <input type="password" id="adminPassword" class="admin-input" placeholder="Masukkan password admin..." required autocomplete="current-password">
+            <button type="button" class="toggle-password-btn" onclick="togglePasswordVisibility()" aria-label="Lihat password">👁️</button>
+          </div>
+        </div>
+
+        <button type="submit" class="admin-btn-login">
+          Masuk ke Konsol Admin →
+        </button>
+      </form>
+
+      <div class="admin-login-footer">
+        <a href="/">← Kembali ke Halaman Frontend Publik</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. AUTHENTICATED ADMIN DASHBOARD WORKSPACE
+       Visible only when authenticated
+       ========================================================================= -->
+  <div id="adminWorkspace" style="display: none;">
+    <!-- Top Role Simulator Bar for Admin & Staff -->
+    <header class="role-simulator-bar">
+      <div class="flex items-center gap-3">
+        <div class="simulator-tag">
+          <span class="pulse-dot"></span>
+          <span>CURHATI BACKEND & ADMIN CONSOLE</span>
+        </div>
+        <span style="color: #94a3b8; font-size: 0.75rem;">| RBAC Internal Management</span>
+      </div>
+
+      <div class="role-select-wrapper">
+        <a href="/" class="btn btn-outline btn-sm" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: #38bdf8; font-size: 0.75rem;">
+          ← Buka Frontend Publik
+        </a>
+        <label for="roleSelector" style="color: #cbd5e1; font-weight: 600; font-size: 0.8125rem;">Pilih Peran Internal:</label>
+        <select id="roleSelector" class="role-select" aria-label="Pilih peran internal"></select>
+        <button id="resetStateBtn" class="btn btn-outline btn-sm" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: #e2e8f0; font-size: 0.75rem;" title="Reset ke data awal blueprint">
+          ↺ Reset Mock
+        </button>
+        <button onclick="handleAdminLogout()" class="btn btn-danger btn-sm" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">
+          🚪 Keluar
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Application Container -->
+    <div class="app-container">
+      
+      <!-- Left Navigation Sidebar -->
+      <aside class="app-sidebar" id="appSidebar">
+        <div class="sidebar-header">
+          <img src="/logo-icon.png" alt="Shine Journey Logo" style="width: 38px; height: 38px; object-fit: contain;">
+          <div class="brand-text">
+            <h1>Shine Journey</h1>
+            <p>Staff &amp; Admin Console</p>
+          </div>
+        </div>
+
+        <!-- Dynamic navigation items injected by curhati-app.js -->
+        <nav class="sidebar-nav" id="sidebarNav" aria-label="Navigasi Admin"></nav>
+
+        <!-- Compact User Profile -->
+        <div class="sidebar-footer">
+          <div class="user-compact-profile">
+            <img id="topUserAvatar" src="" class="user-avatar" alt="Avatar Staf">
+            <div class="user-info-text">
+              <div id="topUserName" class="name">Staff Member</div>
+              <div id="topUserRole" class="role-badge">Role</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Workspace Area -->
+      <main class="app-main">
+        <!-- Top Navbar -->
+        <div class="top-navbar">
+          <div class="page-title">
+            <h2 id="pageTitle">Admin Dashboard</h2>
+            <p id="pageDesc">Sistem Manajemen Internal Curhati</p>
+          </div>
+
+          <div class="top-actions">
+            <a href="/" class="btn btn-outline btn-sm">
+              🌐 Pratinjau Frontend Klien
+            </a>
+            <button onclick="handleAdminLogout()" class="btn btn-outline btn-sm" style="color: var(--danger); border-color: #fca5a5;">
+              🚪 Keluar
+            </button>
+            <div class="flex items-center gap-2">
+              <span style="font-size: 0.8125rem; color: var(--slate-500);">Server API:</span>
+              <span class="badge badge-paid" style="font-size: 0.6875rem;">CONNECTED</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Viewport where different views render -->
+        <div class="content-viewport" id="contentViewport">
+          <!-- Injected by JavaScript -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Dynamic Modal Backdrops & Dialogs -->
+  <div id="modalContainer"></div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="curhati-data.js"></script>
+  <script src="curhati-app.js"></script>
+  <script>
+    const ADMIN_AUTH_KEY = 'CURHATI_ADMIN_AUTH_SESSION';
+
+    // Check authentication state on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuthStatus();
+    });
+
+    function checkAuthStatus() {
+      const isAuth = sessionStorage.getItem(ADMIN_AUTH_KEY) === 'true';
+      const loginScreen = document.getElementById('adminLoginScreen');
+      const workspace = document.getElementById('adminWorkspace');
+
+      if (isAuth) {
+        loginScreen.style.display = 'none';
+        workspace.style.display = 'block';
+
+        // Ensure default role is ADMIN if client was stored
+        const state = window.curhatiStore.data;
+        if (state.currentRole === 'CLIENT') {
+          window.curhatiStore.setRole('ADMIN');
+        }
+      } else {
+        loginScreen.style.display = 'flex';
+        workspace.style.display = 'none';
+        document.getElementById('adminPassword').focus();
+      }
+    }
+
+    function handleAdminLogin(event) {
+      event.preventDefault();
+      const password = document.getElementById('adminPassword').value.trim();
+      const email = document.getElementById('adminEmail').value.trim();
+      const errorBox = document.getElementById('loginErrorAlert');
+      const errorMsg = document.getElementById('loginErrorMessage');
+
+      // Password requirement: curhatin2026
+      if (password === 'curhatin2026') {
+        sessionStorage.setItem(ADMIN_AUTH_KEY, 'true');
+        errorBox.style.display = 'none';
+
+        // Add audit log
+        window.curhatiStore.addAuditLog('LOGIN', 'AdminSession', email, 'Admin logged in successfully via password authentication');
+
+        // Show workspace
+        checkAuthStatus();
+
+        // Trigger welcome toast
+        if (window.showToast) {
+          window.showToast('Login berhasil! Selamat datang di Konsol Admin Curhati.', 'success');
+        }
+      } else {
+        errorBox.style.display = 'flex';
+        errorMsg.textContent = 'Password salah! Gunakan password: curhatin2026';
+        document.getElementById('adminPassword').value = '';
+        document.getElementById('adminPassword').focus();
+      }
+    }
+
+    function handleAdminLogout() {
+      if (confirm('Apakah Anda yakin ingin keluar dari konsol admin?')) {
+        sessionStorage.removeItem(ADMIN_AUTH_KEY);
+        window.curhatiStore.addAuditLog('LOGOUT', 'AdminSession', 'admin-01', 'Admin logged out from session');
+        checkAuthStatus();
+      }
+    }
+
+    function togglePasswordVisibility() {
+      const pwd = document.getElementById('adminPassword');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+      } else {
+        pwd.type = 'password';
+      }
+    }
+  </script>
+</body>
+</html>

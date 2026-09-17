@@ -1,0 +1,485 @@
+// CURHATI — FULLSTACK SYSTEM BLUEPRINT
+// Prisma Schema Definition (PostgreSQL)
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ------------------------------------------------------
+// ENUMS
+// ------------------------------------------------------
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  CLIENT
+  ASSESSMENT_STAFF
+  PSYCHOLOGIST
+  TEMAN_CERITA
+  FINANCE
+  OWNER
+}
+
+enum ServiceCategory {
+  TEMAN_CERITA
+  PSIKOLOG_UMUM
+  PSIKOLOG_KLINIS
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  NO_SHOW
+}
+
+enum SessionStatus {
+  SCHEDULED
+  ONGOING
+  COMPLETED
+  CANCELLED
+}
+
+enum AssessmentStatus {
+  NEW
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  EXPIRED
+  REFUNDED
+}
+
+// ------------------------------------------------------
+// USER & PROFILES (RBAC)
+// ------------------------------------------------------
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+  phone        String?
+  role         Role      @default(CLIENT)
+  isActive     Boolean   @default(true)
+  avatarUrl    String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  // Profile relations (1-to-1)
+  clientProfile          ClientProfile?
+  psychologistProfile    PsychologistProfile?
+  temanCeritaProfile     TemanCeritaProfile?
+  assessmentStaffProfile AssessmentStaffProfile?
+
+  // System audit trail
+  auditLogs AuditLog[]
+
+  @@index([email])
+  @@index([role])
+}
+
+model ClientProfile {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  birthDate DateTime?
+  gender    String?
+  address   String?
+  bio       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Client relations
+  reservations       Reservation[]
+  counselingSessions CounselingSession[]
+  assessments        Assessment[]
+  chatParticipants   ChatParticipant[]
+  reports            Report[]
+}
+
+model PsychologistProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sippNumber      String   @unique // Surat Izin Praktik Psikologi
+  specialization  String   // e.g. Dewasa, Anak & Remaja, Klinis
+  education       String
+  experienceYears Int      @default(1)
+  rating          Float    @default(5.0)
+  totalReviews    Int      @default(0)
+  isVerified      Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  availabilities CounselorAvailability[]
+  reservations   Reservation[]
+  sessions       CounselingSession[]
+  reports        Report[]
+}
+
+model TemanCeritaProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  certification   String   // e.g. Certified Peer Listener
+  experienceYears Int      @default(1)
+  rating          Float    @default(5.0)
+  totalReviews    Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  availabilities CounselorAvailability[]
+  reservations   Reservation[]
+  sessions       CounselingSession[]
+  reports        Report[]
+}
+
+model AssessmentStaffProfile {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  department  String   @default("Psychological Assessment")
+  staffNumber String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  reviewedAssessments Assessment[]
+}
+
+// ------------------------------------------------------
+// SERVICES & AVAILABILITY
+// ------------------------------------------------------
+
+model Service {
+  id              String          @id @default(uuid())
+  name            String
+  category        ServiceCategory
+  description     String
+  durationMinutes Int             @default(60)
+  price           Decimal         @db.Decimal(10, 2)
+  isActive        Boolean         @default(true)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  reservations Reservation[]
+}
+
+model CounselorAvailability {
+  id           String   @id @default(uuid())
+  counselorId  String   // Points to User id of psychologist or teman cerita
+  dayOfWeek    Int      // 0 (Sunday) to 6 (Saturday)
+  startTime    String   // e.g. "09:00"
+  endTime      String   // e.g. "17:00"
+  slotDuration Int      @default(60) // minutes
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  psychologist PsychologistProfile? @relation(fields: [psychologistId], references: [id])
+  psychologistId String?
+
+  temanCerita TemanCeritaProfile? @relation(fields: [temanCeritaId], references: [id])
+  temanCeritaId String?
+}
+
+// ------------------------------------------------------
+// RESERVATIONS (Anti Double-Booking Guarantee)
+// ------------------------------------------------------
+
+model Reservation {
+  id          String            @id @default(uuid())
+  clientId    String
+  client      ClientProfile     @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  
+  counselorId String            // User ID of counselor
+  serviceId   String
+  service     Service           @relation(fields: [serviceId], references: [id])
+
+  date        String            // Format YYYY-MM-DD
+  timeSlot    String            // e.g. "13:00 - 14:00"
+  price       Decimal           @db.Decimal(10, 2)
+  
+  paymentStatus PaymentStatus   @default(PENDING)
+  status        ReservationStatus @default(PENDING)
+  
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  // Linked Counseling Session & Payment
+  counselingSession CounselingSession?
+  payment           Payment?
+
+  psychologist   PsychologistProfile? @relation(fields: [psychologistId], references: [id])
+  psychologistId String?
+  temanCerita    TemanCeritaProfile?  @relation(fields: [temanCeritaId], references: [id])
+  temanCeritaId  String?
+
+  // Enforce anti double-booking via unique constraint!
+  @@unique([counselorId, date, timeSlot])
+  @@index([clientId])
+  @@index([counselorId])
+  @@index([date])
+  @@index([status])
+}
+
+// ------------------------------------------------------
+// COUNSELING SESSION (Private Clinical Records)
+// ------------------------------------------------------
+
+model CounselingSession {
+  id            String        @id @default(uuid())
+  reservationId String        @unique
+  reservation   Reservation   @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+  
+  clientId      String
+  client        ClientProfile @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  
+  counselorId   String        // User ID of counselor
+  status        SessionStatus @default(SCHEDULED)
+  
+  startedAt     DateTime?
+  endedAt       DateTime?
+  
+  // Least-privilege confidential clinical notes (Restricted from Client & Owner)
+  privateNotes  String?       @db.Text
+  
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  reports        Report[]
+  psychologist   PsychologistProfile? @relation(fields: [psychologistId], references: [id])
+  psychologistId String?
+  temanCerita    TemanCeritaProfile?  @relation(fields: [temanCeritaId], references: [id])
+  temanCeritaId  String?
+
+  @@index([clientId])
+  @@index([counselorId])
+  @@index([status])
+}
+
+// ------------------------------------------------------
+// INDEPENDENT ASSESSMENT MODULE
+// (Strict Rule: Independent from Counseling workflow!)
+// ------------------------------------------------------
+
+model Assessment {
+  id                 String           @id @default(uuid())
+  clientId           String
+  client             ClientProfile    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  
+  type               String           // e.g. "DASS-21 Skrining Kesejahteraan", "Burnout Check"
+  status             AssessmentStatus @default(NEW)
+  priority           Priority         @default(LOW)
+  
+  anxietyScore       Int              @default(0)
+  stressScore        Int              @default(0)
+  depressionScore    Int              @default(0)
+  totalScore         Int              @default(0)
+  
+  summary            String?          @db.Text
+  hasCrisisIndicator Boolean          @default(false)
+  
+  // Explicit Recommendation action (NOT automatic counseling session!)
+  recommendedService String?
+  internalNotes      String?          @db.Text
+  
+  assignedStaffId    String?
+  assignedStaff      AssessmentStaffProfile? @relation(fields: [assignedStaffId], references: [id])
+  
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  answers AssessmentAnswer[]
+
+  @@index([clientId])
+  @@index([status])
+  @@index([priority])
+}
+
+model AssessmentAnswer {
+  id           String     @id @default(uuid())
+  assessmentId String
+  assessment   Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+  
+  questionText String
+  answerValue  Int
+  answerLabel  String
+
+  @@index([assessmentId])
+}
+
+// ------------------------------------------------------
+// CHAT MODULE (1-to-1 Real-time)
+// ------------------------------------------------------
+
+model ChatConversation {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  participants ChatParticipant[]
+  messages     Message[]
+
+  @@index([updatedAt])
+}
+
+model ChatParticipant {
+  id             String           @id @default(uuid())
+  conversationId String
+  conversation   ChatConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  
+  clientId       String
+  client         ClientProfile    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  unreadCount    Int              @default(0)
+  lastReadAt     DateTime?
+
+  @@unique([conversationId, clientId])
+}
+
+model Message {
+  id             String           @id @default(uuid())
+  conversationId String
+  conversation   ChatConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  
+  senderId       String           // User ID
+  senderRole     Role
+  content        String           @db.Text
+  isRead         Boolean          @default(false)
+  
+  attachmentUrl  String?
+  attachmentType String?
+  
+  createdAt      DateTime         @default(now())
+
+  @@index([conversationId])
+}
+
+// ------------------------------------------------------
+// REPORTS MODULE (Secure Object Storage)
+// ------------------------------------------------------
+
+model Report {
+  id             String            @id @default(uuid())
+  sessionId      String
+  session        CounselingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  
+  clientId       String
+  client         ClientProfile     @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  
+  counselorId    String            // User ID
+  
+  fileName       String
+  fileUrl        String            // Private storage path (accessed via temporary signed URLs)
+  mimeType       String            // application/pdf
+  fileSize       Int               // bytes
+  notesForClient String?           @db.Text
+  
+  uploadedAt     DateTime          @default(now())
+  sentAt         DateTime?
+  
+  psychologist   PsychologistProfile? @relation(fields: [psychologistId], references: [id])
+  psychologistId String?
+  temanCerita    TemanCeritaProfile?  @relation(fields: [temanCeritaId], references: [id])
+  temanCeritaId  String?
+
+  @@index([clientId])
+  @@index([counselorId])
+  @@index([sessionId])
+}
+
+// ------------------------------------------------------
+// PAYMENTS & INVOICES
+// ------------------------------------------------------
+
+model Payment {
+  id            String        @id @default(uuid())
+  reservationId String        @unique
+  reservation   Reservation   @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+  
+  gateway       String        // MIDTRANS | XENDIT | STRIPE
+  transactionId String?       @unique // External gateway ID
+  amount        Decimal       @db.Decimal(10, 2)
+  status        PaymentStatus @default(PENDING)
+  
+  paymentMethod String?       // QRIS, VIRTUAL_ACCOUNT, CREDIT_CARD
+  rawWebhookPayload Json?
+  
+  paidAt        DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  invoice Invoice?
+
+  @@index([status])
+  @@index([transactionId])
+}
+
+model Invoice {
+  id            String   @id @default(uuid())
+  paymentId     String   @unique
+  payment       Payment  @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  
+  invoiceNumber String   @unique
+  clientName    String
+  serviceName   String
+  amount        Decimal  @db.Decimal(10, 2)
+  issuedAt      DateTime @default(now())
+
+  @@index([invoiceNumber])
+}
+
+// ------------------------------------------------------
+// NOTIFICATION & AUDIT LOGS
+// ------------------------------------------------------
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  linkUrl   String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([isRead])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  action     String   // LOGIN, LOGOUT, CREATE_RESERVATION, PAYMENT, START_SESSION, COMPLETE_SESSION, UPLOAD_REPORT, DOWNLOAD_REPORT
+  resource   String   // Reservation, CounselingSession, Assessment, Report
+  resourceId String
+  
+  ipAddress  String?
+  userAgent  String?
+  metadata   Json?
+  
+  timestamp  DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([resource])
+  @@index([timestamp])
+}

@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: curhati-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: curhati_user
+      POSTGRES_PASSWORD: curhati_password
+      POSTGRES_DB: curhati_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - curhati_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U curhati_user -d curhati_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: curhati-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - curhati_redisdata:/data
+
+volumes:
+  curhati_pgdata:
+  curhati_redisdata:

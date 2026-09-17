@@ -14,7 +14,8 @@ export class ReservationsService {
     const counselor = await this.prisma.user.findUnique({
       where: { id: dto.counselorId },
     });
-    if (!counselor || ![Role.PSIKOLOG, Role.TEMAN_CERITA].includes(counselor.role)) {
+    const isCounselor = counselor && (counselor.role === Role.PSIKOLOG || counselor.role === Role.TEMAN_CERITA);
+    if (!counselor || !isCounselor) {
       throw new BadRequestException('Invalid counselor selected');
     }
 
@@ -116,8 +117,14 @@ export class ReservationsService {
 
     if (!reservation) throw new NotFoundException('Reservation not found');
 
+    const isStaffOrAdmin =
+      user.role === Role.SUPER_ADMIN ||
+      user.role === Role.ADMIN_OPERASIONAL ||
+      user.role === Role.ADMIN ||
+      user.role === Role.OWNER;
+
     const isAuthorized =
-      [Role.SUPER_ADMIN, Role.ADMIN_OPERASIONAL, Role.OWNER].includes(user.role) ||
+      isStaffOrAdmin ||
       reservation.clientId === user.id ||
       reservation.counselorId === user.id;
 

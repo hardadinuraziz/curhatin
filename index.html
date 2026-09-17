@@ -20,7 +20,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="nav-link">Beranda</a></li>
                 <li class="dropdown">
-                    <a href="#services" class="nav-link">Layanan <i class="fas fa-chevron-down fa-xs"></i></a>
+                    <a href="#services" class="nav-link">Layanan <i class="fas fa-chevron-down fa-2xs caret-icon"></i></a>
                     <div class="dropdown-menu">
                         <a href="#services"><i class="fas fa-handshake"></i> Teman Cerita (Peer)</a>
                         <a href="#services"><i class="fas fa-user-md"></i> Konseling Psikolog Klinis</a>
@@ -28,37 +28,86 @@
                         <a href="#services"><i class="fas fa-briefcase"></i> Konseling Karir &amp; Hubungan</a>
                     </div>
                 </li>
-                <li><a href="#assessment" class="nav-link">Pricelist Asesmen</a></li>
                 <li><a href="#psychologists" class="nav-link">Konselor &amp; Psikolog</a></li>
                 <li><a href="#how" class="nav-link">Alur Layanan</a></li>
                 <li><a href="#testimonials" class="nav-link">Testimoni</a></li>
                 <li><a href="#contact" class="nav-link">Kontak</a></li>
             </ul>
             <div class="nav-actions" id="navActions">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSehgHva1vLIceGe1PwkPy9NkIKkRSItkMRY26ZfPcxxrRtbQQ/viewform" target="_blank" rel="noopener" class="btn-login" style="background:#ECFDF5; color:#059669; border:1px solid #A7F3D0;" title="Pendaftaran Asesmen Psikologi Resmi"><i class="fas fa-clipboard-check"></i> Form Asesmen</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-Lup7Z74Dd1eddDma7gJqNmDoeHIExh-H4OqjgHR91qHRDg/viewform" target="_blank" rel="noopener" class="btn-login" style="background:#EEF2FF; color:var(--primary); border:1px solid #C7D2FE;" title="Pendaftaran Sesi Konseling"><i class="fas fa-file-signature"></i> Form Konseling</a>
-                <a href="https://wa.me/6283187689054?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20mendaftar%20dan%20konsultasi." class="btn-register" id="navBtnRegister"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
+                <div class="nav-dropdown" id="navGformDropdown">
+                    <button type="button" class="btn-nav-gform" aria-expanded="false" id="btnNavGform">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Form Pendaftaran</span>
+                        <i class="fas fa-chevron-down fa-xs caret"></i>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <div class="nav-dropdown-header">Pilih Formulir Resmi Google Form</div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSehgHva1vLIceGe1PwkPy9NkIKkRSItkMRY26ZfPcxxrRtbQQ/viewform" target="_blank" rel="noopener" class="nav-dropdown-item">
+                            <div class="nav-drop-icon bg-emerald"><i class="fas fa-clipboard-check"></i></div>
+                            <div class="nav-drop-info">
+                                <span class="nav-drop-title">Form Asesmen Psikologi <span class="badge-tag tag-green">GForm</span></span>
+                                <span class="nav-drop-sub">Tes IQ, Bakat Minat &amp; Kepribadian</span>
+                            </div>
+                        </a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-Lup7Z74Dd1eddDma7gJqNmDoeHIExh-H4OqjgHR91qHRDg/viewform" target="_blank" rel="noopener" class="nav-dropdown-item">
+                            <div class="nav-drop-icon bg-indigo"><i class="fas fa-file-signature"></i></div>
+                            <div class="nav-drop-info">
+                                <span class="nav-drop-title">Form Sesi Konseling <span class="badge-tag tag-blue">GForm</span></span>
+                                <span class="nav-drop-sub">Teman Cerita &amp; Psikolog Klinis</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="https://wa.me/6283187689054?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20mendaftar%20dan%20konsultasi." target="_blank" rel="noopener" class="btn-nav-wa" id="navBtnRegister">
+                    <i class="fab fa-whatsapp"></i> <span>Chat WhatsApp</span>
+                </a>
             </div>
-            <button class="hamburger" id="hamburger" aria-label="Buka menu">
+            <button class="hamburger" id="hamburger" aria-label="Buka menu navigasi" aria-expanded="false">
                 <span></span><span></span><span></span>
             </button>
         </nav>
         <div class="mobile-menu" id="mobileMenu">
-            <ul class="mobile-nav-links">
-                <li><a href="#home"><i class="fas fa-home"></i> Beranda</a></li>
-                <li><a href="#services"><i class="fas fa-th-large"></i> Pilihan Layanan</a></li>
-                <li><a href="#assessment"><i class="fas fa-clipboard-check"></i> Pricelist Asesmen Psikologi</a></li>
-                <li><a href="#psychologists"><i class="fas fa-user-md"></i> Teman Cerita &amp; Psikolog</a></li>
-                <li><a href="#how"><i class="fas fa-project-diagram"></i> Alur 5 Langkah Layanan</a></li>
-                <li><a href="#testimonials"><i class="fas fa-star"></i> Testimoni Pengguna</a></li>
-                <li><a href="#articles"><i class="fas fa-book-open"></i> Artikel Kesehatan Mental</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Kontak Kami</a></li>
-            </ul>
-            <div class="mobile-nav-actions">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSehgHva1vLIceGe1PwkPy9NkIKkRSItkMRY26ZfPcxxrRtbQQ/viewform" target="_blank" rel="noopener" class="btn-register-full" style="background:#059669; margin-bottom:8px;"><i class="fas fa-clipboard-check"></i> Form Pendaftaran Asesmen</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-Lup7Z74Dd1eddDma7gJqNmDoeHIExh-H4OqjgHR91qHRDg/viewform" target="_blank" rel="noopener" class="btn-register-full" style="background:var(--primary); margin-bottom:8px;"><i class="fas fa-file-signature"></i> Form Sesi Konseling</a>
-                <a href="https://wa.me/6283187689054?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20mendaftar%20dan%20konsultasi." class="btn-register-full"><i class="fab fa-whatsapp"></i> Hubungi WhatsApp (083187689054)</a>
-                <a href="/admin" class="btn-login-full" style="margin-top:8px;">Portal Admin (Khusus Staf)</a>
+            <div class="mobile-menu-inner">
+                <div class="mobile-section-label">Navigasi Utama</div>
+                <ul class="mobile-nav-links">
+                    <li><a href="#home"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#services"><i class="fas fa-th-large"></i> Pilihan Layanan</a></li>
+                    <li><a href="#assessment"><i class="fas fa-clipboard-check"></i> Pricelist Asesmen Psikologi</a></li>
+                    <li><a href="#psychologists"><i class="fas fa-user-md"></i> Teman Cerita &amp; Psikolog</a></li>
+                    <li><a href="#how"><i class="fas fa-project-diagram"></i> Alur 5 Langkah Layanan</a></li>
+                    <li><a href="#testimonials"><i class="fas fa-star"></i> Testimoni Klien</a></li>
+                    <li><a href="#articles"><i class="fas fa-book-open"></i> Artikel Kesehatan Mental</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Kontak Kami</a></li>
+                </ul>
+                <div class="mobile-section-label">Pendaftaran Online (Google Form)</div>
+                <div class="mobile-nav-actions">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSehgHva1vLIceGe1PwkPy9NkIKkRSItkMRY26ZfPcxxrRtbQQ/viewform" target="_blank" rel="noopener" class="btn-m-action btn-m-asesmen">
+                        <i class="fas fa-clipboard-check"></i>
+                        <div class="btn-m-text">
+                            <strong>Form Pendaftaran Asesmen</strong>
+                            <small>Tes IQ, Minat Bakat &amp; Kepribadian</small>
+                        </div>
+                        <i class="fas fa-external-link-alt fa-xs"></i>
+                    </a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf-Lup7Z74Dd1eddDma7gJqNmDoeHIExh-H4OqjgHR91qHRDg/viewform" target="_blank" rel="noopener" class="btn-m-action btn-m-konseling">
+                        <i class="fas fa-file-signature"></i>
+                        <div class="btn-m-text">
+                            <strong>Form Sesi Konseling</strong>
+                            <small>Teman Cerita &amp; Psikolog Klinis</small>
+                        </div>
+                        <i class="fas fa-external-link-alt fa-xs"></i>
+                    </a>
+                    <a href="https://wa.me/6283187689054?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20mendaftar%20dan%20konsultasi." target="_blank" rel="noopener" class="btn-m-action btn-m-wa">
+                        <i class="fab fa-whatsapp"></i>
+                        <div class="btn-m-text">
+                            <strong>Chat WhatsApp Admin</strong>
+                            <small>0831-8768-9054 (Shine Journey)</small>
+                        </div>
+                    </a>
+                    <a href="/admin" class="btn-m-admin">
+                        <i class="fas fa-lock"></i> Portal Admin (Khusus Staf)
+                    </a>
+                </div>
             </div>
         </div>
     </header>

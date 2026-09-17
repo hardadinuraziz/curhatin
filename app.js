@@ -17,8 +17,28 @@ mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
         hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
     });
 });
+
+/* ===========================
+   NAV REGISTRATION DROPDOWN (Click/Touch support)
+=========================== */
+const navGformDropdown = document.getElementById('navGformDropdown');
+const btnNavGform = document.getElementById('btnNavGform');
+if (navGformDropdown && btnNavGform) {
+    btnNavGform.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = navGformDropdown.classList.toggle('open');
+        btnNavGform.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', (e) => {
+        if (!navGformDropdown.contains(e.target)) {
+            navGformDropdown.classList.remove('open');
+            btnNavGform.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
 
 /* ===========================
    SMOOTH SCROLL

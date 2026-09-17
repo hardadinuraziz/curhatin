@@ -1680,15 +1680,15 @@
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
               <div style="padding: 0.75rem; border: 1px solid var(--slate-200); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                  <strong>Sarah Amelia, M.Psi., Psikolog</strong>
-                  <div style="font-size: 0.75rem; color: var(--slate-500);">142 Sesi Konseling</div>
+                  <strong>Wilda Nurbayani, S.Psi., M.Psi., Psikolog</strong>
+                  <div style="font-size: 0.75rem; color: var(--slate-500);">380 Sesi Konseling</div>
                 </div>
-                <span style="font-weight: 700; color: #f59e0b;">★ 4.90</span>
+                <span style="font-weight: 700; color: #f59e0b;">★ 4.98</span>
               </div>
               <div style="padding: 0.75rem; border: 1px solid var(--slate-200); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                  <strong>Budi Santoso (Teman Cerita)</strong>
-                  <div style="font-size: 0.75rem; color: var(--slate-500);">220 Sesi Curhat</div>
+                  <strong>Rasidia Nur Kinasti, S.Psi (Teman Cerita)</strong>
+                  <div style="font-size: 0.75rem; color: var(--slate-500);">280 Sesi Curhat</div>
                 </div>
                 <span style="font-weight: 700; color: #f59e0b;">★ 4.95</span>
               </div>

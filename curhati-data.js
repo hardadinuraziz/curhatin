@@ -3,7 +3,7 @@
  * Sesuai Curhati Fullstack System Blueprint
  */
 
-const CURHATI_STORAGE_KEY = 'CURHATI_STATE_V1';
+const CURHATI_STORAGE_KEY = 'SHINEJOURNEY_STATE_V2';
 
 // Seed Initial Data
 const initialCurhatiState = {
@@ -18,9 +18,9 @@ const initialCurhatiState = {
   },
   roles: [
     { id: 'CLIENT', label: 'Client (Maya Pratama)', badge: 'Klien', color: 'bg-teal-500' },
-    { id: 'PSYCHOLOGIST', label: 'Psikolog Klinis (Sarah Amelia, M.Psi., Psikolog)', badge: 'Psikolog', color: 'bg-indigo-600' },
-    { id: 'TEMAN_CERITA', label: 'Teman Cerita (Budi Santoso)', badge: 'Peer Counselor', color: 'bg-amber-500' },
-    { id: 'ASSESSMENT_STAFF', label: 'Assessment Staff (Rian Hidayat)', badge: 'Asesor', color: 'bg-emerald-600' },
+    { id: 'PSYCHOLOGIST', label: 'Psikolog Klinis (Wilda Nurbayani, M.Psi., Psikolog)', badge: 'Psikolog', color: 'bg-indigo-600' },
+    { id: 'TEMAN_CERITA', label: 'Teman Cerita (Rasidia Nur Kinasti, S.Psi)', badge: 'Peer Counselor', color: 'bg-amber-500' },
+    { id: 'ASSESSMENT_STAFF', label: 'Divisi Asesmen (Tim Asesor)', badge: 'Asesor', color: 'bg-emerald-600' },
     { id: 'FINANCE', label: 'Finance (Siti Rahma)', badge: 'Finance', color: 'bg-sky-600' },
     { id: 'ADMIN', label: 'Administrator (Super Admin)', badge: 'Admin', color: 'bg-rose-600' },
     { id: 'OWNER', label: 'Owner / Executive (Hendro Wijaya)', badge: 'Owner', color: 'bg-purple-600' }
@@ -30,72 +30,98 @@ const initialCurhatiState = {
       id: 'srv-1',
       name: 'Teman Cerita',
       category: 'TEMAN_CERITA',
-      description: 'Ruang aman untuk berbagi cerita sehari-hari, beban pikiran ringan, dan curhat tanpa penghakiman bersama konselor sebaya terlatih.',
+      description: 'Ruang aman untuk berbagi cerita sehari-hari, beban pikiran ringan, dan curhat tanpa penghakiman bersama konselor lulusan S.Psi terlatih.',
       durationMinutes: 45,
-      price: 65000,
+      price: 50000,
       badgeColor: 'amber',
       icon: 'heart-handshake'
     },
     {
       id: 'srv-2',
-      name: 'Psikolog Umum',
-      category: 'PSIKOLOG_UMUM',
-      description: 'Konseling mendalam mengenai pengembangan diri, dinamika relasi, stres kerja, kecemasan umum, dan manajemen emosi.',
+      name: 'Psikolog Klinis Dewasa',
+      category: 'PSIKOLOG_KLINIS',
+      description: 'Layanan psikologis komprehensif oleh psikolog klinis berlisensi (STR & SIPP aktif) untuk gangguan kecemasan, trauma, depresi, atau regulasi emosi.',
       durationMinutes: 60,
       price: 175000,
-      badgeColor: 'blue',
+      badgeColor: 'indigo',
       icon: 'brain'
     },
     {
       id: 'srv-3',
-      name: 'Psikolog Klinis',
-      category: 'PSIKOLOG_KLINIS',
-      description: 'Layanan psikologis komprehensif oleh psikolog klinis berlisensi (SIPP) untuk gangguan suasana hati, trauma, depresi, atau kecemasan berat.',
-      durationMinutes: 60,
-      price: 260000,
-      badgeColor: 'indigo',
-      icon: 'shield-alert'
+      name: 'Asesmen Psikologi Resmi',
+      category: 'ASESMEN_PSIKOLOGI',
+      description: 'Pemeriksaan psikologis terstandar (Minat Bakat, Kepribadian, Kesiapan Kerja, Kecerdasan) dengan laporan psikologis resmi dari tim psikolog berizin.',
+      durationMinutes: 90,
+      price: 200000,
+      badgeColor: 'teal',
+      icon: 'file-text'
     }
   ],
   counselors: [
     {
       id: 'csl-1',
-      name: 'Sarah Amelia, M.Psi., Psikolog',
-      title: 'Psikolog Klinis Dewasa',
+      name: 'Wilda Nurbayani, S.Psi., M.Psi., Psikolog',
+      title: 'Psikolog Klinis & Supervisi',
       serviceType: 'PSIKOLOG_KLINIS',
       avatar: 'https://images.unsplash.com/photo-1594824813576-9321e14945d8?w=150&auto=format&fit=crop&q=80',
-      license: 'SIPP: 1984-210-2021',
+      license: 'STR & SIPP Aktif (HIMPSI)',
       experienceYears: 7,
-      rating: 4.9,
-      reviewCount: 142,
-      topics: ['Kecemasan Akut', 'Trauma & PTSD', 'Burnout', 'Depresi Ringan-Sedang'],
+      rating: 4.98,
+      reviewCount: 380,
+      topics: ['Kecemasan Akut', 'Trauma & PTSD', 'Burnout', 'Depresi Ringan-Sedang', 'Regulasi Emosi'],
       availableSlots: ['09:00 - 10:00', '13:00 - 14:00', '15:30 - 16:30', '19:00 - 20:00']
     },
     {
       id: 'csl-2',
-      name: 'Dimas Wicaksono, M.Psi., Psikolog',
-      title: 'Psikolog Umum & Karir',
-      serviceType: 'PSIKOLOG_UMUM',
-      avatar: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=150&auto=format&fit=crop&q=80',
-      license: 'SIPP: 2018-091-2022',
-      experienceYears: 5,
-      rating: 4.8,
-      reviewCount: 98,
-      topics: ['Karier & Pekerjaan', 'Quarter-Life Crisis', 'Komunikasi Interpersonal'],
+      name: 'Haura Maulidianawati, S.Psi., Psikolog',
+      title: 'Psikolog Klinis & Asesmen',
+      serviceType: 'PSIKOLOG_KLINIS',
+      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
+      license: 'STR & SIPP Aktif (HIMPSI)',
+      experienceYears: 6,
+      rating: 4.92,
+      reviewCount: 290,
+      topics: ['Stres Kerja', 'Quarter-Life Crisis', 'Dinamika Relasi', 'Burnout'],
       availableSlots: ['10:00 - 11:00', '14:00 - 15:00', '16:00 - 17:00']
     },
     {
       id: 'csl-3',
-      name: 'Budi Santoso',
-      title: 'Teman Cerita Senior & Peer Counselor',
+      name: 'Rasidia Nur Kinasti, S.Psi',
+      title: 'Koordinator Teman Cerita (Lulusan S.Psi)',
       serviceType: 'TEMAN_CERITA',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
-      license: 'Certified Active Listener (Curhati Academy)',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+      license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
       experienceYears: 3,
       rating: 4.95,
-      reviewCount: 220,
-      topics: ['Teman Curhat', 'Kesepian', 'Overthinking', 'Stres Kuliah'],
+      reviewCount: 280,
+      topics: ['Teman Curhat', 'Kesepian', 'Overthinking', 'Stres Kuliah & Karir'],
       availableSlots: ['11:00 - 11:45', '13:30 - 14:15', '19:30 - 20:15', '20:30 - 21:15']
+    },
+    {
+      id: 'csl-4',
+      name: 'Hanifa Putri Anggraini, S.Psi., Psikolog',
+      title: 'Psikolog Klinis',
+      serviceType: 'PSIKOLOG_KLINIS',
+      avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
+      license: 'STR & SIPP Aktif (HIMPSI)',
+      experienceYears: 5,
+      rating: 4.90,
+      reviewCount: 260,
+      topics: ['Stres Akademik', 'Kecemasan', 'Manajemen Waktu', 'Self-Esteem'],
+      availableSlots: ['09:30 - 10:30', '13:30 - 14:30', '19:00 - 20:00']
+    },
+    {
+      id: 'csl-5',
+      name: 'Putri Dyah Wahyupramesthi, S.Psi',
+      title: 'Teman Cerita & Tim Edukasi',
+      serviceType: 'TEMAN_CERITA',
+      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80',
+      license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
+      experienceYears: 2,
+      rating: 4.94,
+      reviewCount: 210,
+      topics: ['Hubungan Interpersonal', 'Quarter-Life Crisis', 'Self-Love', 'Stres Kerja'],
+      availableSlots: ['14:00 - 14:45', '16:00 - 16:45', '20:00 - 20:45']
     }
   ],
   reservations: [
@@ -104,11 +130,11 @@ const initialCurhatiState = {
       clientId: 'usr-client-01',
       clientName: 'Maya Pratama',
       counselorId: 'csl-1',
-      counselorName: 'Sarah Amelia, M.Psi., Psikolog',
+      counselorName: 'Wilda Nurbayani, S.Psi., M.Psi., Psikolog',
       serviceType: 'Psikolog Klinis',
       date: '2026-09-18',
       timeSlot: '13:00 - 14:00',
-      price: 260000,
+      price: 175000,
       paymentStatus: 'PAID', // PENDING | PAID | FAILED | EXPIRED | REFUNDED
       status: 'CONFIRMED', // PENDING | CONFIRMED | CANCELLED | COMPLETED | NO_SHOW
       createdAt: '2026-09-16 10:15'
@@ -118,11 +144,11 @@ const initialCurhatiState = {
       clientId: 'usr-client-01',
       clientName: 'Maya Pratama',
       counselorId: 'csl-3',
-      counselorName: 'Budi Santoso',
+      counselorName: 'Rasidia Nur Kinasti, S.Psi',
       serviceType: 'Teman Cerita',
       date: '2026-09-14',
       timeSlot: '19:30 - 20:15',
-      price: 65000,
+      price: 50000,
       paymentStatus: 'PAID',
       status: 'COMPLETED',
       createdAt: '2026-09-13 14:00'
@@ -132,7 +158,7 @@ const initialCurhatiState = {
       clientId: 'usr-client-02',
       clientName: 'Reza Fahlevi',
       counselorId: 'csl-2',
-      counselorName: 'Dimas Wicaksono, M.Psi., Psikolog',
+      counselorName: 'Haura Maulidianawati, S.Psi., Psikolog',
       serviceType: 'Psikolog Umum',
       date: '2026-09-17',
       timeSlot: '14:00 - 15:00',
@@ -149,7 +175,7 @@ const initialCurhatiState = {
       clientId: 'usr-client-01',
       clientName: 'Maya Pratama',
       counselorId: 'csl-1',
-      counselorName: 'Sarah Amelia, M.Psi., Psikolog',
+      counselorName: 'Wilda Nurbayani, S.Psi., M.Psi., Psikolog',
       serviceType: 'Psikolog Klinis',
       scheduledDate: '2026-09-18',
       timeSlot: '13:00 - 14:00',
@@ -165,7 +191,7 @@ const initialCurhatiState = {
       clientId: 'usr-client-01',
       clientName: 'Maya Pratama',
       counselorId: 'csl-3',
-      counselorName: 'Budi Santoso',
+      counselorName: 'Rasidia Nur Kinasti, S.Psi',
       serviceType: 'Teman Cerita',
       scheduledDate: '2026-09-14',
       timeSlot: '19:30 - 20:15',
@@ -233,7 +259,7 @@ const initialCurhatiState = {
       clientId: 'usr-client-01',
       clientName: 'Maya Pratama',
       counselorId: 'csl-1',
-      counselorName: 'Sarah Amelia, M.Psi., Psikolog',
+      counselorName: 'Wilda Nurbayani, S.Psi., M.Psi., Psikolog',
       serviceType: 'Psikolog Klinis',
       unreadClient: 1,
       unreadCounselor: 0,
@@ -244,7 +270,7 @@ const initialCurhatiState = {
           id: 'm1',
           senderId: 'usr-client-01',
           senderRole: 'CLIENT',
-          text: 'Halo Bu Sarah, terima kasih sudah menerima jadwal saya.',
+          text: 'Halo Mbak Wilda, terima kasih sudah menerima jadwal saya.',
           time: '14:30',
           read: true
         },
@@ -252,7 +278,7 @@ const initialCurhatiState = {
           id: 'm2',
           senderId: 'csl-1',
           senderRole: 'PSYCHOLOGIST',
-          text: 'Sama-sama Mbak Maya. Selamat datang di Curhati. Nanti kita akan bahas apa yang terasa paling memberatkan ya.',
+          text: 'Sama-sama Mbak Maya. Selamat datang di Shine Journey. Nanti kita akan bahas apa yang terasa paling memberatkan ya.',
           time: '14:45',
           read: true
         },
@@ -271,7 +297,7 @@ const initialCurhatiState = {
       clientId: 'usr-client-01',
       clientName: 'Maya Pratama',
       counselorId: 'csl-3',
-      counselorName: 'Budi Santoso',
+      counselorName: 'Rasidia Nur Kinasti, S.Psi',
       serviceType: 'Teman Cerita',
       unreadClient: 0,
       unreadCounselor: 0,
@@ -306,7 +332,7 @@ const initialCurhatiState = {
       clientId: 'usr-client-01',
       clientName: 'Maya Pratama',
       counselorId: 'csl-3',
-      counselorName: 'Budi Santoso',
+      counselorName: 'Rasidia Nur Kinasti, S.Psi',
       serviceType: 'Teman Cerita',
       fileName: 'Curhati_Refleksi_MayaPratama_14Sep2026.pdf',
       fileUrl: '#mock-signed-url-rep-001',
@@ -386,7 +412,7 @@ const initialCurhatiState = {
       resource: 'Reservation',
       resourceId: 'RES-2026-081',
       ipAddress: '180.252.164.21',
-      metadata: 'Booked Sarah Amelia for 2026-09-18'
+      metadata: 'Booked Wilda Nurbayani for 2026-09-18'
     },
     {
       id: 'AUD-099',
@@ -403,18 +429,18 @@ const initialCurhatiState = {
       id: 'AUD-098',
       timestamp: '2026-09-14 20:32:00',
       userId: 'csl-3',
-      userName: 'Budi Santoso (TEMAN_CERITA)',
+      userName: 'Rasidia Nur Kinasti (TEMAN_CERITA)',
       action: 'UPLOAD_REPORT',
       resource: 'Report',
       resourceId: 'REP-001',
       ipAddress: '103.28.112.45',
-      metadata: 'Uploaded Curhati_Refleksi_MayaPratama_14Sep2026.pdf'
+      metadata: 'Uploaded ShineJourney_Refleksi_MayaPratama_14Sep2026.pdf'
     },
     {
       id: 'AUD-097',
       timestamp: '2026-09-14 20:15:10',
       userId: 'csl-3',
-      userName: 'Budi Santoso (TEMAN_CERITA)',
+      userName: 'Rasidia Nur Kinasti (TEMAN_CERITA)',
       action: 'COMPLETE_SESSION',
       resource: 'CounselingSession',
       resourceId: 'SES-002',
@@ -425,7 +451,7 @@ const initialCurhatiState = {
       id: 'AUD-096',
       timestamp: '2026-09-14 19:30:00',
       userId: 'csl-3',
-      userName: 'Budi Santoso (TEMAN_CERITA)',
+      userName: 'Rasidia Nur Kinasti (TEMAN_CERITA)',
       action: 'START_SESSION',
       resource: 'CounselingSession',
       resourceId: 'SES-002',
@@ -494,8 +520,8 @@ class CurhatiStore {
     } else if (roleId === 'PSYCHOLOGIST') {
       this.data.currentUser = {
         id: 'csl-1',
-        name: 'Sarah Amelia, M.Psi., Psikolog',
-        email: 'sarah.amelia@curhati.id',
+        name: 'Wilda Nurbayani, S.Psi., M.Psi., Psikolog',
+        email: 'wilda.nurbayani@shinejourney.id',
         role: 'PSYCHOLOGIST',
         avatar: 'https://images.unsplash.com/photo-1594824813576-9321e14945d8?w=150&auto=format&fit=crop&q=80',
         title: 'Psikolog Klinis Dewasa'
@@ -503,11 +529,11 @@ class CurhatiStore {
     } else if (roleId === 'TEMAN_CERITA') {
       this.data.currentUser = {
         id: 'csl-3',
-        name: 'Budi Santoso',
-        email: 'budi.santoso@curhati.id',
+        name: 'Rasidia Nur Kinasti, S.Psi',
+        email: 'rasidia.kinasti@shinejourney.id',
         role: 'TEMAN_CERITA',
-        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
-        title: 'Teman Cerita & Peer Counselor'
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+        title: 'Koordinator Teman Cerita'
       };
     } else if (roleId === 'ASSESSMENT_STAFF') {
       this.data.currentUser = {

@@ -144,9 +144,34 @@ function observeWithStagger(selector, delayPerItem = 80) {
 
 observeWithStagger('.services-grid .service-card', 80);
 observeWithStagger('.psych-grid .psych-card', 80);
+observeWithStagger('.assessment-grid .assess-card', 60);
 observeWithStagger('.testi-grid .testi-card', 80);
 observeWithStagger('.articles-grid .article-card', 80);
 observeWithStagger('.steps-wrapper .step-item', 100);
+
+/* ===========================
+   ASSESSMENT PRICING TABS
+=========================== */
+window.switchPricingTab = function(tab) {
+    const btnIndividu = document.getElementById('tabBtnIndividu');
+    const btnInstansi = document.getElementById('tabBtnInstansi');
+    const gridIndividu = document.getElementById('gridIndividu');
+    const gridInstansi = document.getElementById('gridInstansi');
+
+    if (!btnIndividu || !btnInstansi || !gridIndividu || !gridInstansi) return;
+
+    if (tab === 'individu') {
+        btnIndividu.classList.add('active');
+        btnInstansi.classList.remove('active');
+        gridIndividu.style.display = 'grid';
+        gridInstansi.style.display = 'none';
+    } else {
+        btnInstansi.classList.add('active');
+        btnIndividu.classList.remove('active');
+        gridInstansi.style.display = 'grid';
+        gridIndividu.style.display = 'none';
+    }
+};
 
 /* ===========================
    SEARCH BAR

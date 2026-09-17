@@ -209,6 +209,31 @@
     const role = store.data.currentRole;
     const groups = getNavigationForRole(role);
 
+    const iconMap = {
+      'layout-dashboard': 'fas fa-th-large',
+      'calendar-plus': 'fas fa-calendar-plus',
+      'calendar-check': 'fas fa-calendar-check',
+      'clipboard-list': 'fas fa-clipboard-list',
+      'file-heart': 'fas fa-file-medical',
+      'message-circle': 'fas fa-comments',
+      'file-text': 'fas fa-file-alt',
+      'users': 'fas fa-users',
+      'calendar': 'fas fa-calendar-alt',
+      'upload-cloud': 'fas fa-cloud-upload-alt',
+      'heart-handshake': 'fas fa-handshake',
+      'inbox': 'fas fa-inbox',
+      'check-circle': 'fas fa-check-circle',
+      'dollar-sign': 'fas fa-dollar-sign',
+      'receipt': 'fas fa-receipt',
+      'file-spreadsheet': 'fas fa-file-invoice-dollar',
+      'shield': 'fas fa-shield-alt',
+      'users-cog': 'fas fa-users-cog',
+      'sliders': 'fas fa-sliders-h',
+      'activity': 'fas fa-chart-line',
+      'trending-up': 'fas fa-chart-line',
+      'pie-chart': 'fas fa-chart-pie'
+    };
+
     sidebarNavEl.innerHTML = groups
       .map(
         g => `
@@ -218,7 +243,7 @@
           .map(
             item => `
           <div class="nav-link ${currentActiveTab === item.id ? 'active' : ''}" data-tab="${item.id}">
-            <i class="lucide-${item.icon}"></i>
+            <i class="${iconMap[item.icon] || 'fas fa-circle'}" data-lucide="${item.icon}"></i>
             <span>${item.label}</span>
             ${item.badge ? `<span class="nav-badge badge-count">${item.badge}</span>` : ''}
           </div>
@@ -229,6 +254,10 @@
     `
       )
       .join('');
+
+    if (window.lucide && typeof window.lucide.createIcons === 'function') {
+      window.lucide.createIcons();
+    }
 
     // Rebind nav click events
     sidebarNavEl.querySelectorAll('.nav-link').forEach(btn => {

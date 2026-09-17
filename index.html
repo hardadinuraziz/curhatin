@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShineJourney - Platform Kesehatan Mental Terpercaya #1 Indonesia</title>
-    <meta name="description" content="ShineJourney menghubungkan Anda dengan psikolog profesional bersertifikat. Konsultasi online kapan saja, di mana saja.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>ShineJourney - Teman Cerita & Konseling Psikolog Terpercaya #1 Indonesia</title>
+    <meta name="description" content="ShineJourney menghubungkan Anda dengan Teman Cerita sebaya dan Psikolog Klinis berlisensi (SIPP). Konsultasi online aman, nyaman, dan tanpa stigma.">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,21 +22,20 @@
                 <li class="dropdown">
                     <a href="#services" class="nav-link">Layanan <i class="fas fa-chevron-down fa-xs"></i></a>
                     <div class="dropdown-menu">
-                        <a href="#services"><i class="fas fa-comment-medical"></i> Curhat Online</a>
-                        <a href="#services"><i class="fas fa-video"></i> Video Call</a>
-                        <a href="#services"><i class="fas fa-robot"></i> AI Assistant</a>
-                        <a href="#services"><i class="fas fa-calendar-check"></i> Reservasi</a>
-                        <a href="#services"><i class="fas fa-users"></i> Grup Support</a>
+                        <a href="#services"><i class="fas fa-heart-handshake"></i> Teman Cerita (Peer)</a>
+                        <a href="#services"><i class="fas fa-user-md"></i> Konseling Psikolog Klinis</a>
+                        <a href="#services"><i class="fas fa-clipboard-check"></i> Asesmen Mandiri (DASS-21)</a>
+                        <a href="#services"><i class="fas fa-briefcase"></i> Konseling Karir &amp; Hubungan</a>
                     </div>
                 </li>
-                <li><a href="#psychologists" class="nav-link">Psikolog</a></li>
+                <li><a href="#psychologists" class="nav-link">Konselor &amp; Psikolog</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimoni</a></li>
                 <li><a href="#articles" class="nav-link">Artikel</a></li>
                 <li><a href="#contact" class="nav-link">Kontak</a></li>
             </ul>
             <div class="nav-actions" id="navActions">
                 <a href="/admin" class="btn-login" title="Portal Admin & Backend">Portal Admin</a>
-                <a href="#" class="btn-login">Masuk</a>
-                <a href="https://wa.me/6281313078216" class="btn-register">Daftar Gratis</a>
+                <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20mendaftar%20dan%20konsultasi." class="btn-register" id="navBtnRegister"><i class="fab fa-whatsapp"></i> Daftar Gratis</a>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Buka menu">
                 <span></span><span></span><span></span>
@@ -45,14 +44,15 @@
         <div class="mobile-menu" id="mobileMenu">
             <ul class="mobile-nav-links">
                 <li><a href="#home"><i class="fas fa-home"></i> Beranda</a></li>
-                <li><a href="#services"><i class="fas fa-th-large"></i> Layanan</a></li>
-                <li><a href="#psychologists"><i class="fas fa-user-md"></i> Psikolog</a></li>
-                <li><a href="#articles"><i class="fas fa-book-open"></i> Artikel</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Kontak</a></li>
+                <li><a href="#services"><i class="fas fa-th-large"></i> Pilihan Layanan</a></li>
+                <li><a href="#psychologists"><i class="fas fa-user-md"></i> Teman Cerita &amp; Psikolog</a></li>
+                <li><a href="#testimonials"><i class="fas fa-star"></i> Testimoni Pengguna</a></li>
+                <li><a href="#articles"><i class="fas fa-book-open"></i> Artikel Kesehatan Mental</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Kontak Kami</a></li>
             </ul>
             <div class="mobile-nav-actions">
-                <a href="#" class="btn-login-full">Masuk</a>
-                <a href="https://wa.me/6281313078216" class="btn-register-full">Daftar Gratis</a>
+                <a href="/admin" class="btn-login-full">Portal Admin (Khusus Staf)</a>
+                <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20mendaftar%20dan%20konsultasi." class="btn-register-full"><i class="fab fa-whatsapp"></i> Hubungi WhatsApp (081313078216)</a>
             </div>
         </div>
     </header>
@@ -60,32 +60,32 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-badge"><i class="fas fa-shield-alt"></i> Platform Kesehatan Mental #1 Indonesia</div>
-                <h1>Kesehatan Mental Anda, <span class="gradient-text">Prioritas Kami</span></h1>
-                <p>Terhubung dengan psikolog profesional bersertifikat. Konsultasi kapan saja, di mana saja, dalam satu platform terpercaya.</p>
+                <div class="hero-badge"><i class="fas fa-heart" style="color:#E6736A;"></i> Teman Dalam Perjalananmu, Bersama Menuju Diri yang Lebih Baik</div>
+                <h1>Curhat Beban Pikiran Anda, <span class="gradient-text">Kami Siap Mendengar</span></h1>
+                <p>Temukan kelegaan bercerita bersama <strong>Teman Cerita</strong> sebaya yang suportif dan terjangkau, atau konsultasi mendalam dengan <strong>Psikolog Klinis</strong> berizin resmi (SIPP). Privasi 100% aman, tanpa stigma, tanpa penghakiman.</p>
                 <div class="search-bar">
                     <div class="search-input-wrap">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" placeholder="Cari psikolog, layanan, atau keluhan...">
+                        <input type="text" id="searchInput" placeholder="Cari teman cerita, psikolog, keluhan overthinking, burnout...">
                     </div>
                     <button class="search-btn" id="searchBtn">Cari Sekarang</button>
                 </div>
                 <div class="hero-quick-access">
-                    <div class="quick-item" id="quickCurhat" onclick="smoothScroll('services')">
-                        <div class="quick-icon" style="background:#EEF2FF;"><i class="fas fa-comment-dots" style="color:#4F46E5;"></i></div>
-                        <span>Curhat Online</span>
+                    <div class="quick-item" id="quickTemanCerita" onclick="smoothScroll('psychologists')">
+                        <div class="quick-icon" style="background:#FFF7ED;"><i class="fas fa-heart-handshake" style="color:#F59E0B;"></i></div>
+                        <span>Teman Cerita</span>
                     </div>
                     <div class="quick-item" id="quickPsikolog" onclick="smoothScroll('psychologists')">
-                        <div class="quick-icon" style="background:#ECFDF5;"><i class="fas fa-user-md" style="color:#10B981;"></i></div>
-                        <span>Pilih Psikolog</span>
+                        <div class="quick-icon" style="background:#EEF2FF;"><i class="fas fa-user-md" style="color:#4F46E5;"></i></div>
+                        <span>Psikolog Klinis</span>
                     </div>
-                    <div class="quick-item" id="quickVideo" onclick="smoothScroll('services')">
-                        <div class="quick-icon" style="background:#FFF7ED;"><i class="fas fa-video" style="color:#F59E0B;"></i></div>
-                        <span>Video Call</span>
+                    <div class="quick-item" id="quickAsesmen" onclick="smoothScroll('services')">
+                        <div class="quick-icon" style="background:#ECFDF5;"><i class="fas fa-clipboard-check" style="color:#10B981;"></i></div>
+                        <span>Asesmen DASS-21</span>
                     </div>
-                    <div class="quick-item" id="quickAI" onclick="smoothScroll('services')">
-                        <div class="quick-icon" style="background:#FDF2F8;"><i class="fas fa-robot" style="color:#EC4899;"></i></div>
-                        <span>AI Assistant</span>
+                    <div class="quick-item" id="quickCurhat" onclick="smoothScroll('services')">
+                        <div class="quick-icon" style="background:#FDF2F8;"><i class="fas fa-comment-dots" style="color:#EC4899;"></i></div>
+                        <span>Curhat Online</span>
                     </div>
                 </div>
             </div>
@@ -97,18 +97,18 @@
                     <div class="doctor-float-card">
                         <div class="dfc-avatar"><i class="fas fa-user-md"></i></div>
                         <div class="dfc-info">
-                            <strong>Dr. Sarah Amelia</strong>
-                            <span>Psikologi Klinis</span>
-                            <div class="dfc-rating"><i class="fas fa-star"></i> 4.9 &nbsp;&middot;&nbsp; <span class="online-dot"></span> Online</div>
+                            <strong>Sarah Amelia, M.Psi</strong>
+                            <span>Psikolog Klinis (SIPP)</span>
+                            <div class="dfc-rating"><i class="fas fa-star"></i> 4.95 &nbsp;&middot;&nbsp; <span class="online-dot"></span> Online</div>
                         </div>
                     </div>
                     <div class="bubble-stat bubble-top">
                         <div class="bubble-icon" style="background:#EEF2FF;color:#4F46E5;"><i class="fas fa-users"></i></div>
-                        <div><strong>50K+</strong><span>Pengguna</span></div>
+                        <div><strong>15K+</strong><span>Sesi Selesai</span></div>
                     </div>
                     <div class="bubble-stat bubble-mid">
-                        <div class="bubble-icon" style="background:#ECFDF5;color:#10B981;"><i class="fas fa-check-circle"></i></div>
-                        <div><strong>98%</strong><span>Puas</span></div>
+                        <div class="bubble-icon" style="background:#ECFDF5;color:#10B981;"><i class="fas fa-shield-check"></i></div>
+                        <div><strong>100%</strong><span>Privasi Aman</span></div>
                     </div>
                 </div>
             </div>
@@ -118,23 +118,23 @@
     <section class="stats-section">
         <div class="stats-container">
             <div class="stat-item">
-                <div class="stat-row"><span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span></div>
-                <p class="stat-label">Psikolog Tersertifikasi</p>
+                <div class="stat-row"><span class="stat-number" data-target="50">0</span><span class="stat-suffix">+</span></div>
+                <p class="stat-label">Konselor &amp; Psikolog</p>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-                <div class="stat-row"><span class="stat-number" data-target="50000">0</span><span class="stat-suffix">+</span></div>
-                <p class="stat-label">Pengguna Aktif</p>
+                <div class="stat-row"><span class="stat-number" data-target="15000">0</span><span class="stat-suffix">+</span></div>
+                <p class="stat-label">Sesi Konsultasi Selesai</p>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-                <div class="stat-row"><span class="stat-number" data-target="100000">0</span><span class="stat-suffix">+</span></div>
-                <p class="stat-label">Sesi Konsultasi</p>
+                <div class="stat-row"><span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span></div>
+                <p class="stat-label">Kerahasiaan Privasi</p>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
                 <div class="stat-row"><span class="stat-number" data-target="98">0</span><span class="stat-suffix">%</span></div>
-                <p class="stat-label">Tingkat Kepuasan</p>
+                <p class="stat-label">Tingkat Kepuasan Klien</p>
             </div>
         </div>
     </section>
@@ -142,47 +142,35 @@
     <section id="services" class="services">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-tag">Layanan Kami</span>
-                <h2>Semua Kebutuhan <span class="gradient-text">Kesehatan Mental</span> dalam Satu Platform</h2>
-                <p>Kami menyediakan berbagai layanan untuk mendukung perjalanan kesehatan mental Anda</p>
+                <span class="section-tag">Pilihan Layanan</span>
+                <h2>Dukungan Mental yang <span class="gradient-text">Tepat Sesuai Kebutuhan Anda</span></h2>
+                <p>Mulai dari curhat santai sebaya yang ramah di kantong hingga penanganan klinis komprehensif bersama psikolog berlisensi resmi.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card reveal">
-                    <div class="service-icon" style="background:#EEF2FF;"><i class="fas fa-comment-medical" style="color:#4F46E5;"></i></div>
-                    <h3>Curhat Online</h3>
-                    <p>Tempat aman untuk bercerita dengan psikolog profesional melalui chat. Tersedia 24/7 kapan Anda butuhkan.</p>
-                    <a href="https://wa.me/6281313078216" class="service-link" id="linkCurhat">Mulai Sekarang <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-icon" style="background:#FFF7ED;"><i class="fas fa-heart-handshake" style="color:#F59E0B;"></i></div>
+                    <h3>Teman Cerita (Peer Counselor)</h3>
+                    <p>Ruang aman untuk berkeluh kesah tanpa penghakiman. Cocok untuk melepas overthinking, penat kuliah/pekerjaan, kesepian, dan curhat sehari-hari bersama pendengar sebaya terlatih.</p>
+                    <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20jadwalkan%20sesi%20dengan%20Teman%20Cerita%20(Peer%20Counselor)." class="service-link" id="linkTemanCerita">Mulai Curhat (Mulai Rp 50rb) <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card featured reveal">
-                    <div class="service-badge-chip">Populer</div>
-                    <div class="service-icon" style="background:rgba(255,255,255,0.2);"><i class="fas fa-video" style="color:#fff;"></i></div>
-                    <h3>Video Call Psikolog</h3>
-                    <p>Sesi konsultasi tatap muka virtual yang lebih personal, mendalam, dan efektif bersama psikolog pilihan Anda.</p>
-                    <a href="https://wa.me/6281313078216" class="service-link" id="linkVideo">Jadwalkan <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-badge-chip">Paling Populer</div>
+                    <div class="service-icon" style="background:rgba(255,255,255,0.2);"><i class="fas fa-user-md" style="color:#fff;"></i></div>
+                    <h3>Konseling Psikolog Klinis (Online)</h3>
+                    <p>Sesi privat dan mendalam bersama Psikolog Klinis berizin (SIPP) via Chat atau Video Call. Penanganan terstruktur untuk kecemasan akut, trauma emosional, depresi, dan manajemen stres.</p>
+                    <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20konsultasi%20dengan%20Psikolog%20Klinis%20berizin." class="service-link" id="linkVideo">Konsultasi Psikolog <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card reveal">
-                    <div class="service-icon" style="background:#FFF7ED;"><i class="fas fa-calendar-alt" style="color:#F59E0B;"></i></div>
-                    <h3>Reservasi Offline</h3>
-                    <p>Buat janji temu langsung dengan psikolog di klinik atau rumah sakit mitra terdekat Anda.</p>
-                    <a href="https://wa.me/6281313078216" class="service-link" id="linkReservasi">Buat Janji <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-icon" style="background:#ECFDF5;"><i class="fas fa-clipboard-check" style="color:#10B981;"></i></div>
+                    <h3>Asesmen Mandiri (DASS-21)</h3>
+                    <p>Skrining kesehatan mental mandiri dan rahasia berbasis skala klinis DASS-21 untuk mengetahui tingkat stres, kecemasan, dan suasana hati Anda secara objektif dan gratis.</p>
+                    <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20mencoba%20Asesmen%20Mandiri%20DASS-21." class="service-link" id="linkAsesmen">Coba Asesmen Gratis <i class="fas fa-arrow-right"></i></a>
                 </div>
                 <div class="service-card reveal">
-                    <div class="service-icon" style="background:#FDF2F8;"><i class="fas fa-robot" style="color:#EC4899;"></i></div>
-                    <h3>AI Mental Health</h3>
-                    <p>Asisten AI canggih yang membantu analisis mood harian, ringkasan sesi, dan rekomendasi konten kesehatan.</p>
-                    <a href="https://wa.me/6281313078216" class="service-link" id="linkAI">Coba AI <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-icon" style="background:#EFF6FF;"><i class="fas fa-file-medical-alt" style="color:#3B82F6;"></i></div>
-                    <h3>Rekam Medis Digital</h3>
-                    <p>Semua riwayat sesi dan catatan konsultasi tersimpan aman dan bisa diakses kapan saja dari mana saja.</p>
-                    <a href="https://wa.me/6281313078216" class="service-link" id="linkRekam">Lihat Detail <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card reveal">
-                    <div class="service-icon" style="background:#F0FDF4;"><i class="fas fa-users" style="color:#22C55E;"></i></div>
-                    <h3>Grup Support</h3>
-                    <p>Bergabung dengan komunitas sehat jiwa yang hangat dan temukan dukungan dari sesama yang memahami.</p>
-                    <a href="https://wa.me/6281313078216" class="service-link" id="linkGrup">Bergabung <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-icon" style="background:#EFF6FF;"><i class="fas fa-briefcase" style="color:#3B82F6;"></i></div>
+                    <h3>Konseling Karir &amp; Hubungan</h3>
+                    <p>Bimbingan khusus untuk mengatasi quarter-life crisis, kejenuhan kerja (burnout), transisi karir, serta dinamika hubungan interpersonal bersama psikolog karir berpengalaman.</p>
+                    <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20konsultasi%20seputar%20karir%20dan%20hubungan." class="service-link" id="linkKarir">Jadwalkan Sesi <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -191,81 +179,103 @@
     <section id="psychologists" class="psychologists">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-tag">Tim Profesional</span>
-                <h2>Psikolog <span class="gradient-text">Terpercaya</span> Kami</h2>
-                <p>Semua psikolog telah tersertifikasi resmi dan memiliki pengalaman bertahun-tahun</p>
+                <span class="section-tag">Tim Pendamping &amp; Psikolog</span>
+                <h2>Teman Cerita &amp; <span class="gradient-text">Psikolog Terpercaya</span></h2>
+                <p>Pilih konselor sebaya yang hangat atau psikolog klinis berlisensi resmi (SIPP) sesuai kebutuhan dan kenyamanan Anda</p>
             </div>
             <div class="filter-tabs" id="filterTabs">
-                <button class="filter-btn active" data-filter="all">Semua</button>
-                <button class="filter-btn" data-filter="klinis">Psikologi Klinis</button>
-                <button class="filter-btn" data-filter="anak">Psikologi Anak</button>
-                <button class="filter-btn" data-filter="keluarga">Konseling Keluarga</button>
-                <button class="filter-btn" data-filter="karir">Psikologi Karir</button>
+                <button class="filter-btn active" data-filter="all">Semua Tim</button>
+                <button class="filter-btn" data-filter="teman_cerita"><i class="fas fa-heart-handshake"></i> Teman Cerita (Peer)</button>
+                <button class="filter-btn" data-filter="klinis"><i class="fas fa-user-md"></i> Psikolog Klinis (SIPP)</button>
+                <button class="filter-btn" data-filter="karir"><i class="fas fa-briefcase"></i> Psikolog Karir &amp; Hubungan</button>
             </div>
             <div class="psych-grid" id="psychGrid">
+                <!-- Profile 1: Teman Cerita Budi Santoso -->
+                <div class="psych-card reveal" data-category="teman_cerita">
+                    <div class="psych-status online">&#x25CF; Online</div>
+                    <div class="psych-avatar"><div class="avatar-bg" style="background:linear-gradient(135deg,#F59E0B,#D97706);"><i class="fas fa-heart-handshake"></i></div></div>
+                    <div class="psych-info">
+                        <span class="peer-badge" style="display:inline-block; align-self:flex-start; background:#FEF3C7; color:#B45309; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:600;">Teman Cerita (Peer Counselor)</span>
+                        <h4>Budi Santoso, S.Sos</h4>
+                        <span class="psych-spec" style="color:#D97706;">Certified Active Listener · Curhati Peer Academy</span>
+                        <div class="psych-stats">
+                            <span><i class="fas fa-star"></i> 4.95</span>
+                            <span><i class="fas fa-comment"></i> 240+ Sesi</span>
+                            <span><i class="fas fa-clock"></i> 3 Thn</span>
+                        </div>
+                        <div class="psych-tags" style="font-size:0.73rem; color:#6B7280; line-height:1.4;">
+                            Fokus: Overthinking, Kesepian, Stres Kuliah, Tempat Curhat Nyaman
+                        </div>
+                        <div class="psych-price"><span class="price-val">Rp 50.000</span><span class="price-unit">/sesi (45 mnt)</span></div>
+                        <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20konsultasi%20dengan%20Teman%20Cerita%20(Budi%20Santoso%2C%20S.Sos)." class="btn-consult" id="consultBudi"><i class="fab fa-whatsapp"></i> Chat Teman Cerita</a>
+                    </div>
+                </div>
+
+                <!-- Profile 2: Teman Cerita Nadia Larasati -->
+                <div class="psych-card reveal" data-category="teman_cerita">
+                    <div class="psych-status online">&#x25CF; Online</div>
+                    <div class="psych-avatar"><div class="avatar-bg" style="background:linear-gradient(135deg,#EC4899,#BE185D);"><i class="fas fa-comments"></i></div></div>
+                    <div class="psych-info">
+                        <span class="peer-badge" style="display:inline-block; align-self:flex-start; background:#FCE7F3; color:#BE185D; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:600;">Teman Cerita (Peer Counselor)</span>
+                        <h4>Nadia Larasati, S.Psi</h4>
+                        <span class="psych-spec" style="color:#BE185D;">Certified Peer Support Specialist</span>
+                        <div class="psych-stats">
+                            <span><i class="fas fa-star"></i> 4.90</span>
+                            <span><i class="fas fa-comment"></i> 195+ Sesi</span>
+                            <span><i class="fas fa-clock"></i> 2 Thn</span>
+                        </div>
+                        <div class="psych-tags" style="font-size:0.73rem; color:#6B7280; line-height:1.4;">
+                            Fokus: Quarter-Life Crisis, Dinamika Hubungan, Ekspektasi Keluarga
+                        </div>
+                        <div class="psych-price"><span class="price-val">Rp 55.000</span><span class="price-unit">/sesi (45 mnt)</span></div>
+                        <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20konsultasi%20dengan%20Teman%20Cerita%20(Nadia%20Larasati%2C%20S.Psi)." class="btn-consult" id="consultNadia"><i class="fab fa-whatsapp"></i> Chat Teman Cerita</a>
+                    </div>
+                </div>
+
+                <!-- Profile 3: Psikolog Klinis Sarah Amelia -->
                 <div class="psych-card reveal" data-category="klinis">
                     <div class="psych-status online">&#x25CF; Online</div>
-                    <div class="psych-avatar"><div class="avatar-bg" style="background:linear-gradient(135deg,#667eea,#764ba2);"><i class="fas fa-user-md"></i></div></div>
+                    <div class="psych-avatar"><div class="avatar-bg" style="background:linear-gradient(135deg,#4F46E5,#3730A3);"><i class="fas fa-user-md"></i></div></div>
                     <div class="psych-info">
-                        <h4>Dr. Sarah Amelia, M.Psi</h4>
-                        <span class="psych-spec">Psikologi Klinis</span>
+                        <span class="peer-badge" style="display:inline-block; align-self:flex-start; background:#EEF2FF; color:#4F46E5; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:600;">Psikolog Berizin (SIPP)</span>
+                        <h4>Sarah Amelia, M.Psi., Psikolog</h4>
+                        <span class="psych-spec">Psikolog Klinis Dewasa &middot; SIPP: 1984-210-2021</span>
                         <div class="psych-stats">
-                            <span><i class="fas fa-star"></i> 4.9</span>
-                            <span><i class="fas fa-comment"></i> 320</span>
+                            <span><i class="fas fa-star"></i> 4.95</span>
+                            <span><i class="fas fa-comment"></i> 340+ Sesi</span>
                             <span><i class="fas fa-briefcase"></i> 8 Thn</span>
                         </div>
-                        <div class="psych-price"><span class="price-val">Rp 150.000</span><span class="price-unit">/sesi</span></div>
-                        <a href="https://wa.me/6281313078216" class="btn-consult" id="consultSarah">Konsultasi</a>
-                    </div>
-                </div>
-                <div class="psych-card reveal" data-category="anak">
-                    <div class="psych-status online">&#x25CF; Online</div>
-                    <div class="psych-avatar"><div class="avatar-bg" style="background:linear-gradient(135deg,#f093fb,#f5576c);"><i class="fas fa-user-md"></i></div></div>
-                    <div class="psych-info">
-                        <h4>Dra. Dian Kusuma, M.Psi</h4>
-                        <span class="psych-spec">Psikologi Anak &amp; Remaja</span>
-                        <div class="psych-stats">
-                            <span><i class="fas fa-star"></i> 4.8</span>
-                            <span><i class="fas fa-comment"></i> 285</span>
-                            <span><i class="fas fa-briefcase"></i> 10 Thn</span>
+                        <div class="psych-tags" style="font-size:0.73rem; color:#6B7280; line-height:1.4;">
+                            Fokus: Kecemasan Akut, Trauma &amp; PTSD, Depresi Ringan-Sedang, Burnout
                         </div>
-                        <div class="psych-price"><span class="price-val">Rp 175.000</span><span class="price-unit">/sesi</span></div>
-                        <a href="https://wa.me/6281313078216" class="btn-consult" id="consultDian">Konsultasi</a>
+                        <div class="psych-price"><span class="price-val">Rp 175.000</span><span class="price-unit">/sesi (60 mnt)</span></div>
+                        <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20konsultasi%20dengan%20Psikolog%20Klinis%20(Sarah%20Amelia%2C%20M.Psi%2C%20Psikolog)." class="btn-consult" id="consultSarah"><i class="fab fa-whatsapp"></i> Konsultasi Psikolog</a>
                     </div>
                 </div>
-                <div class="psych-card reveal" data-category="keluarga">
-                    <div class="psych-status busy">&#x25CF; Sibuk</div>
-                    <div class="psych-avatar"><div class="avatar-bg" style="background:linear-gradient(135deg,#4facfe,#00f2fe);"><i class="fas fa-user-md"></i></div></div>
-                    <div class="psych-info">
-                        <h4>Dr. Maya Putri, M.Psi</h4>
-                        <span class="psych-spec">Konseling Keluarga</span>
-                        <div class="psych-stats">
-                            <span><i class="fas fa-star"></i> 4.7</span>
-                            <span><i class="fas fa-comment"></i> 198</span>
-                            <span><i class="fas fa-briefcase"></i> 6 Thn</span>
-                        </div>
-                        <div class="psych-price"><span class="price-val">Rp 200.000</span><span class="price-unit">/sesi</span></div>
-                        <a href="https://wa.me/6281313078216" class="btn-consult" id="consultMaya">Jadwalkan</a>
-                    </div>
-                </div>
+
+                <!-- Profile 4: Psikolog Karir Dimas Wicaksono -->
                 <div class="psych-card reveal" data-category="karir">
                     <div class="psych-status online">&#x25CF; Online</div>
-                    <div class="psych-avatar"><div class="avatar-bg" style="background:linear-gradient(135deg,#43e97b,#38f9d7);"><i class="fas fa-user-md"></i></div></div>
+                    <div class="psych-avatar"><div class="avatar-bg" style="background:linear-gradient(135deg,#0284C7,#0369A1);"><i class="fas fa-user-tie"></i></div></div>
                     <div class="psych-info">
-                        <h4>Drs. Rizky Pratama, M.Psi</h4>
-                        <span class="psych-spec">Psikologi Karir &amp; Industri</span>
+                        <span class="peer-badge" style="display:inline-block; align-self:flex-start; background:#E0F2FE; color:#0369A1; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:600;">Psikolog Berizin (SIPP)</span>
+                        <h4>Dimas Wicaksono, M.Psi., Psikolog</h4>
+                        <span class="psych-spec">Psikolog Karir &amp; Hubungan &middot; SIPP: 2018-091-2022</span>
                         <div class="psych-stats">
-                            <span><i class="fas fa-star"></i> 4.9</span>
-                            <span><i class="fas fa-comment"></i> 412</span>
-                            <span><i class="fas fa-briefcase"></i> 12 Thn</span>
+                            <span><i class="fas fa-star"></i> 4.85</span>
+                            <span><i class="fas fa-comment"></i> 215+ Sesi</span>
+                            <span><i class="fas fa-briefcase"></i> 6 Thn</span>
                         </div>
-                        <div class="psych-price"><span class="price-val">Rp 225.000</span><span class="price-unit">/sesi</span></div>
-                        <a href="https://wa.me/6281313078216" class="btn-consult" id="consultRizky">Konsultasi</a>
+                        <div class="psych-tags" style="font-size:0.73rem; color:#6B7280; line-height:1.4;">
+                            Fokus: Stres Kerja Kronis, Burnout, Resolusi Konflik, Self-Growth
+                        </div>
+                        <div class="psych-price"><span class="price-val">Rp 160.000</span><span class="price-unit">/sesi (60 mnt)</span></div>
+                        <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20konsultasi%20dengan%20Psikolog%20(Dimas%20Wicaksono%2C%20M.Psi%2C%20Psikolog)." class="btn-consult" id="consultDimas"><i class="fab fa-whatsapp"></i> Konsultasi Psikolog</a>
                     </div>
                 </div>
             </div>
             <div class="view-all-wrap">
-                <a href="https://wa.me/6281313078216" class="btn-view-all" id="btnViewAll">Lihat Semua Psikolog <i class="fas fa-arrow-right"></i></a>
+                <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20melihat%20jadwal%20lengkap%20konselor%20dan%20psikolog." class="btn-view-all" id="btnViewAll">Lihat Jadwal Lengkap &amp; Konsultasi <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -274,70 +284,90 @@
         <div class="section-container">
             <div class="section-header">
                 <span class="section-tag">Cara Mudah</span>
-                <h2>Mulai Konsultasi dalam <span class="gradient-text">4 Langkah</span> Mudah</h2>
+                <h2>Mulai Konsultasi dalam <span class="gradient-text">4 Langkah</span> Sederhana</h2>
             </div>
             <div class="steps-wrapper">
                 <div class="step-item reveal">
                     <div class="step-num">01</div>
-                    <div class="step-icon-wrap"><i class="fas fa-user-plus"></i></div>
-                    <h3>Buat Akun</h3>
-                    <p>Daftar gratis dalam hitungan detik. Isi data diri dan ceritakan kebutuhan Anda.</p>
+                    <div class="step-icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>Pilih Layanan</h3>
+                    <p>Tentukan apakah Anda butuh Teman Cerita sebaya atau Psikolog Klinis profesional berlisensi.</p>
                 </div>
                 <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
                 <div class="step-item reveal">
                     <div class="step-num">02</div>
-                    <div class="step-icon-wrap"><i class="fas fa-search"></i></div>
-                    <h3>Pilih Psikolog</h3>
-                    <p>Temukan psikolog yang tepat berdasarkan spesialisasi, jadwal, dan ulasan pengguna.</p>
+                    <div class="step-icon-wrap"><i class="fas fa-calendar-alt"></i></div>
+                    <h3>Pilih Konselor &amp; Jadwal</h3>
+                    <p>Pilih konselor yang cocok dan tentukan waktu sesi yang paling nyaman untuk Anda.</p>
                 </div>
                 <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
                 <div class="step-item reveal">
                     <div class="step-num">03</div>
-                    <div class="step-icon-wrap"><i class="fas fa-credit-card"></i></div>
-                    <h3>Bayar Aman</h3>
-                    <p>Pembayaran mudah dan aman. Transfer bank, e-wallet, dan kartu kredit tersedia.</p>
+                    <div class="step-icon-wrap"><i class="fas fa-lock"></i></div>
+                    <h3>Konfirmasi &amp; Bayar Aman</h3>
+                    <p>Pembayaran mudah melalui transfer bank atau e-wallet dengan tarif transparan tanpa biaya tersembunyi.</p>
                 </div>
                 <div class="step-arrow"><i class="fas fa-arrow-right"></i></div>
                 <div class="step-item reveal">
                     <div class="step-num">04</div>
-                    <div class="step-icon-wrap"><i class="fas fa-heart"></i></div>
-                    <h3>Mulai Sesi</h3>
-                    <p>Nikmati sesi konsultasi yang nyaman, aman, dan penuh empati bersama psikolog Anda.</p>
+                    <div class="step-icon-wrap"><i class="fas fa-smile"></i></div>
+                    <h3>Mulai Sesi &amp; Merasa Lega</h3>
+                    <p>Bercerita dengan leluasa via Chat atau Video Call dalam ruang privat yang aman dan terenkripsi.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonials">
+    <section id="testimonials" class="testimonials">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-tag">Testimoni</span>
-                <h2>Apa Kata <span class="gradient-text">Pengguna Kami</span></h2>
-                <p>Ribuan pengguna telah merasakan manfaat nyata dari ShineJourney</p>
+                <span class="section-tag">Testimoni Nyata</span>
+                <h2>Cerita Dari <span class="gradient-text">Mereka yang Telah Merasa Lebih Baik</span></h2>
+                <p>Ulasan tulus dari klien yang telah menemukan ruang aman dan pemulihan diri di Shine Journey</p>
             </div>
             <div class="testi-grid">
                 <div class="testi-card reveal">
                     <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"ShineJourney benar-benar membantu saya melewati masa sulit. Psikolognya sangat profesional dan penuh empati. Saya merasa jauh lebih baik setelah beberapa sesi!"</p>
+                    <p>"Awalnya ragu mau cerita karena takut di-judge. Pas nyoba sesi <strong>Teman Cerita</strong> sama Kak Budi waktu overthinking parah soal kerjaan dan quarter-life crisis, rasanya plong banget. Didengerin dengan sabar tanpa dihakimi, dikasih insight yang bikin pikiran lebih adem. Biayanya juga ramah banget buat fresh graduate!"</p>
                     <div class="testi-author">
-                        <div class="testi-ava" style="background:linear-gradient(135deg,#667eea,#764ba2);">A</div>
-                        <div><strong>Anisa Rahmawati</strong><span>Jakarta &middot; 3 bulan lalu</span></div>
+                        <div class="testi-ava" style="background:linear-gradient(135deg,#F59E0B,#D97706);">D</div>
+                        <div>
+                            <strong>Dinda A. (24 thn)</strong>
+                            <span>Karyawan Swasta, Jakarta Selatan &middot; Klien Teman Cerita</span>
+                        </div>
                     </div>
                 </div>
                 <div class="testi-card featured-testi reveal">
                     <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"Fitur video call-nya sangat memudahkan konsultasi dari rumah. Tidak perlu antri panjang. Sangat recommended untuk siapa saja yang butuh bantuan psikologis!"</p>
+                    <p>"Sesi online dengan <strong>Ibu Sarah Amelia, M.Psi., Psikolog</strong> bener-bener ngebantu saya keluar dari fase burnout berat dan panic attack yang berminggu-minggu ganggu tidur. Pendekatan CBT-nya sistematis dan solutif. Setelah 3 sesi, saya merasa punya kendali lagi atas pikiran dan emosi saya."</p>
                     <div class="testi-author">
-                        <div class="testi-ava" style="background:linear-gradient(135deg,#f093fb,#f5576c);">B</div>
-                        <div><strong>Bintang Hanafi</strong><span>Surabaya &middot; 1 bulan lalu</span></div>
+                        <div class="testi-ava" style="background:linear-gradient(135deg,#4F46E5,#3730A3);">R</div>
+                        <div>
+                            <strong>Reza Pratama (28 thn)</strong>
+                            <span>Software Engineer, Bandung &middot; Klien Psikolog Klinis</span>
+                        </div>
                     </div>
                 </div>
                 <div class="testi-card reveal">
                     <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p>"AI Assistant-nya membantu saya melacak mood setiap hari. Kombinasi AI dan psikolog manusia benar-benar membuat perbedaan besar bagi kesehatan mental saya."</p>
+                    <p>"Skripsi sempat macet dan ngerasa cemas terus tiap buka laptop. Saya mulai dari ikut <strong>Asesmen Mandiri DASS-21</strong> gratis di Shine Journey, ternyata skor kecemasan cukup tinggi. Dari situ diarahkan sesi konseling. Psikolognya sangat hangat dan bikin saya nyaman terbuka."</p>
                     <div class="testi-author">
-                        <div class="testi-ava" style="background:linear-gradient(135deg,#43e97b,#38f9d7);">C</div>
-                        <div><strong>Clara Meirani</strong><span>Bandung &middot; 2 minggu lalu</span></div>
+                        <div class="testi-ava" style="background:linear-gradient(135deg,#10B981,#059669);">N</div>
+                        <div>
+                            <strong>Nurul Hidayati (22 thn)</strong>
+                            <span>Mahasiswi Akhir, Yogyakarta &middot; Klien Asesmen &amp; Konseling</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-card reveal">
+                    <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Sebagai pengusaha dengan jam kerja padat, jarang ada ruang untuk jujur soal beban mental tanpa dikira mengeluh. Layanan di Shine Journey sangat fleksibel via WhatsApp dan web, respons cepat, dan privasi dijaga 100%. Sangat saya rekomendasikan!"</p>
+                    <div class="testi-author">
+                        <div class="testi-ava" style="background:linear-gradient(135deg,#0284C7,#0369A1);">F</div>
+                        <div>
+                            <strong>Fajar Kurniawan (31 thn)</strong>
+                            <span>Wiraswasta, Surabaya &middot; Klien Konseling Privat</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -347,36 +377,36 @@
     <section id="articles" class="articles">
         <div class="section-container">
             <div class="section-header">
-                <span class="section-tag">Blog &amp; Artikel</span>
-                <h2>Tips <span class="gradient-text">Kesehatan Mental</span></h2>
-                <p>Artikel terpercaya yang ditulis langsung oleh psikolog profesional kami</p>
+                <span class="section-tag">Blog &amp; Edukasi</span>
+                <h2>Tips &amp; Wawasan <span class="gradient-text">Kesehatan Jiwa</span></h2>
+                <p>Artikel terpercaya yang ditulis dan ditinjau oleh psikolog profesional kami</p>
             </div>
             <div class="articles-grid">
                 <div class="article-card reveal">
                     <div class="article-img" style="background:linear-gradient(135deg,#667eea,#764ba2);"><i class="fas fa-brain"></i></div>
                     <div class="article-body">
                         <span class="article-tag-chip">Kecemasan</span>
-                        <h4>5 Cara Mengatasi Kecemasan Sehari-hari yang Terbukti Efektif</h4>
-                        <p>Pelajari teknik sederhana yang bisa Anda praktekkan untuk mengelola rasa cemas...</p>
-                        <div class="article-meta"><span><i class="fas fa-clock"></i> 5 menit baca</span><a href="#">Baca <i class="fas fa-arrow-right"></i></a></div>
+                        <h4>5 Cara Menenangkan Pikiran Saat Mengalami Overthinking Parah</h4>
+                        <p>Pelajari teknik grounding sederhana yang terbukti efektif mengembalikan fokus dan ketenangan emosi Anda...</p>
+                        <div class="article-meta"><span><i class="fas fa-clock"></i> 5 menit baca</span><a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%2C%20saya%20ingin%20tahu%20lebih%20banyak%20seputar%20tips%20mengatasi%20kecemasan.">Konsultasi <i class="fas fa-arrow-right"></i></a></div>
                     </div>
                 </div>
                 <div class="article-card reveal">
                     <div class="article-img" style="background:linear-gradient(135deg,#f093fb,#f5576c);"><i class="fas fa-heart"></i></div>
                     <div class="article-body">
-                        <span class="article-tag-chip">Self-Love</span>
-                        <h4>Membangun Kepercayaan Diri yang Sehat dan Berkelanjutan</h4>
-                        <p>Self-love bukan tentang narsisme, melainkan tentang penerimaan dan penghargaan diri yang tulus...</p>
-                        <div class="article-meta"><span><i class="fas fa-clock"></i> 7 menit baca</span><a href="#">Baca <i class="fas fa-arrow-right"></i></a></div>
+                        <span class="article-tag-chip">Self-Care</span>
+                        <h4>Mengenal Tanda Burnout dan Kapan Saatnya Anda Butuh Teman Cerita</h4>
+                        <p>Jangan tunggu hingga lelah fisik dan mental. Kenali sinyal kejenuhan sejak dini agar kesehatan jiwa tetap terjaga...</p>
+                        <div class="article-meta"><span><i class="fas fa-clock"></i> 6 menit baca</span><a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%2C%20saya%20merasa%20sedang%20mengalami%20burnout%20dan%20ingin%20curhat.">Konsultasi <i class="fas fa-arrow-right"></i></a></div>
                     </div>
                 </div>
                 <div class="article-card reveal">
                     <div class="article-img" style="background:linear-gradient(135deg,#43e97b,#38f9d7);"><i class="fas fa-moon"></i></div>
                     <div class="article-body">
-                        <span class="article-tag-chip">Tidur</span>
-                        <h4>Pentingnya Kualitas Tidur untuk Menjaga Kesehatan Mental</h4>
-                        <p>Kualitas tidur berpengaruh besar pada kondisi emosional dan kognitif Anda setiap harinya...</p>
-                        <div class="article-meta"><span><i class="fas fa-clock"></i> 4 menit baca</span><a href="#">Baca <i class="fas fa-arrow-right"></i></a></div>
+                        <span class="article-tag-chip">Tidur &amp; Relaksasi</span>
+                        <h4>Kaitan Erat Antara Kualitas Tidur Malam dan Stabilitas Emosional</h4>
+                        <p>Sulit tidur seringkali menjadi alarm bahwa ada beban pikiran yang belum terurai. Temukan cara meredakannya...</p>
+                        <div class="article-meta"><span><i class="fas fa-clock"></i> 4 menit baca</span><a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%2C%20saya%20sering%20insomnia%20karena%20stres%20dan%20ingin%20konsultasi.">Konsultasi <i class="fas fa-arrow-right"></i></a></div>
                     </div>
                 </div>
             </div>
@@ -386,23 +416,19 @@
     <section class="app-section">
         <div class="app-container">
             <div class="app-content">
-                <div class="section-tag" style="margin-bottom:16px;">Unduh Aplikasi</div>
-                <h2>Akses ShineJourney <span class="gradient-text-light">dari Genggaman Anda</span></h2>
-                <p>Konsultasi dengan psikolog, pantau kesehatan mental, dan baca artikel kapan saja. Tersedia di iOS dan Android.</p>
+                <div class="section-tag" style="margin-bottom:16px;">Akses Fleksibel</div>
+                <h2>Konseling Mudah &amp; Aman <span class="gradient-text-light">dari Mana Saja</span></h2>
+                <p>Konsultasi dengan Teman Cerita atau Psikolog tanpa perlu antre di klinik. Akses langsung melalui peramban web maupun WhatsApp resmi.</p>
                 <ul class="app-features">
-                    <li><i class="fas fa-check-circle"></i> Notifikasi sesi real-time</li>
-                    <li><i class="fas fa-check-circle"></i> Mood tracker harian</li>
-                    <li><i class="fas fa-check-circle"></i> Chat tanpa batas dengan psikolog</li>
-                    <li><i class="fas fa-check-circle"></i> Rekam medis digital</li>
+                    <li><i class="fas fa-check-circle"></i> Jadwal fleksibel sesuai waktu luang Anda</li>
+                    <li><i class="fas fa-check-circle"></i> Pilihan sesi Chat atau Video Call terenkripsi</li>
+                    <li><i class="fas fa-check-circle"></i> Asesmen mandiri terstandar (DASS-21) gratis</li>
+                    <li><i class="fas fa-check-circle"></i> Laporan rangkuman sesi &amp; insight pribadi untuk Anda</li>
                 </ul>
                 <div class="app-badges">
-                    <a href="#" class="app-badge" id="badgeAppStore">
-                        <i class="fab fa-apple"></i>
-                        <div><span>Download di</span><strong>App Store</strong></div>
-                    </a>
-                    <a href="#" class="app-badge" id="badgePlayStore">
-                        <i class="fab fa-google-play"></i>
-                        <div><span>Get it on</span><strong>Google Play</strong></div>
+                    <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20mulai%20konsultasi." class="app-badge" id="badgeWhatsappCta" style="background:#10B981; color:white; border-color:#10B981;">
+                        <i class="fab fa-whatsapp" style="font-size:1.6rem;"></i>
+                        <div><span>Konsultasi Langsung via</span><strong>WhatsApp Resmi</strong></div>
                     </a>
                 </div>
             </div>
@@ -411,21 +437,17 @@
                     <div class="phone-notch"></div>
                     <div class="phone-screen">
                         <div class="app-ui">
-                            <div class="ui-header"><i class="fas fa-brain"></i><span>ShineJourney</span></div>
-                            <p class="ui-greeting">Selamat pagi, Anisa &#128075;</p>
-                            <div class="ui-mood-card">
-                                <p>Bagaimana perasaan Anda hari ini?</p>
-                                <div class="ui-moods"><span>&#x1F622;</span><span>&#x1F610;</span><span class="mood-active">&#x1F60A;</span><span>&#x1F604;</span></div>
+                            <div class="ui-header"><i class="fas fa-heart" style="color:#E6736A;"></i><span>ShineJourney</span></div>
+                            <p class="ui-greeting">Halo, ada yang ingin diceritakan hari ini? &#128075;</p>
+                            <div class="ui-doc-card">
+                                <div class="ui-doc-ava" style="background:linear-gradient(135deg,#F59E0B,#D97706);"><i class="fas fa-heart-handshake"></i></div>
+                                <div class="ui-doc-info"><strong>Budi Santoso, S.Sos</strong><span style="font-size:0.7rem; color:#F59E0B;">Teman Cerita &middot; Online</span></div>
+                                <span class="ui-chat-btn">Curhat</span>
                             </div>
                             <div class="ui-doc-card">
-                                <div class="ui-doc-ava" style="background:linear-gradient(135deg,#667eea,#764ba2);"><i class="fas fa-user-md"></i></div>
-                                <div class="ui-doc-info"><strong>Dr. Sarah Amelia</strong><span class="ui-online">&#x25CF; Online</span></div>
-                                <span class="ui-chat-btn">Chat</span>
-                            </div>
-                            <div class="ui-doc-card">
-                                <div class="ui-doc-ava" style="background:linear-gradient(135deg,#43e97b,#38f9d7);"><i class="fas fa-user-md"></i></div>
-                                <div class="ui-doc-info"><strong>Drs. Rizky P.</strong><span class="ui-online">&#x25CF; Online</span></div>
-                                <span class="ui-chat-btn">Chat</span>
+                                <div class="ui-doc-ava" style="background:linear-gradient(135deg,#4F46E5,#3730A3);"><i class="fas fa-user-md"></i></div>
+                                <div class="ui-doc-info"><strong>Sarah Amelia, M.Psi</strong><span class="ui-online">&#x25CF; Psikolog Klinis</span></div>
+                                <span class="ui-chat-btn">Konseling</span>
                             </div>
                         </div>
                     </div>
@@ -437,13 +459,13 @@
     <section class="cta-section">
         <div class="cta-container">
             <div class="cta-icon-wrap"><i class="fas fa-heart-pulse"></i></div>
-            <h2>Mulai Perjalanan Kesehatan Mental Anda Hari Ini</h2>
-            <p>Bergabung dengan 50.000+ pengguna yang telah mempercayakan kesehatan mental mereka kepada ShineJourney</p>
+            <h2>Mulai Perjalanan Menuju Diri yang Lebih Tenang &amp; Bahagia</h2>
+            <p>Anda tidak harus menghadapi segalanya sendirian. Ceritakan apa yang Anda rasakan hari ini kepada konselor dan psikolog kami.</p>
             <div class="cta-buttons">
-                <a href="https://wa.me/6281313078216" class="btn-cta-primary" id="ctaWhatsapp"><i class="fab fa-whatsapp"></i> Mulai Sekarang &mdash; Gratis</a>
-                <a href="#psychologists" class="btn-cta-secondary" id="ctaPsikolog">Lihat Psikolog</a>
+                <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20memulai%20konseling." class="btn-cta-primary" id="ctaWhatsapp"><i class="fab fa-whatsapp"></i> Hubungi WhatsApp (081313078216)</a>
+                <a href="#psychologists" class="btn-cta-secondary" id="ctaPsikolog">Lihat Pilihan Konselor</a>
             </div>
-            <p class="cta-note"><i class="fas fa-lock"></i> Privasi Anda terlindungi penuh. Konsultasi bersifat rahasia.</p>
+            <p class="cta-note"><i class="fas fa-lock"></i> Kontak Resmi: 081313078216 an. Hardadi Nur Aziz &middot; Privasi Anda 100% terjaga rahasia.</p>
         </div>
     </section>
 
@@ -457,61 +479,56 @@
                 <p style="font-size: 0.8125rem; font-weight: 600; color: #FCD34D; margin-bottom: 0.875rem; letter-spacing: 0.02em;">
                     TEMAN DALAM PERJALANANMU, BERSAMA MENUJU DIRI YANG LEBIH BAIK ❤️
                 </p>
-                <p>Platform kesehatan mental digital yang menghubungkan Anda dengan psikolog profesional bersertifikat di Indonesia.</p>
+                <p>Platform kesehatan mental dan pendamping sebaya terpercaya di Indonesia. Menyediakan ruang aman untuk curhat dan konsultasi psikologis tanpa penghakiman.</p>
                 <div class="social-links">
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://wa.me/6281313078216" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey" aria-label="WhatsApp Resmi"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:shinejourney.ofc@gmail.com" aria-label="Email Resmi"><i class="fas fa-envelope"></i></a>
+                    <a href="/admin" aria-label="Portal Admin"><i class="fas fa-user-shield"></i></a>
                 </div>
             </div>
             <div class="footer-col">
-                <h4>Layanan</h4>
+                <h4>Pilihan Layanan</h4>
                 <ul>
-                    <li><a href="#services">Curhat Online</a></li>
-                    <li><a href="#services">Video Call</a></li>
-                    <li><a href="#services">Reservasi Offline</a></li>
-                    <li><a href="#services">AI Mental Health</a></li>
-                    <li><a href="#services">Rekam Medis</a></li>
-                    <li><a href="#services">Grup Support</a></li>
+                    <li><a href="#services">Teman Cerita (Peer Counselor)</a></li>
+                    <li><a href="#services">Konseling Psikolog Klinis</a></li>
+                    <li><a href="#services">Asesmen Mandiri (DASS-21)</a></li>
+                    <li><a href="#services">Konseling Karir &amp; Hubungan</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Perusahaan</h4>
+                <h4>Informasi &amp; Edukasi</h4>
                 <ul>
-                    <li><a href="#">Tentang Kami</a></li>
-                    <li><a href="#">Karir</a></li>
-                    <li><a href="#articles">Blog &amp; Artikel</a></li>
-                    <li><a href="#">Press Kit</a></li>
-                    <li><a href="#">Mitra Klinik</a></li>
+                    <li><a href="#home">Tentang Shine Journey</a></li>
+                    <li><a href="#how">Cara Mulai Konsultasi</a></li>
+                    <li><a href="#psychologists">Daftar Konselor &amp; Psikolog</a></li>
+                    <li><a href="#testimonials">Testimoni Klien</a></li>
+                    <li><a href="#articles">Artikel Kesehatan Mental</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Bantuan</h4>
+                <h4>Kontak &amp; Bantuan Resmi</h4>
                 <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Kebijakan Privasi</a></li>
-                    <li><a href="#">Syarat &amp; Ketentuan</a></li>
+                    <li><a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey"><i class="fab fa-whatsapp"></i> <strong>+62 813-1307-8216</strong></a></li>
+                    <li><span style="font-size:0.8rem; color:#9CA3AF; margin-left:22px;">a.n. Hardadi Nur Aziz</span></li>
                     <li><a href="mailto:shinejourney.ofc@gmail.com"><i class="fas fa-envelope"></i> shinejourney.ofc@gmail.com</a></li>
-                    <li><a href="https://wa.me/6281313078216"><i class="fab fa-whatsapp"></i> +62 813-1307-8216 (a.n. Hardadi Nur Aziz)</a></li>
-                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Indonesia</a></li>
+                    <li><a href="/admin"><i class="fas fa-lock"></i> Portal Manajemen Admin</a></li>
+                    <li><span style="font-size:0.75rem; color:#FCD34D;"><i class="fas fa-phone-alt"></i> Hotline Darurat Krisis: 119 ext 8 (Sejiwa)</span></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 ShineJourney. All Rights Reserved.</p>
+            <p>&copy; 2026 Shine Journey / Curhati Indonesia. Seluruh hak cipta dilindungi undang-undang.</p>
             <div class="footer-legal">
                 <a href="#">Kebijakan Privasi</a>
-                <a href="#">Syarat &amp; Ketentuan</a>
-                <a href="#">Cookie Policy</a>
+                <a href="#">Kode Etik Konseling</a>
+                <a href="/admin">Akses Admin</a>
             </div>
         </div>
     </footer>
 
-    <a href="https://wa.me/6281313078216" class="floating-wa" id="floatingWa" aria-label="Chat WhatsApp">
+    <a href="https://wa.me/6281313078216?text=Halo%20Admin%20Curhati%20Shine%20Journey%2C%20saya%20ingin%20konsultasi." class="floating-wa" id="floatingWa" aria-label="Chat WhatsApp">
         <i class="fab fa-whatsapp"></i>
-        <span class="wa-tooltip">Hubungi Kami</span>
+        <span class="wa-tooltip">Curhat Sekarang</span>
     </a>
     <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas"><i class="fas fa-arrow-up"></i></button>
 

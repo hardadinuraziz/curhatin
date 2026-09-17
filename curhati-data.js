@@ -18,7 +18,7 @@ const initialCurhatiState = {
   },
   roles: [
     { id: 'CLIENT', label: 'Client (Maya Pratama)', badge: 'Klien', color: 'bg-teal-500' },
-    { id: 'PSYCHOLOGIST', label: 'Psikolog Klinis (drg. Sarah Amelia, M.Psi)', badge: 'Psikolog', color: 'bg-indigo-600' },
+    { id: 'PSYCHOLOGIST', label: 'Psikolog Klinis (Sarah Amelia, M.Psi., Psikolog)', badge: 'Psikolog', color: 'bg-indigo-600' },
     { id: 'TEMAN_CERITA', label: 'Teman Cerita (Budi Santoso)', badge: 'Peer Counselor', color: 'bg-amber-500' },
     { id: 'ASSESSMENT_STAFF', label: 'Assessment Staff (Rian Hidayat)', badge: 'Asesor', color: 'bg-emerald-600' },
     { id: 'FINANCE', label: 'Finance (Siti Rahma)', badge: 'Finance', color: 'bg-sky-600' },

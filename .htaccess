@@ -1,0 +1,28 @@
+# Curhati — Shine Journey Platform
+# Apache / LiteSpeed Configuration for Zenhosta cPanel
+
+RewriteEngine On
+RewriteBase /
+
+# 1. Redirect /index.html to /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/ [NC]
+RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+# 2. Map /admin directly to admin.html
+RewriteRule ^admin/?$ admin.html [L]
+
+# 3. Clean URL: remove .html from external URL
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R=301]
+
+# 4. Clean URL: internal redirect to .html file if exists
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# 5. Security & Browser Caching Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>

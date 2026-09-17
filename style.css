@@ -754,6 +754,11 @@ footer { background:#111827; color:#9CA3AF; padding:80px 24px 30px; }
     .footer-grid { grid-template-columns:1fr 1fr; gap:32px; }
 }
 
+@media (max-width:960px) {
+    .nav-links, .nav-actions { display:none; }
+    .hamburger { display:flex; }
+}
+
 @media (max-width:900px) {
     .hero-container { grid-template-columns:1fr; gap:36px; text-align:center; }
     .hero-visual { width:100%; max-width:380px; height:360px; margin:0 auto; }
@@ -768,8 +773,6 @@ footer { background:#111827; color:#9CA3AF; padding:80px 24px 30px; }
 }
 
 @media (max-width:768px) {
-    .nav-links, .nav-actions { display:none; }
-    .hamburger { display:flex; }
     .section-container { padding:56px 18px; }
     .section-header h2 { font-size:1.85rem; }
     .articles-grid { grid-template-columns:1fr; }

@@ -14,7 +14,7 @@
   - Modul **Asesmen Mandiri Independen** (DASS-21 / Burnout Check) yang terpisah dari rekam medis konseling, dilengkapi disclaimer etis dan protokol darurat krisis (*Hotline Sejiwa 119 ext 8*).
   - Ruang Chat 1-to-1 terenkripsi antara klien dan konselor (WebSocket Socket.io).
   - Unduh dokumen laporan resmi hasil sesi konseling.
-  - Kontak Resmi: **081313078216 an. Hardadi Nur Aziz** ([WhatsApp Langsung](https://wa.me/6281313078216)).
+  - Kontak Resmi: **083187689054 an. Shine Journey** ([WhatsApp Langsung](https://wa.me/6283187689054)).
 
 - **Backend & Admin Management Portal (`/admin`)**:
   - Gerbang Keamanan Login Khusus Staf & Admin (Password: `curhatin2026`).
@@ -110,8 +110,8 @@ Endpoint Backend:
 ---
 
 ## 📞 Kontak & Dukungan
-- **Pengelola**: Hardadi Nur Aziz
-- **WhatsApp**: [081313078216](https://wa.me/6281313078216)
+- **Pengelola**: Shine Journey
+- **WhatsApp**: [083187689054](https://wa.me/6283187689054)
 - **Repository**: [github.com/hardadinuraziz/curhatin](https://github.com/hardadinuraziz/curhatin)
 
 ---

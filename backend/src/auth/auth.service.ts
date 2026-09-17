@@ -30,7 +30,12 @@ export class AuthService {
         name: dto.name,
         phone: dto.phone,
         role: dto.role || Role.CLIENT,
-        clientProfile: dto.role === Role.CLIENT || !dto.role ? { create: {} } : undefined,
+        profile: {
+          create: {
+            fullName: dto.name,
+            phone: dto.phone,
+          },
+        },
       },
       select: {
         id: true,
@@ -38,6 +43,7 @@ export class AuthService {
         name: true,
         role: true,
         phone: true,
+        profile: true,
         createdAt: true,
       },
     });
@@ -93,10 +99,7 @@ export class AuthService {
         role: true,
         phone: true,
         avatarUrl: true,
-        clientProfile: true,
-        psychologistProfile: true,
-        temanCeritaProfile: true,
-        assessmentStaffProfile: true,
+        profile: true,
       },
     });
     if (!user) throw new UnauthorizedException('Pengguna tidak ditemukan');

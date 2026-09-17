@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { PaymentStatus, ReservationStatus } from '@prisma/client';
+import { PaymentStatus, ReservationStatus, Role } from '@prisma/client';
 
 @Injectable()
 export class ReportsService {
   constructor(private prisma: PrismaService) {}
 
   async getExecutiveDashboard() {
-    const totalClients = await this.prisma.user.count({ where: { role: 'CLIENT' } });
+    const totalClients = await this.prisma.user.count({ where: { role: Role.CLIENT } });
     const totalCounselors = await this.prisma.user.count({
-      where: { role: { in: ['PSIKOLOG', 'TEMAN_CERITA'] } },
+      where: { role: { in: [Role.PSIKOLOG, Role.TEMAN_CERITA] } },
     });
 
     const reservationsByStatus = await this.prisma.reservation.groupBy({
@@ -60,7 +60,7 @@ export class ReportsService {
 
   async getCounselorPerformance() {
     return this.prisma.user.findMany({
-      where: { role: { in: ['PSIKOLOG', 'TEMAN_CERITA'] } },
+      where: { role: { in: [Role.PSIKOLOG, Role.TEMAN_CERITA] } },
       select: {
         id: true,
         email: true,

@@ -1,7 +1,7 @@
 import { Injectable, ConflictException, NotFoundException, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateReservationDto, UpdateReservationStatusDto, RescheduleReservationDto } from './reservations.dto';
-import { ReservationStatus, Role } from '@prisma/client';
+import { ReservationStatus, Role, PaymentStatus } from '@prisma/client';
 
 @Injectable()
 export class ReservationsService {
@@ -51,7 +51,7 @@ export class ReservationsService {
             create: {
               orderNumber,
               amount: dto.totalPrice,
-              status: 'PENDING',
+              status: PaymentStatus.PENDING,
               paymentMethod: 'GATEWAY',
             },
           },

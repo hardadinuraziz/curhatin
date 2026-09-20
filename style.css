@@ -1968,532 +1968,358 @@ footer { background:#111827; color:#9CA3AF; padding:80px 24px 30px; }
 }
 
 /* ==========================================================================
-   CONSULTATION THEME LAMP INTRO ANIMATION (INTERACTIVE PULL-CORD LAMP)
+   PASTEL MINIMALIST OPENING SCREEN (SHINE JOURNEY POSTER AESTHETIC)
    ========================================================================== */
-.consultation-splash {
+.pastel-opening {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     width: 100vw; height: 100vh;
-    background: #0B0E14;
+    background: #FAF3EE;
     z-index: 999999;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 16px;
+    padding: 20px 16px;
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
-    transition: background 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s ease;
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), filter 0.55s ease;
 }
 
-.consultation-splash.is-lit {
-    background: radial-gradient(ellipse at 50% 20%, #1A2234 0%, #101522 55%, #080A0F 100%);
-}
-
-.consultation-splash.splash-exit {
+.pastel-opening.splash-exit {
     opacity: 0;
-    transform: scale(1.04);
+    transform: scale(1.03);
     filter: blur(8px);
     pointer-events: none;
 }
 
-/* Ambient Backdrop */
-.splash-backdrop {
+/* Ambient Warm Pastel Aura Glows */
+.pastel-glow-orb {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(circle at 50% 15%, rgba(254, 240, 138, 0.05) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-.consultation-splash.is-lit .splash-backdrop {
-    opacity: 1;
-}
-
-/* Light Beam Cone (Conical Spotlight from Lamp) */
-.lamp-light-beam {
-    position: absolute;
-    top: 72px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 820px;
-    height: 720px;
-    clip-path: polygon(46% 0%, 54% 0%, 100% 100%, 0% 100%);
-    background: linear-gradient(180deg, rgba(254, 240, 138, 0.38) 0%, rgba(254, 240, 138, 0.12) 35%, rgba(254, 240, 138, 0.02) 80%, transparent 100%);
-    opacity: 0;
-    pointer-events: none;
-    filter: blur(14px);
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s ease;
-    z-index: 2;
-}
-.consultation-splash.is-lit .lamp-light-beam {
-    opacity: 1;
-}
-
-/* Scene Wrapper */
-.splash-scene {
-    position: relative;
-    z-index: 5;
-    max-width: 680px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-}
-
-/* ==========================================================================
-   DESK LAMP & PULL-CORD ASSEMBLY
-   ========================================================================== */
-.lamp-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 6px;
-    z-index: 10;
-    user-select: none;
-}
-
-.lamp-assembly {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Lamp Shade Wrap */
-.lamp-shade-wrap {
-    position: relative;
-    width: 130px;
-    height: 64px;
-}
-
-.lamp-shade {
-    width: 130px;
-    height: 64px;
-    background: #242B38;
-    border-radius: 65px 65px 0 0;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.12);
-    border-bottom: 3px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.consultation-splash.is-lit .lamp-shade {
-    background: #FFFBEB;
-    border-color: #FEF08A;
-    border-bottom-color: #FDE047;
-    box-shadow: 0 0 35px #FDE047, 0 10px 50px rgba(253, 224, 71, 0.75);
-}
-
-.lamp-inner-bulb {
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 32px;
-    height: 14px;
-    background: #334155;
-    border-radius: 16px 16px 0 0;
-    transition: all 0.3s ease;
-}
-
-.consultation-splash.is-lit .lamp-inner-bulb {
-    background: #F59E0B;
-    box-shadow: 0 0 20px #F59E0B;
-}
-
-/* Pull String / Cord Assembly */
-.lamp-cord {
-    position: absolute;
-    right: 18px;
-    top: 60px;
-    z-index: 100;
-    cursor: grab;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform-origin: top center;
-    padding: 2px 14px 18px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: none;
-}
-
-.lamp-cord:active, .lamp-cord.is-dragging {
-    cursor: grabbing;
-}
-
-.lamp-cord:hover {
-    filter: drop-shadow(0 0 8px rgba(253, 224, 71, 0.9));
-}
-
-.lamp-cord.pulling {
-    transform: translateY(35px) scaleY(1.2);
-    transition: transform 0.12s cubic-bezier(0.2, 0.9, 0.3, 1);
-}
-
-.lamp-cord.recoil {
-    animation: cordSpring 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes cordSpring {
-    0% { transform: translateY(var(--recoil-y, 35px)); }
-    35% { transform: translateY(-9px); }
-    65% { transform: translateY(4px); }
-    85% { transform: translateY(-2px); }
-    100% { transform: translateY(0); }
-}
-
-.lamp-cord.idle-tug {
-    animation: cordIdleTug 3.2s ease infinite;
-}
-
-@keyframes cordIdleTug {
-    0%, 72%, 100% { transform: translateY(0); }
-    78% { transform: translateY(14px); }
-    85% { transform: translateY(-4px); }
-    92% { transform: translateY(2px); }
-}
-
-.lamp-cord-line {
-    width: 3px;
-    height: 42px;
-    background: #CBD5E1;
-    border-radius: 2px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
-    transform-origin: top center;
-    transition: height 0.05s linear;
-}
-
-.lamp-cord-bead {
-    width: 16px;
-    height: 16px;
     border-radius: 50%;
-    background: #F1F5F9;
-    border: 2px solid #94A3B8;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
-    position: relative;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-
-.lamp-cord:hover .lamp-cord-bead,
-.lamp-cord.is-dragging .lamp-cord-bead {
-    background: #FDE047;
-    border-color: #F59E0B;
-    transform: scale(1.2);
-    box-shadow: 0 0 16px rgba(253, 224, 71, 0.9);
-}
-
-.cord-pulse-ring {
-    position: absolute;
-    inset: -6px;
-    border-radius: 50%;
-    border: 2px solid rgba(253, 224, 71, 0.7);
-    animation: beadPulse 1.8s infinite ease-out;
-}
-
-.consultation-splash.is-lit .cord-pulse-ring {
-    display: none;
-}
-
-/* Cord Pull Tag Tooltip */
-.cord-pull-tag {
-    position: absolute;
-    top: 36px;
-    left: 36px;
-    background: #F59E0B;
-    color: #0F172A;
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 3px 8px;
-    border-radius: 6px;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     pointer-events: none;
-    animation: tagBounce 1.6s infinite alternate ease-in-out;
-    transition: opacity 0.3s ease;
+    opacity: 0.65;
+    animation: pastelOrbFloat 9s ease-in-out infinite alternate;
+}
+.pastel-glow-1 {
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(248, 190, 180, 0.32) 0%, transparent 70%);
+    top: -12%; left: 8%;
+    filter: blur(80px);
+}
+.pastel-glow-2 {
+    width: 440px; height: 440px;
+    background: radial-gradient(circle, rgba(230, 210, 195, 0.4) 0%, transparent 70%);
+    bottom: -10%; right: 6%;
+    filter: blur(80px);
+    animation-delay: -4s;
 }
 
-@keyframes tagBounce {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(5px); }
+@keyframes pastelOrbFloat {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(28px) scale(1.08); }
 }
 
-.consultation-splash.is-lit .cord-pull-tag {
-    opacity: 0;
-    pointer-events: none;
-}
-
-@keyframes beadPulse {
-    0% { transform: scale(0.8); opacity: 1; }
-    100% { transform: scale(2); opacity: 0; }
-}
-
-/* Lamp Pole & Base */
-.lamp-pole {
-    width: 7px;
-    height: 38px;
-    background: #334155;
-    border-radius: 3px;
-    transition: background 0.35s ease;
-}
-.consultation-splash.is-lit .lamp-pole {
-    background: #64748B;
-}
-
-.lamp-base {
-    width: 80px;
-    height: 8px;
-    background: #334155;
-    border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    transition: all 0.35s ease;
-}
-.consultation-splash.is-lit .lamp-base {
-    background: #475569;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
-}
-
-/* Pull Hint Badge */
-.lamp-hint {
-    margin-top: 6px;
+/* Skip / Masuk Button Corner */
+.btn-pastel-skip-corner {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    z-index: 20;
+    background: rgba(61, 46, 40, 0.07);
+    color: #5C4A42;
+    border: 1px solid rgba(61, 46, 40, 0.14);
+    border-radius: 9999px;
+    padding: 7px 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    background: rgba(30, 41, 59, 0.85);
-    border: 1px solid rgba(253, 224, 71, 0.4);
-    color: #FEF08A;
-    font-size: 0.78rem;
-    font-weight: 600;
-    padding: 5px 14px;
-    border-radius: 9999px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    animation: hintFloat 2.2s infinite ease-in-out;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    cursor: pointer;
+    gap: 6px;
+    transition: all 0.25s ease;
+    font-family: inherit;
+    backdrop-filter: blur(8px);
+}
+.btn-pastel-skip-corner:hover {
+    background: rgba(61, 46, 40, 0.14);
+    color: #2D1E18;
+    transform: translateX(2px);
 }
 
-@keyframes hintFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
-}
-
-.consultation-splash.is-lit .lamp-hint {
-    opacity: 0.35;
-    pointer-events: none;
-}
-
-/* ==========================================================================
-   CONSULTATION CARD (SHROUDED WHEN OFF, ILLUMINATED WHEN LIT)
-   ========================================================================== */
-.splash-content {
+/* Pastel Poster Card */
+.pastel-poster-card {
     position: relative;
-    z-index: 4;
-    max-width: 660px;
+    max-width: 480px;
     width: 100%;
-    background: rgba(22, 27, 39, 0.78);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 26px;
-    padding: 30px 28px;
+    background: #FFF8F4;
+    border-radius: 36px;
+    padding: 34px 28px 22px;
     text-align: center;
+    box-shadow: 0 25px 60px -15px rgba(107, 78, 64, 0.12), 0 0 1px rgba(107, 78, 64, 0.2);
+    overflow: hidden;
     box-sizing: border-box;
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
-    opacity: 0.12;
-    filter: blur(6px);
-    transform: translateY(16px) scale(0.97);
+    margin: auto;
+    animation: pastelCardEntrance 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pastelCardEntrance {
+    from { opacity: 0; transform: translateY(22px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Top-Right Wellness Organic Badge */
+.pastel-badge-wellness {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #EFE3D6;
+    border-radius: 0 36px 0 28px;
+    padding: 10px 18px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #5C4B44;
+    text-align: right;
     pointer-events: none;
-    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.55s ease,
-                border-color 0.55s ease;
+    letter-spacing: 0.2px;
 }
 
-.consultation-splash.is-lit .splash-content {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-    border-color: rgba(254, 240, 138, 0.25);
-    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.75), 0 0 40px rgba(253, 224, 71, 0.15);
+/* Botanical Leaves Deco */
+.pastel-deco-branch {
+    position: absolute;
+    top: 110px;
+    left: -10px;
+    width: 82px;
+    pointer-events: none;
+    opacity: 0.85;
+    z-index: 2;
 }
 
-/* Emblem & Breathing Wave */
-.splash-emblem-wrap {
-    position: relative;
-    width: 72px; height: 72px;
-    margin: 0 auto 12px;
-    display: flex; align-items: center; justify-content: center;
+/* Deco Little Heart */
+.pastel-deco-heart {
+    position: absolute;
+    top: 350px;
+    right: 22px;
+    font-size: 1.1rem;
+    opacity: 0.75;
+    pointer-events: none;
 }
-.splash-logo-circle {
-    width: 56px; height: 56px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
-    z-index: 3;
+
+/* Header Dual Logos */
+.pastel-brand-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    margin-top: 6px;
 }
-.splash-logo-img {
-    width: 34px; height: 34px;
+.pastel-logo-shine {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+}
+.pastel-logo-curhatin {
+    width: 38px;
+    height: 38px;
     object-fit: contain;
 }
 
-.splash-breath-ring {
-    position: absolute;
+/* Category Caps */
+.pastel-subhead-caps {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #78665E;
+    margin-bottom: 4px;
+}
+
+/* Main Hero Title */
+.pastel-hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: #3C2E27;
+    margin: 0 0 2px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+/* Script Tagline */
+.pastel-script-tagline-wrap {
+    position: relative;
+    display: inline-block;
+    margin: 2px auto 10px;
+}
+.pastel-script-tagline {
+    font-family: 'Caveat', cursive;
+    font-size: 1.75rem;
+    color: #8F5543;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.pastel-brush-line {
+    width: 140px;
+    height: 3px;
+    background: #E4AFA2;
+    border-radius: 9999px;
+    margin: 2px auto 0;
+    opacity: 0.85;
+}
+
+/* Hero Description */
+.pastel-hero-desc {
+    font-size: 0.86rem;
+    color: #5C4B44;
+    line-height: 1.55;
+    margin: 0 auto 20px;
+    max-width: 360px;
+}
+
+/* Channels Row: Chat, Call, Zoom */
+.pastel-channels-row {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 24px;
+}
+.pastel-channel-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pastel-channel-bubble {
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
-    border: 2px solid rgba(165, 180, 252, 0.5);
-    animation: splashBreathWave 2.8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    background: #F8BEB4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    box-shadow: 0 6px 16px rgba(248, 190, 180, 0.45);
+    transition: transform 0.25s ease;
 }
-.splash-breath-ring-1 { width: 68px; height: 68px; }
-.splash-breath-ring-2 { width: 84px; height: 84px; animation-delay: 0.7s; border-color: rgba(254, 240, 138, 0.4); }
-
-@keyframes splashBreathWave {
-    0% { transform: scale(0.85); opacity: 0.8; }
-    50% { transform: scale(1.25); opacity: 0.2; }
-    100% { transform: scale(1.4); opacity: 0; }
+.pastel-channel-bubble:hover {
+    transform: translateY(-3px) scale(1.06);
+}
+.pastel-channel-text {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #3D2E28;
+    margin-top: 6px;
 }
 
-/* Status Tag */
-.splash-status-tag {
+/* Split Section: Meadow Art & Action */
+.pastel-split-body {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.pastel-art-frame {
+    width: 100%;
+    max-width: 160px;
+    height: 220px;
+    border-radius: 110px 110px 0 0;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(107, 78, 64, 0.15);
+    margin: 0 auto;
+}
+.pastel-art-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.pastel-art-frame:hover .pastel-art-image {
+    transform: scale(1.05);
+}
+
+/* Right Action Column */
+.pastel-action-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.btn-pastel-main-cta {
+    background: #E8D5C8;
+    color: #3D2E28;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.94rem;
+    cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 5px 14px;
-    background: rgba(99, 102, 241, 0.15);
-    border: 1px solid rgba(165, 180, 252, 0.3);
-    border-radius: 9999px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #C7D2FE;
-    margin-bottom: 10px;
-}
-.splash-status-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #34D399;
-    box-shadow: 0 0 10px #34D399;
-    animation: statusPulse 1.8s infinite;
-}
-
-/* Titles */
-.splash-title {
-    font-size: 1.55rem;
-    font-weight: 800;
-    color: #F8FAFC;
-    margin: 0 0 6px;
-    letter-spacing: -0.5px;
-    line-height: 1.3;
-}
-.splash-gradient-text {
-    background: linear-gradient(135deg, #FEF08A 0%, #F472B6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.splash-subtitle {
-    font-size: 0.85rem;
-    color: #94A3B8;
-    margin: 0 0 20px;
-    line-height: 1.5;
-}
-
-/* Themes Grid */
-.splash-themes-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 22px;
-    text-align: left;
-}
-.splash-theme-card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(15, 23, 42, 0.65);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    padding: 10px 12px;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    cursor: default;
-}
-.splash-theme-card.active {
-    background: rgba(99, 102, 241, 0.22);
-    border-color: rgba(254, 240, 138, 0.6);
-    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
-    transform: translateY(-2px);
-}
-.splash-theme-icon {
-    width: 36px; height: 36px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.95rem; flex-shrink: 0;
-}
-.splash-theme-icon.bg-indigo { background: rgba(99, 102, 241, 0.25); color: #A5B4FC; }
-.splash-theme-icon.bg-emerald { background: rgba(16, 185, 129, 0.25); color: #6EE7B7; }
-.splash-theme-icon.bg-amber { background: rgba(245, 158, 11, 0.25); color: #FCD34D; }
-.splash-theme-icon.bg-purple { background: rgba(168, 85, 247, 0.25); color: #D8B4FE; }
-
-.splash-theme-info {
-    display: flex; flex-direction: column; gap: 2px;
-    overflow: hidden;
-}
-.splash-theme-info strong {
-    font-size: 0.82rem; font-weight: 700; color: #F1F5F9;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.splash-theme-info span {
-    font-size: 0.72rem; color: #94A3B8;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-
-/* Actions Row & Enter Button */
-.splash-footer {
-    display: flex; flex-direction: column; gap: 10px;
-}
-.splash-actions-row {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.82rem;
-    gap: 12px;
-}
-.splash-step-hint {
-    color: #FEF08A; font-weight: 600; font-size: 0.8rem;
-    text-align: left;
-}
-.btn-splash-enter {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
-    color: #FFFFFF;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 9px 20px; border-radius: 9999px;
-    font-size: 0.85rem; font-weight: 700;
-    cursor: pointer; transition: all 0.25s ease;
+    box-shadow: 0 6px 18px rgba(107, 78, 64, 0.12);
+    transition: all 0.25s ease;
     font-family: inherit;
-    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
     white-space: nowrap;
 }
-.btn-splash-enter:hover {
-    background: linear-gradient(135deg, #4F46E5 0%, #4338CA 100%);
-    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6);
-    transform: translateY(-1px) translateX(2px);
+.btn-pastel-main-cta:hover {
+    background: #DECCA6;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(107, 78, 64, 0.2);
 }
 
-@media (max-width: 640px) {
-    .lamp-shade-wrap { width: 105px; height: 52px; }
-    .lamp-shade { width: 105px; height: 52px; border-radius: 52px 52px 0 0; }
-    .lamp-cord { right: 14px; top: 50px; }
-    .lamp-pole { height: 30px; }
-    .lamp-base { width: 68px; height: 7px; }
-    .lamp-light-beam { width: 95vw; height: 550px; top: 60px; }
-    .splash-content { padding: 22px 16px; }
-    .splash-title { font-size: 1.25rem; }
-    .splash-themes-grid { grid-template-columns: 1fr; gap: 8px; }
-    .splash-actions-row { flex-direction: column; gap: 10px; }
+/* Handwritten Motivational Quote */
+.pastel-quote-box {
+    margin-top: 14px;
+}
+.pastel-quote-text {
+    font-family: 'Caveat', cursive;
+    font-size: 1.35rem;
+    color: #5C4B44;
+    line-height: 1.25;
+    margin: 0;
+}
+
+/* Abstract Wave Art */
+.pastel-wave-art {
+    position: absolute;
+    bottom: 36px;
+    right: 10px;
+    width: 90px;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+/* Bottom Contact Strip */
+.pastel-footer-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(107, 78, 64, 0.1);
+    font-size: 0.72rem;
+    color: #6E5C54;
+    font-weight: 600;
+}
+.pastel-contact-entry {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+@media (max-width: 520px) {
+    .pastel-poster-card { padding: 26px 18px 18px; border-radius: 28px; }
+    .pastel-hero-title { font-size: 2.2rem; }
+    .pastel-script-tagline { font-size: 1.45rem; }
+    .pastel-hero-desc { font-size: 0.82rem; }
+    .pastel-channels-row { gap: 18px; }
+    .pastel-channel-bubble { width: 46px; height: 46px; font-size: 1.1rem; }
+    .pastel-split-body { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pastel-art-frame { height: 180px; }
+    .btn-pastel-main-cta { padding: 10px 14px; font-size: 0.84rem; }
+    .pastel-quote-text { font-size: 1.15rem; }
+    .pastel-footer-bar { gap: 6px 10px; font-size: 0.68rem; }
+    .pastel-badge-wellness { font-size: 0.62rem; padding: 7px 12px; border-radius: 0 28px 0 20px; }
 }

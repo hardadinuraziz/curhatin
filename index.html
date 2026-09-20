@@ -6,117 +6,124 @@
     <title>ShineJourney - Teman Cerita & Konseling Psikolog Terpercaya #1 Indonesia</title>
     <meta name="description" content="ShineJourney menghubungkan Anda dengan Teman Cerita sebaya dan Psikolog Klinis berlisensi (SIPP). Konsultasi online aman, nyaman, dan tanpa stigma.">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=20260920_lamp">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260920_pastel">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
     <!-- ==========================================
-         CONSULTATION THEME LAMP INTRO ANIMATION
-         (Interactive Pull-Cord Lamp & Light Beam)
+         PASTEL MINIMALIST OPENING (SHINE JOURNEY)
          ========================================== -->
-    <div id="consultationSplash" class="consultation-splash" role="dialog" aria-modal="true" aria-label="Ruang Aman Konsultasi ShineJourney">
-        <!-- Ambient Backdrop -->
-        <div class="splash-backdrop"></div>
+    <div id="consultationSplash" class="pastel-opening" role="dialog" aria-modal="true" aria-label="Selamat Datang di Shine Journey">
+        <!-- Ambient Warm Pastel Aura Glows -->
+        <div class="pastel-glow-orb pastel-glow-1"></div>
+        <div class="pastel-glow-orb pastel-glow-2"></div>
 
-        <!-- Conical Spotlight Beam (Emerges when Lamp is ON) -->
-        <div class="lamp-light-beam" id="lampLightBeam"></div>
+        <!-- Quick Skip Button in Corner -->
+        <button type="button" class="btn-pastel-skip-corner" id="btnSplashSkipCorner" aria-label="Lewati ke Website">
+            <span>Lewati</span> <i class="fas fa-arrow-right"></i>
+        </button>
 
-        <div class="splash-scene">
-            <!-- Interactive Desk Lamp with Pull String -->
-            <div class="lamp-container" id="lampContainer">
-                <div class="lamp-assembly">
-                    <!-- Lamp Shade & Bulb -->
-                    <div class="lamp-shade-wrap">
-                        <div class="lamp-shade">
-                            <div class="lamp-inner-bulb"></div>
-                        </div>
-                        <!-- Pull String / Cord with Bead Handle -->
-                        <div class="lamp-cord" id="lampCord" role="button" tabindex="0" aria-label="Tarik tali lampu">
-                            <div class="lamp-cord-line" id="lampCordLine"></div>
-                            <div class="lamp-cord-bead" id="lampCordBead">
-                                <span class="cord-pulse-ring"></span>
-                            </div>
-                            <div class="cord-pull-tag" id="cordPullTag">
-                                <i class="fas fa-arrow-down"></i> <span>Tarik</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Lamp Pole & Base -->
-                    <div class="lamp-pole"></div>
-                    <div class="lamp-base"></div>
+        <div class="pastel-poster-card" id="pastelCard">
+            <!-- Top Right Organic Badge -->
+            <div class="pastel-badge-wellness">
+                <span>Mental Wellness for a Brighter You ✦</span>
+            </div>
+
+            <!-- Top Left Botanical Branch -->
+            <img src="opening-leaves.png" alt="Botanical Leaf" class="pastel-deco-branch">
+
+            <!-- Decorative Little Heart -->
+            <div class="pastel-deco-heart">🤎</div>
+
+            <!-- Header Dual Logos -->
+            <div class="pastel-brand-header">
+                <div class="pastel-logo-shine-wrap">
+                    <img src="logo-icon.png" alt="Shine Journey" class="pastel-logo-shine">
                 </div>
-
-                <!-- Interactive Hint Tooltip -->
-                <div class="lamp-hint" id="lampHint">
-                    <i class="fas fa-hand-pointer"></i> <span>Tarik tali lampu untuk menyalakan</span>
+                <div class="pastel-logo-curhatin-wrap">
+                    <img src="favicon.png" alt="Curhatin" class="pastel-logo-curhatin">
                 </div>
             </div>
 
-            <!-- Consultation Themes Card (Illuminated in Spotlight) -->
-            <div class="splash-content" id="splashCard">
-                <!-- Brand Icon & Breathing Aura -->
-                <div class="splash-emblem-wrap">
-                    <div class="splash-breath-ring splash-breath-ring-1"></div>
-                    <div class="splash-breath-ring splash-breath-ring-2"></div>
-                    <div class="splash-logo-circle">
-                        <img src="logo-icon.png" alt="Logo ShineJourney" class="splash-logo-img">
+            <!-- Category Line -->
+            <div class="pastel-subhead-caps">PLATFORM LAYANAN PSIKOLOGI ONLINE</div>
+
+            <!-- Main Title in Editorial Serif -->
+            <h1 class="pastel-hero-title">Shine Journey</h1>
+
+            <!-- Handwritten Script Tagline -->
+            <div class="pastel-script-tagline-wrap">
+                <span class="pastel-script-tagline">Temani Setiap Langkah Perjalananmu ♡</span>
+                <div class="pastel-brush-line"></div>
+            </div>
+
+            <!-- Subtitle Description -->
+            <p class="pastel-hero-desc">
+                Ruang aman untuk kamu bercerita, memahami diri dan menemukan solusi bersama kami.
+            </p>
+
+            <!-- Channels Row: Chat, Call, Zoom -->
+            <div class="pastel-channels-row">
+                <div class="pastel-channel-item">
+                    <div class="pastel-channel-bubble">
+                        <i class="fas fa-comment-dots"></i>
                     </div>
+                    <span class="pastel-channel-text">Chat</span>
+                </div>
+                <div class="pastel-channel-item">
+                    <div class="pastel-channel-bubble">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <span class="pastel-channel-text">Call</span>
+                </div>
+                <div class="pastel-channel-item">
+                    <div class="pastel-channel-bubble">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <span class="pastel-channel-text">Zoom</span>
+                </div>
+            </div>
+
+            <!-- Split Section: Arched Contemplation Meadow Art & Action CTA -->
+            <div class="pastel-split-body">
+                <!-- Left Arched Contemplation Meadow Art -->
+                <div class="pastel-art-frame">
+                    <img src="opening-illustration.png" alt="Perjalanan Menemukan Ketenangan Diri" class="pastel-art-image">
                 </div>
 
-                <!-- Welcome & Calm Status Tag -->
-                <div class="splash-status-tag">
-                    <span class="splash-status-dot"></span>
-                    <span id="splashCalmText">Ruang Aman Konsultasi • ShineJourney</span>
-                </div>
+                <!-- Right Action Side -->
+                <div class="pastel-action-col">
+                    <!-- CTA Button -->
+                    <button type="button" class="btn-pastel-main-cta" id="btnSplashSkip">
+                        <span>Temukan Layanan Kami</span> <i class="fas fa-arrow-right"></i>
+                    </button>
 
-                <!-- Main Heading -->
-                <h2 class="splash-title">
-                    Tema Pendampingan <span class="splash-gradient-text">&amp; Konseling Anda</span>
-                </h2>
-                <p class="splash-subtitle">Setiap cerita dan beban pikiran Anda didengar dengan penuh empati tanpa penghakiman.</p>
-
-                <!-- Dynamic Consultation Themes Showcase -->
-                <div class="splash-themes-grid" id="splashThemesGrid">
-                    <div class="splash-theme-card active" data-index="0">
-                        <div class="splash-theme-icon bg-indigo"><i class="fas fa-brain"></i></div>
-                        <div class="splash-theme-info">
-                            <strong>Beban Pikiran &amp; Overthinking</strong>
-                            <span>Uraikan benang kusut &amp; temukan kelegaan batin</span>
-                        </div>
-                    </div>
-                    <div class="splash-theme-card" data-index="1">
-                        <div class="splash-theme-icon bg-emerald"><i class="fas fa-heart"></i></div>
-                        <div class="splash-theme-info">
-                            <strong>Kecemasan, Stres &amp; Trauma</strong>
-                            <span>Pulihkan ketenangan emosional secara mendalam</span>
-                        </div>
-                    </div>
-                    <div class="splash-theme-card" data-index="2">
-                        <div class="splash-theme-icon bg-amber"><i class="fas fa-user-friends"></i></div>
-                        <div class="splash-theme-info">
-                            <strong>Hubungan, Keluarga &amp; Percintaan</strong>
-                            <span>Bangun koneksi sehat dan saling memahami</span>
-                        </div>
-                    </div>
-                    <div class="splash-theme-card" data-index="3">
-                        <div class="splash-theme-icon bg-purple"><i class="fas fa-compass"></i></div>
-                        <div class="splash-theme-info">
-                            <strong>Arah Karir, Burnout &amp; Masa Depan</strong>
-                            <span>Rebut kembali semangat, motivasi, &amp; tujuan hidup</span>
-                        </div>
+                    <!-- Handwritten Motivational Quote -->
+                    <div class="pastel-quote-box">
+                        <p class="pastel-quote-text">
+                            "Langkah Kecil hari ini,<br>
+                            bisa membawa perubahan<br>
+                            besar esok hari. ♡"
+                        </p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Footer & Action Button -->
-                <div class="splash-footer">
-                    <div class="splash-actions-row">
-                        <span class="splash-step-hint" id="splashStepHint">Lampu menyala • Selamat datang di Curhatin</span>
-                        <button type="button" class="btn-splash-enter" id="btnSplashSkip">
-                            <span>Masuk ke Website</span> <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
+            <!-- Abstract Line Wave SVG Decoration -->
+            <div class="pastel-wave-art">
+                <svg viewBox="0 0 140 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 60 C 35 30, 65 65, 95 35 C 125 5, 135 35, 140 20" stroke="#E6D2C3" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M15 65 C 45 35, 75 70, 105 40 C 130 15, 138 30, 140 28" stroke="#EFE0D4" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <!-- Bottom Contact Strip -->
+            <div class="pastel-footer-bar">
+                <span class="pastel-contact-entry"><i class="fas fa-globe"></i> Curhati.com</span>
+                <span class="pastel-contact-entry"><i class="fas fa-envelope"></i> shinejourney.ofc@gmail.com</span>
+                <span class="pastel-contact-entry"><i class="fas fa-phone-alt"></i> +62 831-8768-9054</span>
+                <span class="pastel-contact-entry"><i class="fab fa-instagram"></i> shinejourney.id</span>
             </div>
         </div>
     </div>
@@ -1171,7 +1178,7 @@
 
     <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas"><i class="fas fa-arrow-up"></i></button>
 
-    <script src="app.js?v=20260920_lamp"></script>
+    <script src="app.js?v=20260920_pastel"></script>
     <script src="reviews.js?v=20260920a"></script>
     <script src="schedule-engine.js?v=20260920a"></script>
 </body>

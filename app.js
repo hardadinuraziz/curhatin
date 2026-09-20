@@ -1,240 +1,74 @@
 'use strict';
 
 /* ==========================================================================
-   CONSULTATION THEME LAMP INTRO ANIMATION (PULL-CORD LAMP CONTROLLER)
+   PASTEL MINIMALIST OPENING CONTROLLER (SHINE JOURNEY)
    ========================================================================== */
 function initConsultationSplash() {
     const splash = document.getElementById('consultationSplash');
     if (!splash) return;
 
-    const lampCord = document.getElementById('lampCord');
-    const lampCordLine = document.getElementById('lampCordLine');
-    const lampCordBead = document.getElementById('lampCordBead');
-    const lampHint = document.getElementById('lampHint');
-    const cordPullTag = document.getElementById('cordPullTag');
-    const stepHint = document.getElementById('splashStepHint');
-    const enterBtn = document.getElementById('btnSplashSkip');
-    const themeCards = splash.querySelectorAll('.splash-theme-card');
+    const btnSkipMain = document.getElementById('btnSplashSkip');
+    const btnSkipCorner = document.getElementById('btnSplashSkipCorner');
+    const channelItems = splash.querySelectorAll('.pastel-channel-item');
 
-    // Prevent body scroll during splash
+    // Prevent background scrolling while opening screen is active
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    let isLit = false;
     let exited = false;
-    let autoCycleTimer = null;
-    let activeCardIndex = 0;
 
-    // Start with subtle idle tug to show cord is interactive
-    if (lampCord) {
-        lampCord.classList.add('idle-tug');
-    }
-
-    // Web Audio mechanical switch click sound
-    function playLampClick() {
-        try {
-            const AudioCtx = window.AudioContext || window.webkitAudioContext;
-            if (!AudioCtx) return;
-            const ctx = new AudioCtx();
-            if (ctx.state === 'suspended') ctx.resume();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(540, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(130, ctx.currentTime + 0.055);
-            gain.gain.setValueAtTime(0.35, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.055);
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start();
-            osc.stop(ctx.currentTime + 0.06);
-        } catch (err) {
-            // silent fallback
-        }
-    }
-
-    // Perform the Spring Recoil Pull Animation and Toggle Lamp
-    function triggerPull(recoilDistance = 35) {
-        if (exited) return;
-
-        if (lampCord) {
-            lampCord.classList.remove('idle-tug');
-            lampCord.classList.remove('pulling');
-            lampCord.classList.remove('recoil');
-            void lampCord.offsetWidth; // force reflow
-
-            lampCord.style.setProperty('--recoil-y', `${recoilDistance}px`);
-            lampCord.classList.add('recoil');
-
-            setTimeout(() => {
-                if (lampCord) {
-                    lampCord.classList.remove('recoil');
-                    lampCord.style.transform = '';
-                }
-                if (lampCordLine) lampCordLine.style.height = '';
-            }, 560);
-        }
-
-        playLampClick();
-        isLit = !isLit;
-
-        if (isLit) {
-            splash.classList.add('is-lit');
-            if (stepHint) stepHint.textContent = 'Lampu menyala • Ruang konsultasi siap melayani Anda';
-            startThemeCycle();
-        } else {
-            splash.classList.remove('is-lit');
-            if (stepHint) stepHint.textContent = 'Tarik tali lampu untuk menyalakan kembali';
-            stopThemeCycle();
-        }
-    }
-
-    // Interactive Drag-and-Drop Physics for Pull Cord
-    let isDragging = false;
-    let startY = 0;
-    let pullDistance = 0;
-    let dragStartTime = 0;
-
-    function onPointerDown(e) {
-        if (exited) return;
-        isDragging = true;
-        startY = e.clientY;
-        pullDistance = 0;
-        dragStartTime = Date.now();
-
-        if (lampCord) {
-            lampCord.classList.remove('idle-tug');
-            lampCord.classList.remove('recoil');
-            lampCord.classList.add('is-dragging');
-            try {
-                lampCord.setPointerCapture(e.pointerId);
-            } catch (err) {}
-        }
-
-        window.addEventListener('pointermove', onPointerMove, { passive: false });
-        window.addEventListener('pointerup', onPointerUp);
-        window.addEventListener('pointercancel', onPointerUp);
-    }
-
-    function onPointerMove(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-
-        const dy = e.clientY - startY;
-        pullDistance = Math.max(0, Math.min(55, dy));
-
-        if (lampCord) {
-            lampCord.style.transform = `translateY(${pullDistance}px)`;
-        }
-        if (lampCordLine) {
-            lampCordLine.style.height = `${42 + pullDistance * 0.7}px`;
-        }
-    }
-
-    function onPointerUp(e) {
-        if (!isDragging) return;
-        isDragging = false;
-
-        window.removeEventListener('pointermove', onPointerMove);
-        window.removeEventListener('pointerup', onPointerUp);
-        window.removeEventListener('pointercancel', onPointerUp);
-
-        if (lampCord) {
-            lampCord.classList.remove('is-dragging');
-            try {
-                lampCord.releasePointerCapture(e.pointerId);
-            } catch (err) {}
-        }
-
-        const dragDuration = Date.now() - dragStartTime;
-
-        // If pulled down sufficiently (>= 14px) or quickly tapped (< 260ms)
-        if (pullDistance >= 14 || dragDuration < 260) {
-            const recoilY = Math.max(28, pullDistance);
-            triggerPull(recoilY);
-        } else {
-            // Reset smoothly without switching
-            if (lampCord) {
-                lampCord.style.transition = 'transform 0.2s cubic-bezier(0.2, 1, 0.3, 1)';
-                lampCord.style.transform = '';
-                setTimeout(() => {
-                    if (lampCord) lampCord.style.transition = '';
-                }, 200);
-            }
-            if (lampCordLine) {
-                lampCordLine.style.height = '';
-            }
-        }
-    }
-
-    if (lampCord) {
-        lampCord.addEventListener('pointerdown', onPointerDown);
-        // Keyboard support
-        lampCord.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                triggerPull(36);
-            }
-        });
-    }
-
-    // Clicking hint pills also triggers pull animation
-    if (lampHint) {
-        lampHint.addEventListener('click', (e) => {
-            e.stopPropagation();
-            triggerPull(36);
-        });
-    }
-    if (cordPullTag) {
-        cordPullTag.addEventListener('click', (e) => {
-            e.stopPropagation();
-            triggerPull(36);
-        });
-    }
-
-    // Theme Highlights Cycle
-    function startThemeCycle() {
-        stopThemeCycle();
-        autoCycleTimer = setInterval(() => {
-            if (!isLit || exited) return;
-            activeCardIndex = (activeCardIndex + 1) % themeCards.length;
-            themeCards.forEach((card, idx) => {
-                card.classList.toggle('active', idx === activeCardIndex);
-            });
-        }, 1600);
-    }
-
-    function stopThemeCycle() {
-        if (autoCycleTimer) {
-            clearInterval(autoCycleTimer);
-            autoCycleTimer = null;
-        }
-    }
-
-    // Dismiss Splash & Open Website
-    function dismissSplash() {
+    function dismissOpening(targetHash) {
         if (exited) return;
         exited = true;
-        stopThemeCycle();
+
         splash.classList.add('splash-exit');
+
         setTimeout(() => {
             splash.style.display = 'none';
             document.body.style.overflow = originalOverflow || '';
+
+            if (targetHash) {
+                const targetElem = document.querySelector(targetHash);
+                if (targetElem) {
+                    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
         }, 550);
     }
 
-    // Enter Website Button
-    if (enterBtn) {
-        enterBtn.addEventListener('click', (e) => {
+    // Main "Temukan Layanan Kami" CTA Button
+    if (btnSkipMain) {
+        btnSkipMain.addEventListener('click', (e) => {
             e.preventDefault();
-            dismissSplash();
+            dismissOpening('#services');
         });
     }
 
-    // Keyboard Shortcuts (Escape to enter)
+    // Corner "Lewati" Button
+    if (btnSkipCorner) {
+        btnSkipCorner.addEventListener('click', (e) => {
+            e.preventDefault();
+            dismissOpening();
+        });
+    }
+
+    // Channel Quick-Selects (Chat, Call, Zoom)
+    channelItems.forEach((item, index) => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => {
+            // Chat navigates to counselors list, Call/Zoom to services
+            if (index === 0) {
+                dismissOpening('#counselors');
+            } else {
+                dismissOpening('#services');
+            }
+        });
+    });
+
+    // Keyboard Shortcuts (Escape key to enter immediately)
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !exited) {
-            dismissSplash();
+            dismissOpening();
         }
     }, { once: true });
 }

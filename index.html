@@ -6,7 +6,7 @@
     <title>ShineJourney - Teman Cerita & Konseling Psikolog Terpercaya #1 Indonesia</title>
     <meta name="description" content="ShineJourney menghubungkan Anda dengan Teman Cerita sebaya dan Psikolog Klinis berlisensi (SIPP). Konsultasi online aman, nyaman, dan tanpa stigma.">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=20260920_poster">
+    <link rel="stylesheet" href="style.css?v=20260920_fullscreen">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
@@ -14,38 +14,118 @@
     <!-- ==========================================
          PASTEL MINIMALIST OPENING (SHINE JOURNEY)
          ========================================== -->
-    <div id="consultationSplash" class="pastel-opening" role="dialog" aria-modal="true" aria-label="Selamat Datang di Shine Journey">
-        <!-- Ambient Warm Pastel Aura Glows -->
-        <div class="pastel-glow-orb pastel-glow-1"></div>
-        <div class="pastel-glow-orb pastel-glow-2"></div>
+    <!-- ==========================================
+         FULL-SCREEN PASTEL PSYCHOLOGY OPENING
+         ========================================== -->
+    <div id="consultationSplash" class="psycho-opening" role="dialog" aria-modal="true" aria-label="Selamat Datang di Shine Journey">
+        <!-- Floating Ambient Pastel Glows -->
+        <div class="psycho-glow psycho-glow-1"></div>
+        <div class="psycho-glow psycho-glow-2"></div>
+        <div class="psycho-glow psycho-glow-3"></div>
 
-        <!-- Quick Skip Button in Corner -->
-        <button type="button" class="btn-pastel-skip-corner" id="btnSplashSkipCorner" aria-label="Lewati ke Website">
-            <span>Lewati ke Web</span> <i class="fas fa-arrow-right"></i>
-        </button>
+        <!-- Drifting Botanical Petals & Sparkles -->
+        <div class="psycho-petals-wrap" aria-hidden="true">
+            <span class="psycho-petal p1">🌸</span>
+            <span class="psycho-petal p2">🍃</span>
+            <span class="psycho-petal p3">✨</span>
+            <span class="psycho-petal p4">🦋</span>
+            <span class="psycho-petal p5">🌸</span>
+            <span class="psycho-petal p6">✨</span>
+        </div>
 
-        <!-- Main Poster Wrapper (Crisp, High-Resolution, Pixel-Perfect Layout) -->
-        <div class="pastel-poster-wrapper" id="pastelCard">
-            <div class="pastel-poster-container">
-                <img src="opening-poster.png" alt="Shine Journey - Temani Setiap Langkah Perjalananmu" class="pastel-poster-img" draggable="false">
+        <!-- Fullscreen Content Stage -->
+        <div class="psycho-stage">
+            <!-- Top Navigation Bar -->
+            <header class="psycho-topbar">
+                <div class="psycho-brand-group">
+                    <img src="logo-icon.png" alt="Shine Journey" class="psycho-brand-logo">
+                    <img src="favicon.png" alt="Curhatin" class="psycho-brand-curhatin">
+                    <div class="psycho-brand-text">
+                        <span class="psycho-brand-name">Shine Journey</span>
+                        <span class="psycho-brand-tag">Platform Layanan Psikologi Online</span>
+                    </div>
+                </div>
 
-                <!-- Interactive Hotspots on Poster -->
-                <!-- 1. Channels Hotspots (Chat, Call, Zoom) -->
-                <button type="button" class="poster-hotspot hotspot-chat" id="hotspotChat" title="Konsultasi via Chat" aria-label="Konsultasi Chat"></button>
-                <button type="button" class="poster-hotspot hotspot-call" id="hotspotCall" title="Konsultasi via Telepon" aria-label="Konsultasi Call"></button>
-                <button type="button" class="poster-hotspot hotspot-zoom" id="hotspotZoom" title="Konsultasi via Zoom" aria-label="Konsultasi Zoom"></button>
+                <div class="psycho-topbar-actions">
+                    <div class="psycho-wellness-badge">
+                        <i class="fas fa-sparkles"></i> Mental Wellness for a Brighter You
+                    </div>
+                    <button type="button" class="btn-psycho-skip" id="btnSplashSkipCorner" aria-label="Lewati ke Website">
+                        <span>Lewati ke Web</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </header>
 
-                <!-- 2. "Temukan Layanan Kami" Button Hotspot with Subtle Micro-interaction -->
-                <button type="button" class="poster-hotspot hotspot-cta" id="btnSplashSkip" title="Temukan Layanan Kami" aria-label="Temukan Layanan Kami">
-                    <span class="hotspot-cta-ripple"></span>
-                </button>
+            <!-- Main Full-Screen Body Grid -->
+            <main class="psycho-grid">
+                <!-- Left: Animated Psychology Art Frame -->
+                <div class="psycho-visual-col">
+                    <div class="psycho-art-card">
+                        <div class="psycho-art-glow-ring"></div>
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="psychology-opening-mobile.jpg">
+                            <img src="psychology-opening-desktop.jpg" alt="Ilustrasi Ketenangan Jiwa dan Psikologi Shine Journey" class="psycho-art-image" draggable="false">
+                        </picture>
+                        <div class="psycho-art-badge">
+                            <i class="fas fa-heart"></i> Ruang Aman & Nyaman
+                        </div>
+                    </div>
+                </div>
 
-                <!-- 3. Footer Links Hotspots -->
-                <a href="#services" class="poster-hotspot hotspot-web" title="Kunjungi Website Curhati.com" aria-label="Website Curhati.com"></a>
-                <a href="mailto:shinejourney.ofc@gmail.com" class="poster-hotspot hotspot-email" title="Email Kami: shinejourney.ofc@gmail.com" aria-label="Email"></a>
-                <a href="https://wa.me/6283187689054" target="_blank" rel="noopener" class="poster-hotspot hotspot-wa" title="WhatsApp: +62 831-8768-9054" aria-label="WhatsApp"></a>
-                <a href="https://instagram.com/shinejourney.id" target="_blank" rel="noopener" class="poster-hotspot hotspot-ig" title="Instagram: @shinejourney.id" aria-label="Instagram"></a>
-            </div>
+                <!-- Right: Content & Action Column -->
+                <div class="psycho-content-col">
+                    <div class="psycho-headline-block">
+                        <span class="psycho-subhead">TEMANI SETIAP LANGKAH</span>
+                        <h1 class="psycho-main-title">Shine Journey</h1>
+                        <p class="psycho-handwritten-tagline">Temani Setiap Langkah Perjalananmu ♡</p>
+                        <p class="psycho-description">
+                            Ruang aman dan terpercaya untuk kamu bercerita, memahami emosi, memulihkan energi mental, dan menemukan solusi bersama psikolog berlisensi.
+                        </p>
+                    </div>
+
+                    <!-- Consultation Channels -->
+                    <div class="psycho-channels-wrap">
+                        <span class="psycho-channels-label">Pilihan Sesi Konsultasi:</span>
+                        <div class="psycho-channels-row">
+                            <div class="psycho-channel-btn" id="hotspotChat" role="button" tabindex="0">
+                                <div class="psycho-channel-icon"><i class="fas fa-comment-dots"></i></div>
+                                <span class="psycho-channel-title">Chat</span>
+                            </div>
+                            <div class="psycho-channel-btn" id="hotspotCall" role="button" tabindex="0">
+                                <div class="psycho-channel-icon"><i class="fas fa-phone-alt"></i></div>
+                                <span class="psycho-channel-title">Call</span>
+                            </div>
+                            <div class="psycho-channel-btn" id="hotspotZoom" role="button" tabindex="0">
+                                <div class="psycho-channel-icon"><i class="fas fa-video"></i></div>
+                                <span class="psycho-channel-title">Zoom</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Action CTA -->
+                    <div class="psycho-cta-wrap">
+                        <button type="button" class="btn-psycho-primary-cta" id="btnSplashSkip">
+                            <span>Temukan Layanan Kami</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Handwritten Quote -->
+                    <div class="psycho-quote-card">
+                        <p class="psycho-quote-text">
+                            "Langkah kecil hari ini, bisa membawa perubahan besar esok hari. ♡"
+                        </p>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Bottom Contact Strip -->
+            <footer class="psycho-footer">
+                <a href="#services" class="psycho-footer-item"><i class="fas fa-globe"></i> Curhati.com</a>
+                <a href="mailto:shinejourney.ofc@gmail.com" class="psycho-footer-item"><i class="fas fa-envelope"></i> shinejourney.ofc@gmail.com</a>
+                <a href="https://wa.me/6283187689054" target="_blank" rel="noopener" class="psycho-footer-item"><i class="fas fa-phone-alt"></i> +62 831-8768-9054</a>
+                <a href="https://instagram.com/shinejourney.id" target="_blank" rel="noopener" class="psycho-footer-item"><i class="fab fa-instagram"></i> @shinejourney.id</a>
+            </footer>
         </div>
     </div>
 
@@ -1099,7 +1179,7 @@
 
     <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas"><i class="fas fa-arrow-up"></i></button>
 
-    <script src="app.js?v=20260920_poster"></script>
+    <script src="app.js?v=20260920_fullscreen"></script>
     <script src="reviews.js?v=20260920a"></script>
     <script src="schedule-engine.js?v=20260920a"></script>
 </body>

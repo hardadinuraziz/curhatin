@@ -81,9 +81,20 @@ function initConsultationSplash() {
         });
     }
 
-    // Dismiss if clicking background area outside the card
+    // Keyboard support on channel buttons
+    [hotspotChat, hotspotCall, hotspotZoom].forEach((btn, idx) => {
+        if (!btn) return;
+        btn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                dismissOpening(idx === 0 ? '#counselors' : '#services');
+            }
+        });
+    });
+
+    // Dismiss if clicking backdrop area
     splash.addEventListener('click', (e) => {
-        if (e.target === splash || e.target.classList.contains('pastel-poster-wrapper')) {
+        if (e.target === splash || e.target.classList.contains('psycho-stage')) {
             dismissOpening();
         }
     });

@@ -17,6 +17,51 @@ function initConsultationSplash() {
 
     let exited = false;
 
+    // =========================================================================
+    // Dynamic Pastel Themes System (Rotates soothing pastel theme every visit)
+    // =========================================================================
+    const PASTEL_THEMES = ['terracotta', 'sage', 'lavender', 'sky', 'rose'];
+
+    function applyPastelTheme(themeName) {
+        if (!PASTEL_THEMES.includes(themeName)) {
+            themeName = 'terracotta';
+        }
+        splash.setAttribute('data-psycho-theme', themeName);
+
+        // Synchronize palette chip buttons
+        const chips = splash.querySelectorAll('.theme-color-chip');
+        chips.forEach(chip => {
+            chip.classList.toggle('active', chip.getAttribute('data-theme') === themeName);
+        });
+    }
+
+    // Advance to the next pastel theme every time the opening is opened/loaded
+    let lastThemeIdx = localStorage.getItem('psycho_last_theme_idx');
+    let nextThemeIdx = 0;
+    if (lastThemeIdx !== null) {
+        nextThemeIdx = (parseInt(lastThemeIdx, 10) + 1) % PASTEL_THEMES.length;
+    } else {
+        // Pick random pastel theme for first-time visitors
+        nextThemeIdx = Math.floor(Math.random() * PASTEL_THEMES.length);
+    }
+    localStorage.setItem('psycho_last_theme_idx', nextThemeIdx.toString());
+    applyPastelTheme(PASTEL_THEMES[nextThemeIdx]);
+
+    // Enable interactive palette chips so visitors can click to test/preview any pastel theme
+    const themeChips = splash.querySelectorAll('.theme-color-chip');
+    themeChips.forEach(chip => {
+        chip.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const targetTheme = chip.getAttribute('data-theme');
+            const targetIdx = PASTEL_THEMES.indexOf(targetTheme);
+            if (targetIdx !== -1) {
+                localStorage.setItem('psycho_last_theme_idx', targetIdx.toString());
+                applyPastelTheme(targetTheme);
+            }
+        });
+    });
+
     // Main "Temukan Layanan Kami" CTA Button
     if (btnSkipMain) {
         btnSkipMain.addEventListener('click', (e) => {

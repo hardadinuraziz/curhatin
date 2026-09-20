@@ -1,0 +1,278 @@
+[
+  {
+    "day": "Senin",
+    "time": "08.00 - 11.30",
+    "name": "Rasidia Nur",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Senin",
+    "time": "08.00 - 11.30",
+    "name": "Syifa",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Senin",
+    "time": "13.00 - 15.30",
+    "name": "Siratia",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Senin",
+    "time": "13.00 - 15.30",
+    "name": "Anif Fatul",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Senin",
+    "time": "16.30 - 20.00",
+    "name": "Rizki Dwi",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Senin",
+    "time": "16.30 - 20.00",
+    "name": "Maulia Husna",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Senin",
+    "time": "16.30 - 20.00",
+    "name": "Haura",
+    "role": "Interpretasi"
+  },
+  {
+    "day": "Selasa",
+    "time": "08.00 - 11.30",
+    "name": "Rasidia Nur",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Selasa",
+    "time": "08.00 - 11.30",
+    "name": "Syifa",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Selasa",
+    "time": "13.00 - 15.30",
+    "name": "Siratia",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Selasa",
+    "time": "13.00 - 15.30",
+    "name": "Anif Fatul",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Selasa",
+    "time": "16.30 - 20.00",
+    "name": "Rizki Dwi",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Selasa",
+    "time": "16.30 - 20.00",
+    "name": "Maulia Husna",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Selasa",
+    "time": "16.30 - 20.00",
+    "name": "Haura",
+    "role": "Interpretasi"
+  },
+  {
+    "day": "Rabu",
+    "time": "08.00 - 11.30",
+    "name": "Rasidia Nur",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Rabu",
+    "time": "08.00 - 11.30",
+    "name": "Syifa",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Rabu",
+    "time": "13.00 - 15.30",
+    "name": "Siratia",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Rabu",
+    "time": "13.00 - 15.30",
+    "name": "Anif Fatul",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Rabu",
+    "time": "16.30 - 20.00",
+    "name": "Rizki Dwi",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Rabu",
+    "time": "16.30 - 20.00",
+    "name": "Maulia Husna",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Rabu",
+    "time": "16.30 - 20.00",
+    "name": "Haura",
+    "role": "Interpretasi"
+  },
+  {
+    "day": "Kamis",
+    "time": "08.00 - 11.30",
+    "name": "Rasidia Nur",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Kamis",
+    "time": "08.00 - 11.30",
+    "name": "Syifa",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Kamis",
+    "time": "13.00 - 15.30",
+    "name": "Siratia",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Kamis",
+    "time": "13.00 - 15.30",
+    "name": "Anif Fatul",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Kamis",
+    "time": "16.30 - 20.00",
+    "name": "Rizki Dwi",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Kamis",
+    "time": "16.30 - 20.00",
+    "name": "Maulia Husna",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Kamis",
+    "time": "16.30 - 20.00",
+    "name": "Haura",
+    "role": "Interpretasi"
+  },
+  {
+    "day": "Jumat",
+    "time": "08.00 - 11.30",
+    "name": "Rasidia Nur",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Jumat",
+    "time": "08.00 - 11.30",
+    "name": "Syifa",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Jumat",
+    "time": "13.00 - 15.30",
+    "name": "Anif Fatul",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Jumat",
+    "time": "13.00 - 15.30",
+    "name": "Siratia",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Jumat",
+    "time": "16.30 - 20.00",
+    "name": "Rizki Dwi",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Jumat",
+    "time": "16.30 - 20.00",
+    "name": "Maulia Husna",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Jumat",
+    "time": "16.30 - 20.00",
+    "name": "Haura",
+    "role": "Interpretasi"
+  },
+  {
+    "day": "Sabtu",
+    "time": "08.00 - 11.30",
+    "name": "Rasidia Nur",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Sabtu",
+    "time": "08.00 - 11.30",
+    "name": "Syifa",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Sabtu",
+    "time": "08.00 - 11.30",
+    "name": "Hanifa Putri",
+    "role": "Interpretasi"
+  },
+  {
+    "day": "Sabtu",
+    "time": "13.00 - 15.30",
+    "name": "Maulia Husna",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Sabtu",
+    "time": "13.00 - 15.30",
+    "name": "Syifa",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Sabtu",
+    "time": "16.30 - 20.00",
+    "name": "Anif Fatul",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Sabtu",
+    "time": "16.30 - 20.00",
+    "name": "Siratia",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Sabtu",
+    "time": "16.30 - 20.00",
+    "name": "Haura",
+    "role": "Interpretasi"
+  },
+  {
+    "day": "Sabtu",
+    "time": "16.30 - 20.00",
+    "name": "Rizki Dwi",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Minggu",
+    "time": "08.00 - 11.30",
+    "name": "Rasidia Nur",
+    "role": "Admin + Feedback"
+  },
+  {
+    "day": "Minggu",
+    "time": "08.00 - 11.30",
+    "name": "Syifa",
+    "role": "Admin + Feedback"
+  }
+]

@@ -1,0 +1,654 @@
+{
+  "Senin": [
+    {
+      "time": "07.00 - 08.00",
+      "staff": []
+    },
+    {
+      "time": "08.15 - 09.15",
+      "staff": [
+        "TC - Anif",
+        "TC - Rasidia",
+        "TC - Putri"
+      ]
+    },
+    {
+      "time": "09.30 - 10.30",
+      "staff": [
+        "TC - Rasidia",
+        "TC - Putri"
+      ]
+    },
+    {
+      "time": "10.45 - 11.45",
+      "staff": [
+        "TC - Rasidia",
+        "TC - Putri"
+      ]
+    },
+    {
+      "time": "12.00 - 13.00",
+      "staff": [
+        "TC - Rasidia",
+        "TC - Putri"
+      ]
+    },
+    {
+      "time": "13.15 - 14.15",
+      "staff": [
+        "TC - Rasidia",
+        "TC - Siratia"
+      ]
+    },
+    {
+      "time": "14.30 - 15.30",
+      "staff": [
+        "TC - Rasidia",
+        "TC - Rizki"
+      ]
+    },
+    {
+      "time": "15.45 - 16.45",
+      "staff": [
+        "TC - Rasidia",
+        "TC - Shabrina",
+        "TC - Rizki"
+      ]
+    },
+    {
+      "time": "17.00 - 18.00",
+      "staff": [
+        "TC - Annisa",
+        "TC - Rizki"
+      ]
+    },
+    {
+      "time": "18.15 - 19.15",
+      "staff": [
+        "TC  - Syifa",
+        "TC - Rizki",
+        "TC - Putri"
+      ]
+    },
+    {
+      "time": "19.30 - 20.30",
+      "staff": [
+        "KONS - Haura",
+        "TC - Theresa",
+        "TC  - Syifa",
+        "TC - Binti",
+        "TC - Rizki"
+      ]
+    },
+    {
+      "time": "20.45 - 21.45",
+      "staff": [
+        "KONS - Haura",
+        "TC  - Syifa"
+      ]
+    }
+  ],
+  "Selasa": [
+    {
+      "time": "07.00 - 08.00",
+      "staff": []
+    },
+    {
+      "time": "08.15 - 09.15",
+      "staff": [
+        "TC - Anif",
+        "TC - Putri Dyah",
+        "TC - Shabrina",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "09.30 - 10.30",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "10.45 - 11.45",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "12.00 - 13.00",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "13.15 - 14.15",
+      "staff": [
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "14.30 - 15.30",
+      "staff": [
+        "TC - Rizki Dwi",
+        "TC - Rasidia",
+        "TC - Siratia"
+      ]
+    },
+    {
+      "time": "15.45 - 16.45",
+      "staff": [
+        "TC - Rizki Dwi",
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "17.00 - 18.00",
+      "staff": [
+        "KONS - Wilda",
+        "TC - Annisa",
+        "TC - Rizki Dwi",
+        "KONS -Hanifa"
+      ]
+    },
+    {
+      "time": "18.15 - 19.15",
+      "staff": [
+        "KONS - Wilda",
+        "KONS - Syifa",
+        "TC - Rizki Dwi",
+        "TC - Putri Dyah"
+      ]
+    },
+    {
+      "time": "19.30 - 20.30",
+      "staff": [
+        "KONS -Haura",
+        "KONS - Syifa",
+        "TC - Nadhifah",
+        "TC - Theresa",
+        "TC - Rizki Dwi"
+      ]
+    },
+    {
+      "time": "20.45 - 21.45",
+      "staff": [
+        "KONS -Haura",
+        "KONS - Syifa",
+        "TC - Rizki Dwi",
+        "TC - Theresa"
+      ]
+    }
+  ],
+  "Rabu": [
+    {
+      "time": "07.00 - 08.00",
+      "staff": []
+    },
+    {
+      "time": "08.15 - 09.15",
+      "staff": [
+        "TC - Anif",
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "09.30 - 10.30",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "10.45 - 11.45",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "12.00 - 13.00",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "13.15 - 14.15",
+      "staff": [
+        "TC - Shabrina",
+        "TC - Rasidia",
+        "TC - Siratia"
+      ]
+    },
+    {
+      "time": "14.30 - 15.30",
+      "staff": [
+        "TC - Rizki Dwi",
+        "TC - Shabrina",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "15.45 - 16.45",
+      "staff": [
+        "TC - Rizki Dwi",
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "17.00 - 18.00",
+      "staff": [
+        "KONS - Wilda",
+        "TC - Annisa",
+        "TC - Rizki Dwi",
+        "KONS - Hanifa"
+      ]
+    },
+    {
+      "time": "18.15 - 19.15",
+      "staff": [
+        "KONS - Wilda",
+        "KONS - Syifa",
+        "TC - Rizki Dwi",
+        "TC - Putri Dyah"
+      ]
+    },
+    {
+      "time": "19.30 - 20.30",
+      "staff": [
+        "KONS - Haura",
+        "TC - Nadhifah",
+        "TC - Rizki Dwi",
+        "TC - Theresa",
+        "KONS - Syifa"
+      ]
+    },
+    {
+      "time": "20.45 - 21.45",
+      "staff": [
+        "KONS - Haura",
+        "TC - Rizki Dwi",
+        "TC - Theresa",
+        "KONS - Syifa"
+      ]
+    }
+  ],
+  "Kamis": [
+    {
+      "time": "07.00 - 08.00",
+      "staff": []
+    },
+    {
+      "time": "08.15 - 09.15",
+      "staff": [
+        "TC - Anif",
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "09.30 - 10.30",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "10.45 - 11.45",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "12.00 - 13.00",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "13.15 - 14.15",
+      "staff": [
+        "TC - Rasidia",
+        "TC - Siratia"
+      ]
+    },
+    {
+      "time": "14.30 - 15.30",
+      "staff": [
+        "TC - Rizki Dwi",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "15.45 - 16.45",
+      "staff": [
+        "TC - Rizki Dwi",
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "17.00 - 18.00",
+      "staff": [
+        "KONS - Wilda",
+        "TC - Annisa",
+        "TC - Rizki Dwi",
+        "KONS - Hanifa"
+      ]
+    },
+    {
+      "time": "18.15 - 19.15",
+      "staff": [
+        "KONS - Wilda",
+        "TC - Rizki Dwi",
+        "TC - Putri Dyah",
+        "KONS - Syifa"
+      ]
+    },
+    {
+      "time": "19.30 - 20.30",
+      "staff": [
+        "KONS - Haura",
+        "TC - Nadhifah",
+        "TC - Rizki Dwi",
+        "TC - Theresa",
+        "KONS - Syifa"
+      ]
+    },
+    {
+      "time": "20.45 - 21.45",
+      "staff": [
+        "KONS - Haura",
+        "TC - Rizki Dwi",
+        "TC - Theresa",
+        "KONS - Syifa"
+      ]
+    }
+  ],
+  "Jumat": [
+    {
+      "time": "07.00 - 08.00",
+      "staff": [
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "08.15 - 09.15",
+      "staff": [
+        "TC - Anif",
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "09.30 - 10.30",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "10.45 - 11.45",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "12.00 - 13.00",
+      "staff": [
+        "TC - Faiqotul",
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "13.15 - 14.15",
+      "staff": [
+        "TC - Rasidia",
+        "TC - Siratia"
+      ]
+    },
+    {
+      "time": "14.30 - 15.30",
+      "staff": [
+        "TC - Rizki Dwi",
+        "TC - Shabrina",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "15.45 - 16.45",
+      "staff": [
+        "TC - Rizki Dwi",
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "17.00 - 18.00",
+      "staff": [
+        "KONS - Wilda",
+        "TC - Annisa",
+        "TC - Rizki Dwi",
+        "KONS - Hanifa"
+      ]
+    },
+    {
+      "time": "18.15 - 19.15",
+      "staff": [
+        "KONS - Wilda",
+        "TC - Putri Dyah",
+        "TC - Rasidia",
+        "KONS - Syifa"
+      ]
+    },
+    {
+      "time": "19.30 - 20.30",
+      "staff": [
+        "KONS - Wilda",
+        "TC - Nadhifah",
+        "TC - Rasidia",
+        "TC - Theresa",
+        "KONS - Syifa"
+      ]
+    },
+    {
+      "time": "20.45 - 21.45",
+      "staff": [
+        "TC - Rasidia",
+        "TC - Theresa",
+        "KONS - Syifa"
+      ]
+    }
+  ],
+  "Sabtu": [
+    {
+      "time": "07.00 - 08.00",
+      "staff": []
+    },
+    {
+      "time": "08.15 - 09.15",
+      "staff": [
+        "TC - Anif",
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "09.30 - 10.30",
+      "staff": [
+        "TC - Nadhifah",
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "10.45 - 11.45",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "12.00 - 13.00",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "13.15 - 14.15",
+      "staff": [
+        "TC - Rasidia",
+        "KONS - Syifa",
+        "KONS - Hanifa"
+      ]
+    },
+    {
+      "time": "14.30 - 15.30",
+      "staff": [
+        "KONS - Haura",
+        "TC - Rasidia",
+        "KONS - Syifa",
+        "KONS - Hanifa"
+      ]
+    },
+    {
+      "time": "15.45 - 16.45",
+      "staff": [
+        "KONS - Haura",
+        "TC - Rasidia",
+        "KONS - Syifa",
+        "KONS - Hanifa"
+      ]
+    },
+    {
+      "time": "17.00 - 18.00",
+      "staff": [
+        "TC - Annisa",
+        "KONS - Syifa"
+      ]
+    },
+    {
+      "time": "18.15 - 19.15",
+      "staff": [
+        "TC - Putri Dyah",
+        "KONS - Syifa",
+        "KONS - Wilda"
+      ]
+    },
+    {
+      "time": "19.30 - 20.30",
+      "staff": [
+        "TC - Shabrina",
+        "TC - Putri Dyah",
+        "KONS - Wilda"
+      ]
+    },
+    {
+      "time": "20.45 - 21.45",
+      "staff": [
+        "TC - Putri Dyah"
+      ]
+    }
+  ],
+  "Minggu": [
+    {
+      "time": "07.00 - 08.00",
+      "staff": []
+    },
+    {
+      "time": "08.15 - 09.15",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "09.30 - 10.30",
+      "staff": [
+        "TC - Nadhifah",
+        "TC - Putri Dyah",
+        "TC - Rasidia"
+      ]
+    },
+    {
+      "time": "10.45 - 11.45",
+      "staff": [
+        "TC - Annisa",
+        "TC - Putri Dyah",
+        "TC - Rasidia",
+        "KONS - Hanifa"
+      ]
+    },
+    {
+      "time": "12.00 - 13.00",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Rasidia",
+        "KONS - Hanifa"
+      ]
+    },
+    {
+      "time": "13.15 - 14.15",
+      "staff": [
+        "TC - Rasidia",
+        "KONS - Syifa"
+      ]
+    },
+    {
+      "time": "14.30 - 15.30",
+      "staff": [
+        "TC - Rasidia",
+        "KONS - Syifa"
+      ]
+    },
+    {
+      "time": "15.45 - 16.45",
+      "staff": [
+        "TC - Rasidia",
+        "TC - Putri Dyah",
+        "KONS - Syifa"
+      ]
+    },
+    {
+      "time": "17.00 - 18.00",
+      "staff": [
+        "TC - Shabrina",
+        "KONS - Syifa"
+      ]
+    },
+    {
+      "time": "18.15 - 19.15",
+      "staff": [
+        "TC - Putri Dyah",
+        "KONS - Syifa"
+      ]
+    },
+    {
+      "time": "19.30 - 20.30",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Theresa",
+        "KONS - Hanifa"
+      ]
+    },
+    {
+      "time": "20.45 - 21.45",
+      "staff": [
+        "TC - Putri Dyah",
+        "TC - Theresa",
+        "KONS - Hanifa"
+      ]
+    }
+  ]
+}

@@ -85,13 +85,48 @@
     }
   }
 
-  // Define sidebar navigation per role according to Blueprint Section 23
+  // Define sidebar navigation per role according to Blueprint Section 23 & User Multi-Role Architecture
   function getNavigationForRole(role) {
+    if (role.startsWith('csl-') || role === 'PSYCHOLOGIST' || role === 'TEMAN_CERITA') {
+      const csl = store.data.counselors.find(c => c.id === role);
+      const isPsych = csl ? csl.serviceType === 'PSIKOLOG_KLINIS' : role === 'PSYCHOLOGIST';
+      return [
+        {
+          title: isPsych ? 'DASHBOARD PSIKOLOG KLINIS' : 'WORKSPACE TEMAN CERITA',
+          items: [
+            { id: 'overview', label: 'Overview & Status Piket', icon: 'layout-dashboard' },
+            { id: 'sessions', label: 'Kelola Sesi Konseling', icon: 'users', badge: '1 Aktif' },
+            { id: 'schedule', label: 'Jadwal Piket Saya', icon: 'calendar' }
+          ]
+        },
+        {
+          title: 'KOMUNIKASI & LAPORAN',
+          items: [
+            { id: 'chat', label: 'Chat Klien (Web Chat)', icon: 'message-circle', badge: '1' },
+            { id: 'counselor-reports', label: 'Unggah Laporan Sesi', icon: 'upload-cloud' }
+          ]
+        }
+      ];
+    }
+
+    if (role.startsWith('asm-') || role === 'ASSESSMENT_STAFF') {
+      return [
+        {
+          title: 'TIM ASESMEN (10 ASESOR)',
+          items: [
+            { id: 'overview', label: 'Overview Asesmen', icon: 'layout-dashboard' },
+            { id: 'assessment-queue', label: 'Antrean Submission', icon: 'inbox', badge: '1 Baru' },
+            { id: 'completed-assessments', label: 'Selesai Direview', icon: 'check-circle' }
+          ]
+        }
+      ];
+    }
+
     switch (role) {
       case 'CLIENT':
         return [
           {
-            title: 'UTAMA',
+            title: 'PORTAL KLIEN (GMAIL LOGIN)',
             items: [
               { id: 'overview', label: 'Overview', icon: 'layout-dashboard' },
               { id: 'reservation', label: 'Pesan Konseling', icon: 'calendar-plus' },
@@ -108,70 +143,29 @@
           {
             title: 'KOMUNIKASI & HASIL',
             items: [
-              { id: 'chat', label: 'Chat Konselor', icon: 'message-circle', badge: '1' },
+              { id: 'chat', label: 'Chat Konselor & AI', icon: 'message-circle', badge: '1' },
               { id: 'reports', label: 'Laporan Sesi', icon: 'file-text' }
             ]
           }
         ];
 
-      case 'PSYCHOLOGIST':
+      case 'COORDINATOR':
         return [
           {
-            title: 'DASHBOARD PSIKOLOG',
+            title: 'KOORDINATOR (AKSES MASTER)',
             items: [
-              { id: 'overview', label: 'Overview', icon: 'layout-dashboard' },
-              { id: 'sessions', label: 'Kelola Sesi Konseling', icon: 'users', badge: '1 Aktif' },
-              { id: 'schedule', label: 'Jadwal Praktek', icon: 'calendar' }
+              { id: 'overview', label: 'Dashboard Eksekutif', icon: 'trending-up' },
+              { id: 'schedule-all', label: 'Jadwal Piket Konseling & Asesmen', icon: 'calendar-check' },
+              { id: 'counselors-roster', label: '15 Akun Konselor', icon: 'users' },
+              { id: 'assessments-roster', label: '10 Akun Asesor', icon: 'clipboard-list' }
             ]
           },
           {
-            title: 'KOMUNIKASI & LAPORAN',
+            title: 'OPERASIONAL & AI',
             items: [
-              { id: 'chat', label: 'Chat Klien', icon: 'message-circle' },
-              { id: 'counselor-reports', label: 'Unggah Laporan', icon: 'upload-cloud' }
-            ]
-          }
-        ];
-
-      case 'TEMAN_CERITA':
-        return [
-          {
-            title: 'TEMAN CERITA',
-            items: [
-              { id: 'overview', label: 'Overview', icon: 'layout-dashboard' },
-              { id: 'sessions', label: 'Sesi Curhat', icon: 'heart-handshake' },
-              { id: 'schedule', label: 'Jadwal Ketersediaan', icon: 'calendar' }
-            ]
-          },
-          {
-            title: 'KOMUNIKASI',
-            items: [
-              { id: 'chat', label: 'Ruang Chat', icon: 'message-circle' },
-              { id: 'counselor-reports', label: 'Catatan Refleksi', icon: 'file-text' }
-            ]
-          }
-        ];
-
-      case 'ASSESSMENT_STAFF':
-        return [
-          {
-            title: 'MODUL ASESMEN',
-            items: [
-              { id: 'overview', label: 'Overview Asesmen', icon: 'layout-dashboard' },
-              { id: 'assessment-queue', label: 'Antrean Submission', icon: 'inbox', badge: '1 Baru' },
-              { id: 'completed-assessments', label: 'Selesai Direview', icon: 'check-circle' }
-            ]
-          }
-        ];
-
-      case 'FINANCE':
-        return [
-          {
-            title: 'KEUANGAN & BILLING',
-            items: [
-              { id: 'overview', label: 'Ringkasan Keuangan', icon: 'dollar-sign' },
-              { id: 'transactions', label: 'Daftar Transaksi', icon: 'receipt' },
-              { id: 'invoices', label: 'Tagihan & Invoices', icon: 'file-spreadsheet' }
+              { id: 'ai-config', label: 'Admin by AI (ShineBot)', icon: 'robot' },
+              { id: 'transactions', label: 'Keuangan & Billing', icon: 'dollar-sign' },
+              { id: 'audit-logs', label: 'Audit Trail Sistem', icon: 'shield' }
             ]
           }
         ];
@@ -179,12 +173,36 @@
       case 'ADMIN':
         return [
           {
-            title: 'ADMINISTRASI SISTEM',
+            title: 'ADMIN OPERASIONAL (1 AKUN - 5 USER)',
             items: [
               { id: 'overview', label: 'Overview Sistem', icon: 'shield' },
-              { id: 'users', label: 'Kelola Pengguna & Role', icon: 'users-cog' },
+              { id: 'schedule-all', label: 'Kontrol Jadwal & Status Online', icon: 'calendar-check' },
+              { id: 'users', label: 'Kelola 15 Konselor & 10 Asesor', icon: 'users-cog' },
               { id: 'services', label: 'Kelola Layanan', icon: 'sliders' },
               { id: 'audit-logs', label: 'Audit Logs Keamanan', icon: 'activity' }
+            ]
+          }
+        ];
+
+      case 'AI_ADMIN':
+        return [
+          {
+            title: 'ADMIN BY AI (SHINEBOT)',
+            items: [
+              { id: 'overview', label: 'Status & Auto-Reply AI', icon: 'robot' },
+              { id: 'chat', label: 'Ruang Chat Realtime', icon: 'message-circle' }
+            ]
+          }
+        ];
+
+      case 'FINANCE':
+        return [
+          {
+            title: 'KEUANGAN & BILLING (1 AKUN)',
+            items: [
+              { id: 'overview', label: 'Ringkasan Keuangan', icon: 'dollar-sign' },
+              { id: 'transactions', label: 'Daftar Transaksi', icon: 'receipt' },
+              { id: 'invoices', label: 'Tagihan & Invoices', icon: 'file-spreadsheet' }
             ]
           }
         ];
@@ -231,7 +249,9 @@
       'sliders': 'fas fa-sliders-h',
       'activity': 'fas fa-chart-line',
       'trending-up': 'fas fa-chart-line',
-      'pie-chart': 'fas fa-chart-pie'
+      'pie-chart': 'fas fa-chart-pie',
+      'robot': 'fas fa-robot',
+      'message-square': 'fas fa-comment-alt'
     };
 
     sidebarNavEl.innerHTML = groups
@@ -280,30 +300,52 @@
 
     // Header Titles
     const titles = {
-      CLIENT: { title: 'Portal Klien Curhati', desc: 'Akses reservasi konseling, skrining mandiri independen, dan sesi bimbingan psikologis.' },
-      PSYCHOLOGIST: { title: 'Workspace Psikolog', desc: 'Manajemen sesi klinis, catatan sesi rahasia, dan pengiriman laporan pasien.' },
-      TEMAN_CERITA: { title: 'Workspace Teman Cerita', desc: 'Dengarkan cerita, pandu refleksi empati, dan kelola sesi peer-counseling.' },
-      ASSESSMENT_STAFF: { title: 'Pusat Review Asesmen', desc: 'Pemeriksaan instrumen skrining mandiri, catatan internal asesor, dan rekomendasi layanan.' },
-      FINANCE: { title: 'Dashboard Keuangan & Transaksi', desc: 'Pemantauan omzet, rekonsiliasi gateway Midtrans/Xendit/Stripe, dan status invoice.' },
-      ADMIN: { title: 'Konsol Administrasi & RBAC', desc: 'Manajemen master data layanan, akses staf, dan pengawasan audit trail.' },
+      CLIENT: { title: 'Portal Klien Curhati (Login Gmail/No HP)', desc: 'Akses reservasi konseling, skrining mandiri independen, dan sesi bimbingan psikologis.' },
+      COORDINATOR: { title: 'Konsol Koordinator Layanan (Akses Penuh Master)', desc: 'Pemantauan komprehensif 15 konselor, 10 asesor, jadwal piket terintegrasi, dan performa Admin by AI.' },
+      ADMIN: { title: 'Konsol Administrasi Bersama (1 Akun untuk 5 Staf)', desc: 'Pengaturan jadwal piket, status ketersediaan online, akun konselor, dan verifikasi reservasi klien.' },
+      AI_ADMIN: { title: 'Admin by AI (ShineBot Auto-Responder)', desc: 'Respon otomatis pintar berbasis empati psikologis saat staf/konselor sedang sesi atau offline.' },
+      FINANCE: { title: 'Dashboard Keuangan & Transaksi (1 Akun)', desc: 'Pemantauan omzet, rekonsiliasi gateway Midtrans/Xendit/Stripe, dan status invoice.' },
+      ASSESSMENT_STAFF: { title: 'Pusat Review Asesmen (10 Tim Asesor)', desc: 'Pemeriksaan instrumen skrining mandiri, catatan internal asesor, dan rekomendasi layanan.' },
       OWNER: { title: 'Executive Business Overview', desc: 'Metrik agregat pertumbuhan, performa layanan, dan ringkasan finansial (Privasi Klinis Terproteksi).' }
     };
 
-    const headerInfo = titles[role] || { title: 'Curhati Dashboard', desc: '' };
+    let headerInfo = titles[role];
+    if (!headerInfo) {
+      if (role.startsWith('csl-')) {
+        const csl = state.counselors.find(c => c.id === role);
+        headerInfo = {
+          title: `Workspace Pribadi: ${csl ? csl.name : 'Konselor'}`,
+          desc: 'Kelola sesi konseling personal, chat langsung dengan klien via web, dan atur ketersediaan status online Anda.'
+        };
+      } else {
+        headerInfo = { title: 'Curhati Dashboard', desc: '' };
+      }
+    }
     pageTitleEl.textContent = headerInfo.title;
     pageDescEl.textContent = headerInfo.desc;
+
+    // Route views for all roles
+    if (role.startsWith('csl-') || role === 'PSYCHOLOGIST' || role === 'TEMAN_CERITA') {
+      renderCounselorView(currentActiveTab, role);
+      return;
+    }
+    if (role.startsWith('asm-') || role === 'ASSESSMENT_STAFF') {
+      renderAssessmentStaffView(currentActiveTab);
+      return;
+    }
+    if (role === 'COORDINATOR') {
+      renderCoordinatorView(currentActiveTab);
+      return;
+    }
+    if (role === 'AI_ADMIN') {
+      renderAiAdminView(currentActiveTab);
+      return;
+    }
 
     // Render tab router
     switch (role) {
       case 'CLIENT':
         renderClientView(currentActiveTab);
-        break;
-      case 'PSYCHOLOGIST':
-      case 'TEMAN_CERITA':
-        renderCounselorView(currentActiveTab, role);
-        break;
-      case 'ASSESSMENT_STAFF':
-        renderAssessmentStaffView(currentActiveTab);
         break;
       case 'FINANCE':
         renderFinanceView(currentActiveTab);
@@ -1032,7 +1074,16 @@
      ========================================================================== */
   function renderCounselorView(tab, role) {
     const state = store.data;
-    const currentCounselor = state.counselors.find(c => (role === 'PSYCHOLOGIST' ? c.serviceType === 'PSIKOLOG_KLINIS' : c.serviceType === 'TEMAN_CERITA'));
+    let currentCounselor = null;
+    if (state.currentUser && state.currentUser.id && state.currentUser.id.startsWith('csl-')) {
+      currentCounselor = state.counselors.find(c => c.id === state.currentUser.id);
+    }
+    if (!currentCounselor && typeof role === 'string' && role.startsWith('csl-')) {
+      currentCounselor = state.counselors.find(c => c.id === role);
+    }
+    if (!currentCounselor) {
+      currentCounselor = state.counselors.find(c => (role === 'PSYCHOLOGIST' ? c.serviceType === 'PSIKOLOG_KLINIS' : c.serviceType === 'TEMAN_CERITA')) || state.counselors[0];
+    }
     const mySessions = state.counselingSessions.filter(s => s.counselorId === currentCounselor.id);
 
     if (tab === 'chat') {
@@ -1045,8 +1096,54 @@
       return;
     }
 
+    if (tab === 'schedule') {
+      if (window.counselorSchedule) {
+        window.counselorSchedule.openScheduleModal(currentCounselor.id);
+      }
+    }
+
+    const liveStatus = window.counselorSchedule ? window.counselorSchedule.getCounselorLiveStatus(currentCounselor.id) : { status: 'offline', text: 'Offline' };
+    const currentOverride = window.counselorSchedule ? window.counselorSchedule.getManualOverride(currentCounselor.id) : 'auto';
+
     // Sessions Tab / Overview Tab
     viewportEl.innerHTML = `
+      <!-- Live Status & Shift Control Banner -->
+      <div class="dashboard-card" style="margin-bottom: 1.5rem; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 1px solid #cbd5e1;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #475569; letter-spacing: 0.05em;">
+              Status Ketersediaan Anda di Web Publik
+            </div>
+            <h3 style="margin: 0.25rem 0 0; font-size: 1.125rem; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 0.5rem;">
+              <span>${currentCounselor.name}</span>
+              <span class="badge ${liveStatus.status === 'online' ? 'badge-completed' : liveStatus.status === 'session' ? 'badge-waiting' : 'badge-cancelled'}" style="font-size: 0.75rem;">
+                ${liveStatus.status === 'online' ? '● ' : liveStatus.status === 'session' ? '⏳ ' : '○ '}${liveStatus.text}
+              </span>
+            </h3>
+            <p style="margin: 0.25rem 0 0; font-size: 0.8125rem; color: #64748b;">
+              Status ini mengontrol label pada kartu profil Anda di beranda utama untuk klien. Mode aktif saat ini: <strong>${currentOverride === 'auto' ? 'Otomatis Sesuai Jadwal Piket Excel' : 'Manual Override (' + currentOverride.toUpperCase() + ')'}</strong>.
+            </p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn btn-sm ${currentOverride === 'auto' ? 'btn-primary' : 'btn-outline'}" onclick="window.curhatiApp.setOverrideStatus('${currentCounselor.id}', 'auto')">
+              🔄 Ikuti Jadwal Piket
+            </button>
+            <button class="btn btn-sm ${currentOverride === 'online' ? 'btn-primary' : 'btn-outline'}" style="${currentOverride === 'online' ? '' : 'color: #059669; border-color: #10b981;'}" onclick="window.curhatiApp.setOverrideStatus('${currentCounselor.id}', 'online')">
+              ● Online Sekarang
+            </button>
+            <button class="btn btn-sm ${currentOverride === 'session' ? 'btn-primary' : 'btn-outline'}" style="${currentOverride === 'session' ? '' : 'color: #d97706; border-color: #f59e0b;'}" onclick="window.curhatiApp.setOverrideStatus('${currentCounselor.id}', 'session')">
+              ⏳ Sedang Sesi
+            </button>
+            <button class="btn btn-sm ${currentOverride === 'offline' ? 'btn-primary' : 'btn-outline'}" style="${currentOverride === 'offline' ? '' : 'color: #ef4444; border-color: #ef4444;'}" onclick="window.curhatiApp.setOverrideStatus('${currentCounselor.id}', 'offline')">
+              ○ Offline
+            </button>
+            <button class="btn btn-sm btn-outline" style="color: #4f46e5; border-color: #6366f1;" onclick="if(window.counselorSchedule) window.counselorSchedule.openScheduleModal('${currentCounselor.id}')">
+              📅 Buka Piket Mingguan
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Ethics / Clinical Notice -->
       <div class="ethics-notice-banner" style="border-color: #c7d2fe; background: #eef2ff;">
         <div class="ethics-icon">🔒</div>
@@ -1700,7 +1797,7 @@
   }
 
   /* ==========================================================================
-     6. ADMIN VIEW (Users, Audit Logs)
+     6. ADMIN VIEW (Users, Integrated Schedule, Services, Audit Logs)
      ========================================================================== */
   function renderAdminView(tab) {
     const state = store.data;
@@ -1710,13 +1807,241 @@
       return;
     }
 
+    if (tab === 'users') {
+      viewportEl.innerHTML = `
+        <div class="flex items-center justify-between" style="margin-bottom: 1.5rem;">
+          <div>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--slate-900);">Manajemen Akun & Hak Akses (Multi-Role)</h2>
+            <p style="color: var(--slate-500); font-size: 0.875rem;">Arsitektur akun: 1 Admin Bersama (5 Staf), 1 Finance, 1 Koordinator, 1 Admin by AI, 15 Konselor, 10 Asesor, dan Akun Klien.</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="showToast('Fitur Tambah Anggota Baru siap digunakan', 'success')">+ Tambah Akun Mitra</button>
+        </div>
+
+        <div class="dashboard-card" style="margin-bottom: 1.5rem;">
+          <div class="card-header">
+            <div>
+              <h3>Akun Inti & Manajemen Operasional</h3>
+              <p>Akun administratif, keuangan, dan bot AI dengan sesi akses simultan.</p>
+            </div>
+          </div>
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Nama Peran</th>
+                  <th>Email Login</th>
+                  <th>Kapasitas Akses</th>
+                  <th>Status Akun</th>
+                  <th>Hak Akses</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>🛡️ Admin Operasional</strong></td>
+                  <td><code>admin@curhatinshinejourney.com</code></td>
+                  <td><span class="badge badge-completed">1 Akun (5 User Aktif)</span></td>
+                  <td><span class="badge badge-scheduled">Aktif Simultan</span></td>
+                  <td>Akses data, verifikasi reservasi, atur jadwal piket & status online</td>
+                </tr>
+                <tr>
+                  <td><strong>👑 Koordinator Layanan</strong></td>
+                  <td><code>koordinator@curhatinshinejourney.com</code></td>
+                  <td><span class="badge badge-new">1 Akun Master</span></td>
+                  <td><span class="badge badge-scheduled">Aktif</span></td>
+                  <td>Akses penuh ke seluruh modul, keuangan, dan evaluasi klinis</td>
+                </tr>
+                <tr>
+                  <td><strong>💳 Finance & Billing</strong></td>
+                  <td><code>finance@curhatinshinejourney.com</code></td>
+                  <td><span class="badge badge-new">1 Akun Personal</span></td>
+                  <td><span class="badge badge-scheduled">Aktif</span></td>
+                  <td>Rekonsiliasi transaksi, kelola invoice, dan laporan omzet</td>
+                </tr>
+                <tr>
+                  <td><strong>🤖 Admin by AI (ShineBot)</strong></td>
+                  <td><code>ai.admin@curhatinshinejourney.com</code></td>
+                  <td><span class="badge badge-waiting">Sistem Otomatis</span></td>
+                  <td><span class="badge badge-completed">Online 24/7</span></td>
+                  <td>Auto-responder empati saat konselor/staf belum merespon chat web klien</td>
+                </tr>
+                <tr>
+                  <td><strong>👤 Client (Login Klien)</strong></td>
+                  <td><code>maya.pratama@gmail.com / No HP</code></td>
+                  <td><span class="badge badge-new">Mandiri via Web</span></td>
+                  <td><span class="badge badge-scheduled">Aktif</span></td>
+                  <td>Reservasi, skrining mandiri, dan konseling chat realtime via web</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="dashboard-card" style="margin-bottom: 1.5rem;">
+          <div class="card-header">
+            <div>
+              <h3>Daftar 15 Akun Konseling (Psikolog & Teman Cerita)</h3>
+              <p>Masing-masing konselor memiliki akun pribadi untuk berinteraksi langsung via chat web dengan klien.</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="if(window.counselorSchedule) window.counselorSchedule.openScheduleModal()">📅 Buka Jadwal Piket Excel</button>
+          </div>
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID Akun</th>
+                  <th>Nama Lengkap Konselor</th>
+                  <th>Kategori Layanan</th>
+                  <th>Status Online Sekarang</th>
+                  <th>Aksi Kontrol</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${state.counselors
+                  .map(c => {
+                    const st = window.counselorSchedule ? window.counselorSchedule.getCounselorLiveStatus(c.id) : { status: 'offline', text: 'Offline' };
+                    const ov = window.counselorSchedule ? window.counselorSchedule.getManualOverride(c.id) : 'auto';
+                    return `
+                      <tr>
+                        <td><code>${c.id}</code></td>
+                        <td>
+                          <strong>${c.name}</strong>
+                          <div style="font-size: 0.75rem; color: var(--slate-500);">${c.license || c.education}</div>
+                        </td>
+                        <td><span class="badge ${c.serviceType === 'PSIKOLOG_KLINIS' ? 'badge-completed' : 'badge-waiting'}">${c.serviceType === 'PSIKOLOG_KLINIS' ? 'Psikolog Klinis' : 'Teman Cerita'}</span></td>
+                        <td>
+                          <span class="badge ${st.status === 'online' ? 'badge-completed' : st.status === 'session' ? 'badge-waiting' : 'badge-cancelled'}">
+                            ${st.status === 'online' ? '● ' : st.status === 'session' ? '⏳ ' : '○ '}${st.text}
+                          </span>
+                          <span style="font-size: 0.6875rem; color: var(--slate-400); display: block;">(${ov === 'auto' ? 'Auto Piket' : 'Manual: ' + ov})</span>
+                        </td>
+                        <td>
+                          <div style="display: flex; gap: 0.25rem;">
+                            <button class="btn btn-sm btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="store.setRole('${c.id}'); showToast('Beralih ke akun ${c.name}', 'success');">Login Akun</button>
+                            <button class="btn btn-sm btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="if(window.counselorSchedule) window.counselorSchedule.openScheduleModal('${c.id}')">Piket</button>
+                          </div>
+                        </td>
+                      </tr>
+                    `;
+                  })
+                  .join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div>
+              <h3>Daftar 10 Akun Tim Asesmen (Asesor Psikologi)</h3>
+              <p>Diadaptasi dari file Jadwal Piket.xlsx untuk review instrumen mandiri klien.</p>
+            </div>
+          </div>
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID Asesor</th>
+                  <th>Nama Staf Asesmen</th>
+                  <th>Spesialisasi</th>
+                  <th>Shift Piket Excel</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${state.assessmentStaff
+                  .map(
+                    a => `
+                  <tr>
+                    <td><code>${a.id}</code></td>
+                    <td><strong>${a.name}</strong></td>
+                    <td><span class="badge badge-new">${a.specialization}</span></td>
+                    <td>${a.shifts ? a.shifts.join(', ') : 'Sesuai Jadwal'}</td>
+                    <td><span class="badge badge-completed">Siap Review</span></td>
+                  </tr>
+                `
+                  )
+                  .join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    if (tab === 'schedule-all') {
+      viewportEl.innerHTML = `
+        <div class="flex items-center justify-between" style="margin-bottom: 1.5rem;">
+          <div>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--slate-900);">Kontrol Jadwal Piket & Status Online Terintegrasi</h2>
+            <p style="color: var(--slate-500); font-size: 0.875rem;">Status otomatis dihitung berdasarkan waktu WIB nyata dari file Excel tim konseling & asesmen. Admin & konselor dapat mengubah status kapan saja.</p>
+          </div>
+          <button class="btn btn-primary" onclick="if(window.counselorSchedule) window.counselorSchedule.openScheduleModal()">📅 Tampilkan Matriks Piket Lengkap</button>
+        </div>
+
+        <div class="dashboard-card" style="margin-bottom: 1.5rem;">
+          <div class="card-header">
+            <div>
+              <h3>Status Ketersediaan Konselor di Web Publik (15 Akun)</h3>
+              <p>Ubah status live ketersediaan yang langsung tampil pada kartu psikolog/konselor di web.</p>
+            </div>
+          </div>
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Konselor</th>
+                  <th>Kategori</th>
+                  <th>Status Realtime</th>
+                  <th>Mode Kontrol Saat Ini</th>
+                  <th>Aksi Cepat Admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${state.counselors
+                  .map(c => {
+                    const st = window.counselorSchedule ? window.counselorSchedule.getCounselorLiveStatus(c.id) : { status: 'offline', text: 'Offline' };
+                    const ov = window.counselorSchedule ? window.counselorSchedule.getManualOverride(c.id) : 'auto';
+                    return `
+                      <tr>
+                        <td><strong>${c.name}</strong></td>
+                        <td><span class="badge ${c.serviceType === 'PSIKOLOG_KLINIS' ? 'badge-completed' : 'badge-waiting'}">${c.serviceType === 'PSIKOLOG_KLINIS' ? 'Psikolog Klinis' : 'Teman Cerita'}</span></td>
+                        <td>
+                          <span class="badge ${st.status === 'online' ? 'badge-completed' : st.status === 'session' ? 'badge-waiting' : 'badge-cancelled'}">
+                            ${st.status === 'online' ? '● ' : st.status === 'session' ? '⏳ ' : '○ '}${st.text}
+                          </span>
+                        </td>
+                        <td>
+                          <strong>${ov === 'auto' ? '🔄 Otomatis (Excel Piket)' : '📌 Manual (' + ov.toUpperCase() + ')'}</strong>
+                        </td>
+                        <td>
+                          <div style="display: flex; gap: 0.25rem; flex-wrap: wrap;">
+                            <button class="btn btn-sm ${ov === 'auto' ? 'btn-primary' : 'btn-outline'}" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="window.curhatiApp.setOverrideStatus('${c.id}', 'auto')">Auto</button>
+                            <button class="btn btn-sm ${ov === 'online' ? 'btn-primary' : 'btn-outline'}" style="padding: 0.25rem 0.5rem; font-size: 0.75rem; color: #059669;" onclick="window.curhatiApp.setOverrideStatus('${c.id}', 'online')">Online</button>
+                            <button class="btn btn-sm ${ov === 'session' ? 'btn-primary' : 'btn-outline'}" style="padding: 0.25rem 0.5rem; font-size: 0.75rem; color: #d97706;" onclick="window.curhatiApp.setOverrideStatus('${c.id}', 'session')">Sesi</button>
+                            <button class="btn btn-sm ${ov === 'offline' ? 'btn-primary' : 'btn-outline'}" style="padding: 0.25rem 0.5rem; font-size: 0.75rem; color: #ef4444;" onclick="window.curhatiApp.setOverrideStatus('${c.id}', 'offline')">Offline</button>
+                            <button class="btn btn-sm btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="if(window.counselorSchedule) window.counselorSchedule.openScheduleModal('${c.id}')">Piket</button>
+                          </div>
+                        </td>
+                      </tr>
+                    `;
+                  })
+                  .join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
     viewportEl.innerHTML = `
       <div class="stats-grid">
         <div class="stat-card">
           <div>
-            <div class="stat-label">Total Pengguna Sistem</div>
-            <div class="stat-value">148</div>
-            <div class="stat-sub">7 Peran Terdaftar</div>
+            <div class="stat-label">Total Akun Terdaftar</div>
+            <div class="stat-value">29 Akun</div>
+            <div class="stat-sub">15 Konselor, 10 Asesor, 4 Inti</div>
           </div>
           <div class="stat-icon icon-teal">👥</div>
         </div>
@@ -1730,11 +2055,52 @@
         </div>
         <div class="stat-card">
           <div>
-            <div class="stat-label">Layanan Aktif</div>
-            <div class="stat-value">${state.services.length}</div>
-            <div class="stat-sub">Teman Cerita, Umum, Klinis</div>
+            <div class="stat-label">Admin by AI (ShineBot)</div>
+            <div class="stat-value">Aktif 24/7</div>
+            <div class="stat-sub positive">Auto-Reply Standby</div>
           </div>
-          <div class="stat-icon icon-emerald">⚙️</div>
+          <div class="stat-icon icon-emerald">🤖</div>
+        </div>
+      </div>
+
+      <div class="dashboard-card" style="margin-bottom: 1.5rem;">
+        <div class="card-header">
+          <div>
+            <h3>Pemantauan Status Ketersediaan Konselor Hari Ini</h3>
+            <p>Dihitung otomatis dari JADWAL PIKET TIM CURHATI.xlsx (WIB)</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="window.curhatiApp.navigateTo('schedule-all')">Kelola Seluruh Jadwal</button>
+        </div>
+        <div class="data-table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Nama Konselor</th>
+                <th>Layanan</th>
+                <th>Status Ketersediaan Web</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${state.counselors.slice(0, 6).map(c => {
+                const st = window.counselorSchedule ? window.counselorSchedule.getCounselorLiveStatus(c.id) : { status: 'offline', text: 'Offline' };
+                return `
+                  <tr>
+                    <td><strong>${c.name}</strong></td>
+                    <td>${c.serviceType === 'PSIKOLOG_KLINIS' ? 'Psikolog Klinis' : 'Teman Cerita'}</td>
+                    <td>
+                      <span class="badge ${st.status === 'online' ? 'badge-completed' : st.status === 'session' ? 'badge-waiting' : 'badge-cancelled'}">
+                        ${st.status === 'online' ? '● ' : st.status === 'session' ? '⏳ ' : '○ '}${st.text}
+                      </span>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-outline" onclick="if(window.counselorSchedule) window.counselorSchedule.openScheduleModal('${c.id}')">Lihat Shift</button>
+                    </td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -1759,7 +2125,7 @@
             </thead>
             <tbody>
               ${state.auditLogs
-                .slice(0, 8)
+                .slice(0, 6)
                 .map(
                   log => `
                 <tr>
@@ -1822,6 +2188,167 @@
                 .join('')}
             </tbody>
           </table>
+        </div>
+      </div>
+    `;
+  }
+
+  /* ==========================================================================
+     6.1. COORDINATOR VIEW (Master Access to All Modules)
+     ========================================================================== */
+  function renderCoordinatorView(tab) {
+    const state = store.data;
+
+    if (tab === 'schedule-all') {
+      renderAdminView('schedule-all');
+      return;
+    }
+    if (tab === 'counselors-roster' || tab === 'assessments-roster' || tab === 'users') {
+      renderAdminView('users');
+      return;
+    }
+    if (tab === 'ai-config') {
+      renderAiAdminView('overview');
+      return;
+    }
+    if (tab === 'transactions') {
+      renderFinanceView('transactions');
+      return;
+    }
+    if (tab === 'audit-logs') {
+      renderAuditLogs();
+      return;
+    }
+
+    viewportEl.innerHTML = `
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Total 15 Konselor</div>
+            <div class="stat-value">13 Aktif + 2 Mitra</div>
+            <div class="stat-sub positive">Psikolog Klinis & Teman Cerita</div>
+          </div>
+          <div class="stat-icon icon-indigo">👩‍⚕️</div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Total 10 Asesor</div>
+            <div class="stat-value">8 Shift + 2 Cadangan</div>
+            <div class="stat-sub positive">Jadwal Piket.xlsx</div>
+          </div>
+          <div class="stat-icon icon-amber">📋</div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Admin Bersama (5 Staf)</div>
+            <div class="stat-value">1 Akun Shared</div>
+            <div class="stat-sub positive">Sesi Akses Simultan</div>
+          </div>
+          <div class="stat-icon icon-teal">🛡️</div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Admin by AI (ShineBot)</div>
+            <div class="stat-value">Auto-Responder Aktif</div>
+            <div class="stat-sub positive">Fallback Chat <2 Detik</div>
+          </div>
+          <div class="stat-icon icon-emerald">🤖</div>
+        </div>
+      </div>
+
+      <div class="dashboard-card" style="margin-bottom: 1.5rem;">
+        <div class="card-header">
+          <div>
+            <h3>Matriks Pemantauan Layanan Curhati (Koordinator)</h3>
+            <p>Akses langsung ke seluruh instrumen operasional, jadwal piket, dan sistem reservasi.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-primary btn-sm" onclick="if(window.counselorSchedule) window.counselorSchedule.openScheduleModal()">📅 Buka Jadwal Piket Excel</button>
+            <button class="btn btn-outline btn-sm" onclick="window.curhatiApp.navigateTo('ai-config')">🤖 Konfigurasi AI</button>
+          </div>
+        </div>
+        <div class="data-table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Layanan</th>
+                <th>Total Staf Bertugas</th>
+                <th>Ketersediaan Hari Ini</th>
+                <th>Aksi Cepat Koordinator</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Psikolog Klinis Dewasa</strong></td>
+                <td>3 Psikolog Berlisensi</td>
+                <td><span class="badge badge-completed">Tersedia Sesuai Piket</span></td>
+                <td><button class="btn btn-sm btn-outline" onclick="window.curhatiApp.navigateTo('schedule-all')">Lihat Piket</button></td>
+              </tr>
+              <tr>
+                <td><strong>Teman Cerita (Peer Support)</strong></td>
+                <td>12 Konselor Lulusan S.Psi</td>
+                <td><span class="badge badge-completed">12 Slot/Hari (07.00 - 21.45)</span></td>
+                <td><button class="btn btn-sm btn-outline" onclick="window.curhatiApp.navigateTo('schedule-all')">Lihat Piket</button></td>
+              </tr>
+              <tr>
+                <td><strong>Asesmen Psikologi</strong></td>
+                <td>10 Asesor Terstandar</td>
+                <td><span class="badge badge-waiting">Review Mandiri Aktif</span></td>
+                <td><button class="btn btn-sm btn-outline" onclick="window.curhatiApp.navigateTo('assessments-roster')">Kelola Asesor</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }
+
+  /* ==========================================================================
+     6.2. AI ADMIN VIEW (ShineBot Auto-Responder)
+     ========================================================================== */
+  function renderAiAdminView(tab) {
+    const state = store.data;
+
+    viewportEl.innerHTML = `
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Status Admin by AI</div>
+            <div class="stat-value">ONLINE & AKTIF</div>
+            <div class="stat-sub positive">ShineBot Standby 24/7</div>
+          </div>
+          <div class="stat-icon icon-emerald">🤖</div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Waktu Respon Cepat</div>
+            <div class="stat-value">1.5 Detik</div>
+            <div class="stat-sub">Fallback Otomatis saat Konselor Belum Merespon</div>
+          </div>
+          <div class="stat-icon icon-teal">⚡</div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Akun Integrasi</div>
+            <div class="stat-value">ai.admin@curhatinshinejourney.com</div>
+            <div class="stat-sub">Terhubung ke Web Chat</div>
+          </div>
+          <div class="stat-icon icon-indigo">💬</div>
+        </div>
+      </div>
+
+      <div class="dashboard-card" style="margin-bottom: 1.5rem;">
+        <div class="card-header">
+          <div>
+            <h3>Logika & Aturan Auto-Reply Admin by AI</h3>
+            <p>Membantu menjawab salam klien, menenangkan emosi awal, dan mengonfirmasi ketersediaan konselor bertugas.</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Konfigurasi prompt AI telah tersimpan', 'success')">💾 Simpan Aturan</button>
+        </div>
+        <div style="padding: 1rem; background: var(--slate-50); border-radius: var(--radius-md); font-size: 0.875rem; color: var(--slate-700); line-height: 1.6;">
+          <div style="margin-bottom: 0.75rem;"><strong>1. Empati & Validasi Emosi Awal:</strong> Saat klien mengirim pesan pertama, AI segera menyapa dengan hangat dan memvalidasi perasaan klien tanpa menghakimi.</div>
+          <div style="margin-bottom: 0.75rem;"><strong>2. Cek Jadwal Piket Otomatis:</strong> AI mengidentifikasi konselor yang sedang bertugas hari ini berdasarkan jam WIB (07.00 - 21.45) dari file Excel tim konseling.</div>
+          <div style="margin-bottom: 0.75rem;"><strong>3. Eskalasi ke Manusia:</strong> Jika pesan membutuhkan tindakan mendesak atau konselor telah siap di ruang chat web, AI menyerahkan percakapan secara mulus ke konselor terkait.</div>
         </div>
       </div>
     `;
@@ -1942,6 +2469,16 @@
       store.sendMessage(conv.id, text);
       input.value = '';
       renderChatUI();
+
+      // Trigger Admin by AI auto-response if client sends a message
+      if (role === 'CLIENT') {
+        setTimeout(() => {
+          if (store.sendAiAutoReply) {
+            store.sendAiAutoReply(conv.id, text);
+            renderChatUI();
+          }
+        }, 1200);
+      }
     };
   }
 
@@ -1951,6 +2488,15 @@
       currentActiveTab = tab;
       renderSidebar();
       renderMainContent();
+    },
+    setOverrideStatus(cslId, status) {
+      if (window.counselorSchedule) {
+        window.counselorSchedule.setStatusOverride(cslId, status);
+        const label = status === 'auto' ? 'Otomatis Sesuai Jadwal Piket Excel' : `Manual: ${status.toUpperCase()}`;
+        showToast(`Status ketersediaan diubah: ${label}`, 'success');
+        renderSidebar();
+        renderMainContent();
+      }
     },
     closeModal() {
       if (modalContainerEl) modalContainerEl.innerHTML = '';

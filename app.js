@@ -17,25 +17,6 @@ function initConsultationSplash() {
 
     let exited = false;
 
-    function dismissOpening(targetHash) {
-        if (exited) return;
-        exited = true;
-
-        splash.classList.add('splash-exit');
-
-        setTimeout(() => {
-            splash.style.display = 'none';
-            document.body.style.overflow = originalOverflow || '';
-
-            if (targetHash) {
-                const targetElem = document.querySelector(targetHash);
-                if (targetElem) {
-                    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
-        }, 550);
-    }
-
     // Main "Temukan Layanan Kami" CTA Button
     if (btnSkipMain) {
         btnSkipMain.addEventListener('click', (e) => {
@@ -91,6 +72,71 @@ function initConsultationSplash() {
             }
         });
     });
+
+    // Multi-Illustration Slow Crossfade Slideshow
+    const slides = splash.querySelectorAll('.psycho-slide');
+    const dots = splash.querySelectorAll('.slide-dot');
+    let currentSlide = 0;
+    let slideTimer = null;
+
+    function showSlide(index) {
+        if (!slides.length) return;
+        currentSlide = (index + slides.length) % slides.length;
+        slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+        dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    }
+
+    function nextSlide() {
+        if (exited) return;
+        showSlide(currentSlide + 1);
+    }
+
+    function startSlideshow() {
+        stopSlideshow();
+        slideTimer = setInterval(nextSlide, 5500);
+    }
+
+    function stopSlideshow() {
+        if (slideTimer) {
+            clearInterval(slideTimer);
+            slideTimer = null;
+        }
+    }
+
+    dots.forEach((dot) => {
+        dot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const idx = parseInt(dot.getAttribute('data-index'), 10);
+            if (!isNaN(idx)) {
+                showSlide(idx);
+                startSlideshow(); // restart interval on manual interaction
+            }
+        });
+    });
+
+    if (slides.length > 1) {
+        startSlideshow();
+    }
+
+    function dismissOpening(targetHash) {
+        if (exited) return;
+        exited = true;
+        stopSlideshow();
+
+        splash.classList.add('splash-exit');
+
+        setTimeout(() => {
+            splash.style.display = 'none';
+            document.body.style.overflow = originalOverflow || '';
+
+            if (targetHash) {
+                const targetElem = document.querySelector(targetHash);
+                if (targetElem) {
+                    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }, 550);
+    }
 
     // Dismiss if clicking backdrop area
     splash.addEventListener('click', (e) => {

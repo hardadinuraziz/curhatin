@@ -6,7 +6,7 @@
     <title>ShineJourney - Teman Cerita & Konseling Psikolog Terpercaya #1 Indonesia</title>
     <meta name="description" content="ShineJourney menghubungkan Anda dengan Teman Cerita sebaya dan Psikolog Klinis berlisensi (SIPP). Konsultasi online aman, nyaman, dan tanpa stigma.">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=20260920_fullscreen_v2">
+    <link rel="stylesheet" href="style.css?v=20260920_slideshow">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
@@ -47,14 +47,28 @@
 
             <!-- Main Full-Screen Body Grid -->
             <main class="psycho-grid">
-                <!-- Left: Animated Psychology Art Frame -->
+                <!-- Left: Animated Psychology Art Frame (Smooth Multi-Illustration Slideshow) -->
                 <div class="psycho-visual-col">
                     <div class="psycho-art-card">
                         <div class="psycho-art-glow-ring"></div>
-                        <picture>
-                            <source media="(max-width: 768px)" srcset="psychology-opening-mobile.jpg">
-                            <img src="psychology-opening-desktop.jpg" alt="Ilustrasi Psikologi dan Ketenangan Jiwa Shine Journey" class="psycho-art-image" draggable="false">
-                        </picture>
+                        <div class="psycho-slides-container" id="psychoSlides">
+                            <div class="psycho-slide active">
+                                <img src="psychology-slide-1.jpg" alt="Pikiran yang Bertumbuh dan Damai" class="psycho-art-image" draggable="false">
+                            </div>
+                            <div class="psycho-slide">
+                                <img src="psychology-slide-2.jpg" alt="Konseling dan Empati Dua Arah" class="psycho-art-image" draggable="false">
+                            </div>
+                            <div class="psycho-slide">
+                                <img src="psychology-slide-3.jpg" alt="Ketenangan Batin dan Keseimbangan Diri" class="psycho-art-image" draggable="false">
+                            </div>
+                        </div>
+
+                        <!-- Delicate Slide Indicator Dots -->
+                        <div class="psycho-slide-indicators" id="psychoIndicators" aria-label="Navigasi Ilustrasi">
+                            <button type="button" class="slide-dot active" aria-label="Ilustrasi 1: Pikiran Bertumbuh" data-index="0"></button>
+                            <button type="button" class="slide-dot" aria-label="Ilustrasi 2: Konseling & Empati" data-index="1"></button>
+                            <button type="button" class="slide-dot" aria-label="Ilustrasi 3: Ketenangan Batin" data-index="2"></button>
+                        </div>
                     </div>
                 </div>
 
@@ -1165,7 +1179,7 @@
 
     <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas"><i class="fas fa-arrow-up"></i></button>
 
-    <script src="app.js?v=20260920_fullscreen_v2"></script>
+    <script src="app.js?v=20260920_slideshow"></script>
     <script src="reviews.js?v=20260920a"></script>
     <script src="schedule-engine.js?v=20260920a"></script>
 </body>

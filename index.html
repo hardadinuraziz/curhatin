@@ -11,6 +11,84 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
+    <!-- ==========================================
+         CONSULTATION THEME INTRO ANIMATION (SPLASH)
+         ========================================== -->
+    <div id="consultationSplash" class="consultation-splash" role="dialog" aria-modal="true" aria-label="Ruang Aman Konsultasi ShineJourney">
+        <!-- Ambient Glowing Aura Orbs -->
+        <div class="splash-orb splash-orb-1"></div>
+        <div class="splash-orb splash-orb-2"></div>
+        <div class="splash-orb splash-orb-3"></div>
+
+        <div class="splash-content">
+            <!-- Brand Icon & Breathing Aura -->
+            <div class="splash-emblem-wrap">
+                <div class="splash-breath-ring splash-breath-ring-1"></div>
+                <div class="splash-breath-ring splash-breath-ring-2"></div>
+                <div class="splash-logo-circle">
+                    <img src="logo-icon.png" alt="Logo ShineJourney" class="splash-logo-img">
+                </div>
+            </div>
+
+            <!-- Welcome & Calm Status Tag -->
+            <div class="splash-status-tag">
+                <span class="splash-status-dot"></span>
+                <span id="splashCalmText">Tarik napas perlahan... Anda berada di ruang yang aman</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h2 class="splash-title">
+                Tema Pendampingan <span class="splash-gradient-text">&amp; Konseling Anda</span>
+            </h2>
+            <p class="splash-subtitle">Setiap cerita dan beban pikiran Anda didengar dengan penuh empati tanpa penghakiman.</p>
+
+            <!-- Dynamic Consultation Themes Showcase -->
+            <div class="splash-themes-grid" id="splashThemesGrid">
+                <div class="splash-theme-card active" data-index="0">
+                    <div class="splash-theme-icon bg-indigo"><i class="fas fa-brain"></i></div>
+                    <div class="splash-theme-info">
+                        <strong>Beban Pikiran &amp; Overthinking</strong>
+                        <span>Uraikan benang kusut &amp; temukan kelegaan batin</span>
+                    </div>
+                </div>
+                <div class="splash-theme-card" data-index="1">
+                    <div class="splash-theme-icon bg-emerald"><i class="fas fa-heart"></i></div>
+                    <div class="splash-theme-info">
+                        <strong>Kecemasan, Stres &amp; Trauma</strong>
+                        <span>Pulihkan ketenangan emosional secara mendalam</span>
+                    </div>
+                </div>
+                <div class="splash-theme-card" data-index="2">
+                    <div class="splash-theme-icon bg-amber"><i class="fas fa-user-friends"></i></div>
+                    <div class="splash-theme-info">
+                        <strong>Hubungan, Keluarga &amp; Percintaan</strong>
+                        <span>Bangun koneksi sehat dan saling memahami</span>
+                    </div>
+                </div>
+                <div class="splash-theme-card" data-index="3">
+                    <div class="splash-theme-icon bg-purple"><i class="fas fa-compass"></i></div>
+                    <div class="splash-theme-info">
+                        <strong>Arah Karir, Burnout &amp; Masa Depan</strong>
+                        <span>Rebut kembali semangat, motivasi, &amp; tujuan hidup</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Loading Bar & Skip Button -->
+            <div class="splash-footer">
+                <div class="splash-progress-track">
+                    <div class="splash-progress-bar" id="splashProgressBar"></div>
+                </div>
+                <div class="splash-actions-row">
+                    <span class="splash-step-hint" id="splashStepHint">Menyiapkan Ruang Konsultasi Anda...</span>
+                    <button type="button" class="btn-splash-skip" id="btnSplashSkip">
+                        <span>Masuk Langsung</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <header class="header" id="header">
         <nav class="navbar">
             <a href="#home" class="logo">

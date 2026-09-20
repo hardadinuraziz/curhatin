@@ -1,5 +1,115 @@
 'use strict';
 
+/* ==========================================================================
+   CONSULTATION THEME INTRO ANIMATION (SPLASH SCREEN CONTROLLER)
+   ========================================================================== */
+function initConsultationSplash() {
+    const splash = document.getElementById('consultationSplash');
+    if (!splash) return;
+
+    const progressBar = document.getElementById('splashProgressBar');
+    const stepHint = document.getElementById('splashStepHint');
+    const calmText = document.getElementById('splashCalmText');
+    const skipBtn = document.getElementById('btnSplashSkip');
+    const themeCards = splash.querySelectorAll('.splash-theme-card');
+
+    // Prevent body scroll during splash
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    let exited = false;
+    function dismissSplash() {
+        if (exited) return;
+        exited = true;
+        splash.classList.add('splash-exit');
+        setTimeout(() => {
+            splash.style.display = 'none';
+            document.body.style.overflow = originalOverflow || '';
+        }, 620);
+    }
+
+    if (skipBtn) {
+        skipBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            dismissSplash();
+        });
+    }
+
+    // Allow escape key to skip
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !exited) {
+            dismissSplash();
+        }
+    }, { once: true });
+
+    const themePhrases = [
+        {
+            hint: 'Membuka tema: Beban Pikiran & Overthinking...',
+            calm: 'Tarik napas perlahan... Uraikan benang kusut pikiran Anda.'
+        },
+        {
+            hint: 'Membuka tema: Kecemasan, Stres & Trauma...',
+            calm: 'Rasakan hembusan napas... Ruang aman untuk memulihkan batin.'
+        },
+        {
+            hint: 'Membuka tema: Hubungan & Keluarga...',
+            calm: 'Setiap cerita Anda berharga dan didengar tanpa penghakiman.'
+        },
+        {
+            hint: 'Membuka tema: Arah Karir & Masa Depan...',
+            calm: 'Temukan kembali arah, harapan, dan kejernihan melangkah.'
+        }
+    ];
+
+    const totalDuration = 2800; // ms
+    const startTime = performance.now();
+
+    function updateFrame(now) {
+        if (exited) return;
+        const elapsed = now - startTime;
+        const progress = Math.min(100, (elapsed / totalDuration) * 100);
+
+        if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Cycle through the 4 themes based on elapsed time
+        const themeIndex = Math.min(3, Math.floor((elapsed / totalDuration) * 4));
+        themeCards.forEach((card, idx) => {
+            if (idx === themeIndex) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
+
+        if (themePhrases[themeIndex]) {
+            if (stepHint && stepHint.textContent !== themePhrases[themeIndex].hint) {
+                stepHint.textContent = themePhrases[themeIndex].hint;
+            }
+            if (calmText && calmText.textContent !== themePhrases[themeIndex].calm) {
+                calmText.textContent = themePhrases[themeIndex].calm;
+            }
+        }
+
+        if (elapsed < totalDuration) {
+            requestAnimationFrame(updateFrame);
+        } else {
+            if (stepHint) stepHint.textContent = 'Ruang konsultasi siap. Selamat datang!';
+            setTimeout(dismissSplash, 350);
+        }
+    }
+
+    requestAnimationFrame(updateFrame);
+}
+
+// Run as soon as DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initConsultationSplash);
+} else {
+    initConsultationSplash();
+}
+
 /* ===========================
    MOBILE HAMBURGER MENU
 =========================== */

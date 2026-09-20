@@ -12,78 +12,107 @@
 </head>
 <body>
     <!-- ==========================================
-         CONSULTATION THEME INTRO ANIMATION (SPLASH)
+         CONSULTATION THEME LAMP INTRO ANIMATION
+         (Interactive Pull-Cord Lamp & Light Beam)
          ========================================== -->
     <div id="consultationSplash" class="consultation-splash" role="dialog" aria-modal="true" aria-label="Ruang Aman Konsultasi ShineJourney">
-        <!-- Ambient Glowing Aura Orbs -->
-        <div class="splash-orb splash-orb-1"></div>
-        <div class="splash-orb splash-orb-2"></div>
-        <div class="splash-orb splash-orb-3"></div>
+        <!-- Ambient Backdrop -->
+        <div class="splash-backdrop"></div>
 
-        <div class="splash-content">
-            <!-- Brand Icon & Breathing Aura -->
-            <div class="splash-emblem-wrap">
-                <div class="splash-breath-ring splash-breath-ring-1"></div>
-                <div class="splash-breath-ring splash-breath-ring-2"></div>
-                <div class="splash-logo-circle">
-                    <img src="logo-icon.png" alt="Logo ShineJourney" class="splash-logo-img">
+        <!-- Conical Spotlight Beam (Emerges when Lamp is ON) -->
+        <div class="lamp-light-beam" id="lampLightBeam"></div>
+
+        <div class="splash-scene">
+            <!-- Interactive Desk Lamp with Pull String -->
+            <div class="lamp-container" id="lampContainer">
+                <div class="lamp-assembly">
+                    <!-- Lamp Shade & Bulb -->
+                    <div class="lamp-shade-wrap">
+                        <div class="lamp-shade">
+                            <div class="lamp-inner-bulb"></div>
+                        </div>
+                        <!-- Pull String / Cord with Bead Handle -->
+                        <div class="lamp-cord" id="lampCord" role="button" tabindex="0" aria-label="Tarik tali lampu">
+                            <div class="lamp-cord-line"></div>
+                            <div class="lamp-cord-bead">
+                                <span class="cord-pulse-ring"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Lamp Pole & Base -->
+                    <div class="lamp-pole"></div>
+                    <div class="lamp-base"></div>
+                </div>
+
+                <!-- Interactive Hint Tooltip -->
+                <div class="lamp-hint" id="lampHint">
+                    <i class="fas fa-hand-pointer"></i> <span>Tarik tali lampu untuk menyalakan</span>
                 </div>
             </div>
 
-            <!-- Welcome & Calm Status Tag -->
-            <div class="splash-status-tag">
-                <span class="splash-status-dot"></span>
-                <span id="splashCalmText">Tarik napas perlahan... Anda berada di ruang yang aman</span>
-            </div>
+            <!-- Consultation Themes Card (Illuminated in Spotlight) -->
+            <div class="splash-content" id="splashCard">
+                <!-- Brand Icon & Breathing Aura -->
+                <div class="splash-emblem-wrap">
+                    <div class="splash-breath-ring splash-breath-ring-1"></div>
+                    <div class="splash-breath-ring splash-breath-ring-2"></div>
+                    <div class="splash-logo-circle">
+                        <img src="logo-icon.png" alt="Logo ShineJourney" class="splash-logo-img">
+                    </div>
+                </div>
 
-            <!-- Main Heading -->
-            <h2 class="splash-title">
-                Tema Pendampingan <span class="splash-gradient-text">&amp; Konseling Anda</span>
-            </h2>
-            <p class="splash-subtitle">Setiap cerita dan beban pikiran Anda didengar dengan penuh empati tanpa penghakiman.</p>
+                <!-- Welcome & Calm Status Tag -->
+                <div class="splash-status-tag">
+                    <span class="splash-status-dot"></span>
+                    <span id="splashCalmText">Ruang Aman Konsultasi • ShineJourney</span>
+                </div>
 
-            <!-- Dynamic Consultation Themes Showcase -->
-            <div class="splash-themes-grid" id="splashThemesGrid">
-                <div class="splash-theme-card active" data-index="0">
-                    <div class="splash-theme-icon bg-indigo"><i class="fas fa-brain"></i></div>
-                    <div class="splash-theme-info">
-                        <strong>Beban Pikiran &amp; Overthinking</strong>
-                        <span>Uraikan benang kusut &amp; temukan kelegaan batin</span>
-                    </div>
-                </div>
-                <div class="splash-theme-card" data-index="1">
-                    <div class="splash-theme-icon bg-emerald"><i class="fas fa-heart"></i></div>
-                    <div class="splash-theme-info">
-                        <strong>Kecemasan, Stres &amp; Trauma</strong>
-                        <span>Pulihkan ketenangan emosional secara mendalam</span>
-                    </div>
-                </div>
-                <div class="splash-theme-card" data-index="2">
-                    <div class="splash-theme-icon bg-amber"><i class="fas fa-user-friends"></i></div>
-                    <div class="splash-theme-info">
-                        <strong>Hubungan, Keluarga &amp; Percintaan</strong>
-                        <span>Bangun koneksi sehat dan saling memahami</span>
-                    </div>
-                </div>
-                <div class="splash-theme-card" data-index="3">
-                    <div class="splash-theme-icon bg-purple"><i class="fas fa-compass"></i></div>
-                    <div class="splash-theme-info">
-                        <strong>Arah Karir, Burnout &amp; Masa Depan</strong>
-                        <span>Rebut kembali semangat, motivasi, &amp; tujuan hidup</span>
-                    </div>
-                </div>
-            </div>
+                <!-- Main Heading -->
+                <h2 class="splash-title">
+                    Tema Pendampingan <span class="splash-gradient-text">&amp; Konseling Anda</span>
+                </h2>
+                <p class="splash-subtitle">Setiap cerita dan beban pikiran Anda didengar dengan penuh empati tanpa penghakiman.</p>
 
-            <!-- Progress Loading Bar & Skip Button -->
-            <div class="splash-footer">
-                <div class="splash-progress-track">
-                    <div class="splash-progress-bar" id="splashProgressBar"></div>
+                <!-- Dynamic Consultation Themes Showcase -->
+                <div class="splash-themes-grid" id="splashThemesGrid">
+                    <div class="splash-theme-card active" data-index="0">
+                        <div class="splash-theme-icon bg-indigo"><i class="fas fa-brain"></i></div>
+                        <div class="splash-theme-info">
+                            <strong>Beban Pikiran &amp; Overthinking</strong>
+                            <span>Uraikan benang kusut &amp; temukan kelegaan batin</span>
+                        </div>
+                    </div>
+                    <div class="splash-theme-card" data-index="1">
+                        <div class="splash-theme-icon bg-emerald"><i class="fas fa-heart"></i></div>
+                        <div class="splash-theme-info">
+                            <strong>Kecemasan, Stres &amp; Trauma</strong>
+                            <span>Pulihkan ketenangan emosional secara mendalam</span>
+                        </div>
+                    </div>
+                    <div class="splash-theme-card" data-index="2">
+                        <div class="splash-theme-icon bg-amber"><i class="fas fa-user-friends"></i></div>
+                        <div class="splash-theme-info">
+                            <strong>Hubungan, Keluarga &amp; Percintaan</strong>
+                            <span>Bangun koneksi sehat dan saling memahami</span>
+                        </div>
+                    </div>
+                    <div class="splash-theme-card" data-index="3">
+                        <div class="splash-theme-icon bg-purple"><i class="fas fa-compass"></i></div>
+                        <div class="splash-theme-info">
+                            <strong>Arah Karir, Burnout &amp; Masa Depan</strong>
+                            <span>Rebut kembali semangat, motivasi, &amp; tujuan hidup</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="splash-actions-row">
-                    <span class="splash-step-hint" id="splashStepHint">Menyiapkan Ruang Konsultasi Anda...</span>
-                    <button type="button" class="btn-splash-skip" id="btnSplashSkip">
-                        <span>Masuk Langsung</span> <i class="fas fa-arrow-right"></i>
-                    </button>
+
+                <!-- Footer & Action Button -->
+                <div class="splash-footer">
+                    <div class="splash-actions-row">
+                        <span class="splash-step-hint" id="splashStepHint">Lampu menyala • Selamat datang di Curhatin</span>
+                        <button type="button" class="btn-splash-enter" id="btnSplashSkip">
+                            <span>Masuk ke Website</span> <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

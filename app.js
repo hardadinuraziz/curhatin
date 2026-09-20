@@ -1,106 +1,151 @@
 'use strict';
 
 /* ==========================================================================
-   CONSULTATION THEME INTRO ANIMATION (SPLASH SCREEN CONTROLLER)
+   CONSULTATION THEME LAMP INTRO ANIMATION (PULL-CORD LAMP CONTROLLER)
    ========================================================================== */
 function initConsultationSplash() {
     const splash = document.getElementById('consultationSplash');
     if (!splash) return;
 
-    const progressBar = document.getElementById('splashProgressBar');
+    const lampCord = document.getElementById('lampCord');
+    const lampHint = document.getElementById('lampHint');
     const stepHint = document.getElementById('splashStepHint');
-    const calmText = document.getElementById('splashCalmText');
-    const skipBtn = document.getElementById('btnSplashSkip');
+    const enterBtn = document.getElementById('btnSplashSkip');
     const themeCards = splash.querySelectorAll('.splash-theme-card');
 
     // Prevent body scroll during splash
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
+    let isLit = false;
     let exited = false;
+    let autoCycleTimer = null;
+    let activeCardIndex = 0;
+
+    // Web Audio mechanical switch click sound
+    function playLampClick() {
+        try {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return;
+            const ctx = new AudioCtx();
+            if (ctx.state === 'suspended') ctx.resume();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(520, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(130, ctx.currentTime + 0.055);
+            gain.gain.setValueAtTime(0.32, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.055);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.06);
+        } catch (err) {
+            // silent fallback
+        }
+    }
+
+    // Toggle Lamp State (Pull Cord)
+    function pullLampCord() {
+        if (exited) return;
+
+        playLampClick();
+
+        if (lampCord) {
+            lampCord.classList.remove('recoil');
+            lampCord.classList.add('pulling');
+            setTimeout(() => {
+                lampCord.classList.remove('pulling');
+                lampCord.classList.add('recoil');
+            }, 140);
+        }
+
+        isLit = !isLit;
+
+        if (isLit) {
+            splash.classList.add('is-lit');
+            if (stepHint) stepHint.textContent = 'Lampu menyala • Ruang konsultasi siap melayani Anda';
+            startThemeCycle();
+        } else {
+            splash.classList.remove('is-lit');
+            if (stepHint) stepHint.textContent = 'Tarik tali lampu untuk menyalakan kembali';
+            stopThemeCycle();
+        }
+    }
+
+    // Theme Highlights Cycle
+    function startThemeCycle() {
+        stopThemeCycle();
+        autoCycleTimer = setInterval(() => {
+            if (!isLit || exited) return;
+            activeCardIndex = (activeCardIndex + 1) % themeCards.length;
+            themeCards.forEach((card, idx) => {
+                card.classList.toggle('active', idx === activeCardIndex);
+            });
+        }, 1600);
+    }
+
+    function stopThemeCycle() {
+        if (autoCycleTimer) {
+            clearInterval(autoCycleTimer);
+            autoCycleTimer = null;
+        }
+    }
+
+    // Dismiss Splash & Open Website
     function dismissSplash() {
         if (exited) return;
         exited = true;
+        stopThemeCycle();
         splash.classList.add('splash-exit');
         setTimeout(() => {
             splash.style.display = 'none';
             document.body.style.overflow = originalOverflow || '';
-        }, 620);
+        }, 550);
     }
 
-    if (skipBtn) {
-        skipBtn.addEventListener('click', (e) => {
+    // Cord Click & Key Event
+    if (lampCord) {
+        lampCord.addEventListener('click', (e) => {
+            e.stopPropagation();
+            pullLampCord();
+        });
+        lampCord.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                pullLampCord();
+            }
+        });
+    }
+
+    if (lampHint) {
+        lampHint.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!isLit) pullLampCord();
+        });
+    }
+
+    // Enter Website Button
+    if (enterBtn) {
+        enterBtn.addEventListener('click', (e) => {
             e.preventDefault();
             dismissSplash();
         });
     }
 
-    // Allow escape key to skip
+    // Keyboard Shortcuts (Escape to enter)
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !exited) {
             dismissSplash();
         }
     }, { once: true });
 
-    const themePhrases = [
-        {
-            hint: 'Membuka tema: Beban Pikiran & Overthinking...',
-            calm: 'Tarik napas perlahan... Uraikan benang kusut pikiran Anda.'
-        },
-        {
-            hint: 'Membuka tema: Kecemasan, Stres & Trauma...',
-            calm: 'Rasakan hembusan napas... Ruang aman untuk memulihkan batin.'
-        },
-        {
-            hint: 'Membuka tema: Hubungan & Keluarga...',
-            calm: 'Setiap cerita Anda berharga dan didengar tanpa penghakiman.'
-        },
-        {
-            hint: 'Membuka tema: Arah Karir & Masa Depan...',
-            calm: 'Temukan kembali arah, harapan, dan kejernihan melangkah.'
+    // Automatic Welcoming Pull after 1.1s if user hasn't pulled yet
+    setTimeout(() => {
+        if (!isLit && !exited) {
+            pullLampCord();
         }
-    ];
-
-    const totalDuration = 2800; // ms
-    const startTime = performance.now();
-
-    function updateFrame(now) {
-        if (exited) return;
-        const elapsed = now - startTime;
-        const progress = Math.min(100, (elapsed / totalDuration) * 100);
-
-        if (progressBar) {
-            progressBar.style.width = `${progress}%`;
-        }
-
-        // Cycle through the 4 themes based on elapsed time
-        const themeIndex = Math.min(3, Math.floor((elapsed / totalDuration) * 4));
-        themeCards.forEach((card, idx) => {
-            if (idx === themeIndex) {
-                card.classList.add('active');
-            } else {
-                card.classList.remove('active');
-            }
-        });
-
-        if (themePhrases[themeIndex]) {
-            if (stepHint && stepHint.textContent !== themePhrases[themeIndex].hint) {
-                stepHint.textContent = themePhrases[themeIndex].hint;
-            }
-            if (calmText && calmText.textContent !== themePhrases[themeIndex].calm) {
-                calmText.textContent = themePhrases[themeIndex].calm;
-            }
-        }
-
-        if (elapsed < totalDuration) {
-            requestAnimationFrame(updateFrame);
-        } else {
-            if (stepHint) stepHint.textContent = 'Ruang konsultasi siap. Selamat datang!';
-            setTimeout(dismissSplash, 350);
-        }
-    }
-
-    requestAnimationFrame(updateFrame);
+    }, 1100);
 }
 
 // Run as soon as DOM is ready

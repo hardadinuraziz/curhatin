@@ -31,7 +31,6 @@
                 </li>
                 <li><a href="#psychologists" class="nav-link">Psikolog &amp; Konselor</a></li>
                 <li><a href="#testimonials" class="nav-link">Testimoni</a></li>
-                <li><a href="javascript:void(0)" onclick="window.shineChatbotOpen()" class="nav-link nav-link-ai"><i class="fas fa-robot"></i> Tanya AI</a></li>
                 <li><a href="#contact" class="nav-link">Kontak</a></li>
             </ul>
             <div class="nav-actions" id="navActions">
@@ -929,46 +928,6 @@
         <span class="wa-tooltip">Curhat WhatsApp</span>
     </a>
 
-    <!-- Floating ShineBot AI Launcher -->
-    <button type="button" class="ai-chat-fab" id="aiChatFab" aria-label="Buka ShineBot AI Chatbot" title="Tanya AI &amp; Curhat">
-        <i class="fas fa-robot"></i>
-        <span class="ai-fab-badge"></span>
-        <span class="ai-fab-tooltip">Tanya AI / Curhat</span>
-    </button>
-
-    <!-- ShineBot AI Chatbot Modal -->
-    <div class="ai-chat-modal" id="aiChatModal" role="dialog" aria-label="ShineBot AI Chatbot">
-        <div class="ai-chat-header">
-            <div class="ai-header-info">
-                <div class="ai-header-ava">
-                    <i class="fas fa-robot"></i>
-                    <span class="ai-header-status-dot"></span>
-                </div>
-                <div class="ai-header-text">
-                    <h3>ShineBot AI</h3>
-                    <span><i class="fas fa-circle" style="font-size:0.5rem; color:#10B981;"></i> Asisten Curhat &amp; Triage</span>
-                </div>
-            </div>
-            <div class="ai-header-actions">
-                <button type="button" class="ai-btn-icon" id="aiChatClear" title="Hapus Riwayat Chat" aria-label="Hapus Chat"><i class="fas fa-trash-alt"></i></button>
-                <button type="button" class="ai-btn-icon" id="aiChatClose" title="Tutup Chat" aria-label="Tutup"><i class="fas fa-times"></i></button>
-            </div>
-        </div>
-        <div class="ai-chat-notice">
-            <i class="fas fa-shield-alt"></i>
-            <span>Ruang aman &amp; privat. Respons AI tidak menggantikan evaluasi medis resmi.</span>
-        </div>
-        <div class="ai-chat-messages" id="aiChatMessages">
-            <!-- Messages rendered dynamically by chatbot.js -->
-        </div>
-        <div class="ai-chat-input-bar">
-            <form class="ai-input-form" id="aiChatForm">
-                <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="Ceritakan apa yang kamu rasakan..." autocomplete="off" maxlength="500">
-                <button type="submit" class="ai-send-btn" id="aiChatSend" aria-label="Kirim Pesan"><i class="fas fa-paper-plane"></i></button>
-            </form>
-        </div>
-    </div>
-
     <!-- Counselor & Psychologist Reviews Modal -->
     <div class="counselor-review-modal-overlay" id="counselorReviewModal" role="dialog" aria-modal="true" aria-labelledby="modalCounselorName">
         <div class="review-modal-card">
@@ -1103,7 +1062,6 @@
     <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas"><i class="fas fa-arrow-up"></i></button>
 
     <script src="app.js?v=20260918a"></script>
-    <script src="chatbot.js?v=20260918a"></script>
     <script src="reviews.js?v=20260920a"></script>
     <script src="schedule-engine.js?v=20260920a"></script>
 </body>

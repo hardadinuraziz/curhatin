@@ -6,7 +6,7 @@
     <title>ShineJourney - Teman Cerita & Konseling Psikolog Terpercaya #1 Indonesia</title>
     <meta name="description" content="ShineJourney menghubungkan Anda dengan Teman Cerita sebaya dan Psikolog Klinis berlisensi (SIPP). Konsultasi online aman, nyaman, dan tanpa stigma.">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=20260920_pastel">
+    <link rel="stylesheet" href="style.css?v=20260920_poster">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
@@ -21,109 +21,30 @@
 
         <!-- Quick Skip Button in Corner -->
         <button type="button" class="btn-pastel-skip-corner" id="btnSplashSkipCorner" aria-label="Lewati ke Website">
-            <span>Lewati</span> <i class="fas fa-arrow-right"></i>
+            <span>Lewati ke Web</span> <i class="fas fa-arrow-right"></i>
         </button>
 
-        <div class="pastel-poster-card" id="pastelCard">
-            <!-- Top Right Organic Badge -->
-            <div class="pastel-badge-wellness">
-                <span>Mental Wellness for a Brighter You ✦</span>
-            </div>
+        <!-- Main Poster Wrapper (Crisp, High-Resolution, Pixel-Perfect Layout) -->
+        <div class="pastel-poster-wrapper" id="pastelCard">
+            <div class="pastel-poster-container">
+                <img src="opening-poster.png" alt="Shine Journey - Temani Setiap Langkah Perjalananmu" class="pastel-poster-img" draggable="false">
 
-            <!-- Top Left Botanical Branch -->
-            <img src="opening-leaves.png" alt="Botanical Leaf" class="pastel-deco-branch">
+                <!-- Interactive Hotspots on Poster -->
+                <!-- 1. Channels Hotspots (Chat, Call, Zoom) -->
+                <button type="button" class="poster-hotspot hotspot-chat" id="hotspotChat" title="Konsultasi via Chat" aria-label="Konsultasi Chat"></button>
+                <button type="button" class="poster-hotspot hotspot-call" id="hotspotCall" title="Konsultasi via Telepon" aria-label="Konsultasi Call"></button>
+                <button type="button" class="poster-hotspot hotspot-zoom" id="hotspotZoom" title="Konsultasi via Zoom" aria-label="Konsultasi Zoom"></button>
 
-            <!-- Decorative Little Heart -->
-            <div class="pastel-deco-heart">🤎</div>
+                <!-- 2. "Temukan Layanan Kami" Button Hotspot with Subtle Micro-interaction -->
+                <button type="button" class="poster-hotspot hotspot-cta" id="btnSplashSkip" title="Temukan Layanan Kami" aria-label="Temukan Layanan Kami">
+                    <span class="hotspot-cta-ripple"></span>
+                </button>
 
-            <!-- Header Dual Logos -->
-            <div class="pastel-brand-header">
-                <div class="pastel-logo-shine-wrap">
-                    <img src="logo-icon.png" alt="Shine Journey" class="pastel-logo-shine">
-                </div>
-                <div class="pastel-logo-curhatin-wrap">
-                    <img src="favicon.png" alt="Curhatin" class="pastel-logo-curhatin">
-                </div>
-            </div>
-
-            <!-- Category Line -->
-            <div class="pastel-subhead-caps">PLATFORM LAYANAN PSIKOLOGI ONLINE</div>
-
-            <!-- Main Title in Editorial Serif -->
-            <h1 class="pastel-hero-title">Shine Journey</h1>
-
-            <!-- Handwritten Script Tagline -->
-            <div class="pastel-script-tagline-wrap">
-                <span class="pastel-script-tagline">Temani Setiap Langkah Perjalananmu ♡</span>
-                <div class="pastel-brush-line"></div>
-            </div>
-
-            <!-- Subtitle Description -->
-            <p class="pastel-hero-desc">
-                Ruang aman untuk kamu bercerita, memahami diri dan menemukan solusi bersama kami.
-            </p>
-
-            <!-- Channels Row: Chat, Call, Zoom -->
-            <div class="pastel-channels-row">
-                <div class="pastel-channel-item">
-                    <div class="pastel-channel-bubble">
-                        <i class="fas fa-comment-dots"></i>
-                    </div>
-                    <span class="pastel-channel-text">Chat</span>
-                </div>
-                <div class="pastel-channel-item">
-                    <div class="pastel-channel-bubble">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <span class="pastel-channel-text">Call</span>
-                </div>
-                <div class="pastel-channel-item">
-                    <div class="pastel-channel-bubble">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <span class="pastel-channel-text">Zoom</span>
-                </div>
-            </div>
-
-            <!-- Split Section: Arched Contemplation Meadow Art & Action CTA -->
-            <div class="pastel-split-body">
-                <!-- Left Arched Contemplation Meadow Art -->
-                <div class="pastel-art-frame">
-                    <img src="opening-illustration.png" alt="Perjalanan Menemukan Ketenangan Diri" class="pastel-art-image">
-                </div>
-
-                <!-- Right Action Side -->
-                <div class="pastel-action-col">
-                    <!-- CTA Button -->
-                    <button type="button" class="btn-pastel-main-cta" id="btnSplashSkip">
-                        <span>Temukan Layanan Kami</span> <i class="fas fa-arrow-right"></i>
-                    </button>
-
-                    <!-- Handwritten Motivational Quote -->
-                    <div class="pastel-quote-box">
-                        <p class="pastel-quote-text">
-                            "Langkah Kecil hari ini,<br>
-                            bisa membawa perubahan<br>
-                            besar esok hari. ♡"
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Abstract Line Wave SVG Decoration -->
-            <div class="pastel-wave-art">
-                <svg viewBox="0 0 140 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 60 C 35 30, 65 65, 95 35 C 125 5, 135 35, 140 20" stroke="#E6D2C3" stroke-width="2.2" stroke-linecap="round"/>
-                    <path d="M15 65 C 45 35, 75 70, 105 40 C 130 15, 138 30, 140 28" stroke="#EFE0D4" stroke-width="1.8" stroke-linecap="round"/>
-                </svg>
-            </div>
-
-            <!-- Bottom Contact Strip -->
-            <div class="pastel-footer-bar">
-                <span class="pastel-contact-entry"><i class="fas fa-globe"></i> Curhati.com</span>
-                <span class="pastel-contact-entry"><i class="fas fa-envelope"></i> shinejourney.ofc@gmail.com</span>
-                <span class="pastel-contact-entry"><i class="fas fa-phone-alt"></i> +62 831-8768-9054</span>
-                <span class="pastel-contact-entry"><i class="fab fa-instagram"></i> shinejourney.id</span>
+                <!-- 3. Footer Links Hotspots -->
+                <a href="#services" class="poster-hotspot hotspot-web" title="Kunjungi Website Curhati.com" aria-label="Website Curhati.com"></a>
+                <a href="mailto:shinejourney.ofc@gmail.com" class="poster-hotspot hotspot-email" title="Email Kami: shinejourney.ofc@gmail.com" aria-label="Email"></a>
+                <a href="https://wa.me/6283187689054" target="_blank" rel="noopener" class="poster-hotspot hotspot-wa" title="WhatsApp: +62 831-8768-9054" aria-label="WhatsApp"></a>
+                <a href="https://instagram.com/shinejourney.id" target="_blank" rel="noopener" class="poster-hotspot hotspot-ig" title="Instagram: @shinejourney.id" aria-label="Instagram"></a>
             </div>
         </div>
     </div>
@@ -1178,7 +1099,7 @@
 
     <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas"><i class="fas fa-arrow-up"></i></button>
 
-    <script src="app.js?v=20260920_pastel"></script>
+    <script src="app.js?v=20260920_poster"></script>
     <script src="reviews.js?v=20260920a"></script>
     <script src="schedule-engine.js?v=20260920a"></script>
 </body>

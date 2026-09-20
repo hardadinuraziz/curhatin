@@ -40,6 +40,7 @@ function initConsultationSplash() {
     if (btnSkipMain) {
         btnSkipMain.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             dismissOpening('#services');
         });
     }
@@ -48,21 +49,43 @@ function initConsultationSplash() {
     if (btnSkipCorner) {
         btnSkipCorner.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             dismissOpening();
         });
     }
 
-    // Channel Quick-Selects (Chat, Call, Zoom)
-    channelItems.forEach((item, index) => {
-        item.style.cursor = 'pointer';
-        item.addEventListener('click', () => {
-            // Chat navigates to counselors list, Call/Zoom to services
-            if (index === 0) {
-                dismissOpening('#counselors');
-            } else {
-                dismissOpening('#services');
-            }
+    // Channel Hotspots: Chat, Call, Zoom
+    const hotspotChat = document.getElementById('hotspotChat');
+    const hotspotCall = document.getElementById('hotspotCall');
+    const hotspotZoom = document.getElementById('hotspotZoom');
+
+    if (hotspotChat) {
+        hotspotChat.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dismissOpening('#counselors');
         });
+    }
+    if (hotspotCall) {
+        hotspotCall.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dismissOpening('#services');
+        });
+    }
+    if (hotspotZoom) {
+        hotspotZoom.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dismissOpening('#services');
+        });
+    }
+
+    // Dismiss if clicking background area outside the card
+    splash.addEventListener('click', (e) => {
+        if (e.target === splash || e.target.classList.contains('pastel-poster-wrapper')) {
+            dismissOpening();
+        }
     });
 
     // Keyboard Shortcuts (Escape key to enter immediately)

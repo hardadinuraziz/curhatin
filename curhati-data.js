@@ -638,24 +638,31 @@ class CurhatiStore {
     this.saveState();
   }
 
-  // AI Auto-Responder (Admin by AI)
+  // AI Auto-Responder (Admin by AI) - Fallback saat staf/konselor belum membalas
   sendAiAutoReply(convId, userText) {
     const conv = this.data.chatConversations.find(c => c.id === convId);
     if (!conv) return;
 
-    const aiReplies = [
-      'Terima kasih sudah berbagi cerita. Pesan Anda telah diterima sistem kami dan tim konselor yang bertugas akan segera merespons Anda. Tetap luangkan waktu bernapas perlahan ya.',
-      'Halo! Kami mengerti apa yang Anda rasakan terasa memberatkan. Pesan Anda telah diteruskan ke konselor Anda. Apakah ada hal darurat yang ingin Anda sampaikan terlebih dahulu?',
-      'Terima kasih telah menghubungi Curhati. Sesi chat Anda terlindungi secara privat. Konselor kami sedang meninjau catatan persiapan sesi Anda.'
-    ];
+    const lower = (userText || '').toLowerCase();
+    let replyText = '';
 
-    const randomReply = aiReplies[Math.floor(Math.random() * aiReplies.length)];
+    if (lower.includes('halo') || lower.includes('hai') || lower.includes('selamat') || lower.includes('pagi') || lower.includes('malam') || lower.includes('siang') || lower.includes('sore')) {
+      replyText = `Halo! Salam hangat dari tim Curhati Shine Journey. 🌿\n\nPesan Anda telah masuk ke sistem kami. Konselor yang bertugas (${conv.counselorName}) dan admin sedang dihubungkan ke ruang chat ini. Sambil menunggu konselor masuk, ada hal penting atau uneg-uneg apa yang ingin Anda sampaikan terlebih dahulu?`;
+    } else if (lower.includes('overthinking') || lower.includes('cemas') || lower.includes('stres') || lower.includes('panik') || lower.includes('takut') || lower.includes('lelah') || lower.includes('capek') || lower.includes('sedih')) {
+      replyText = `Terima kasih sudah berani berbagi apa yang Anda rasakan. Merasa lelah, cemas, atau overthinking adalah hal yang sangat manusiawi, apalagi ketika beban terasa menumpuk. 🤍\n\nAnda tidak sendirian dan ruang chat ini 100% aman serta terenkripsi. Sambil menunggu konselor merespons langsung, cobalah tarik napas perlahan (4 detik), tahan sejenak (4 detik), dan hembuskan perlahan. Ceritakan saja apa yang paling mengganjal di hati Anda saat ini ya.`;
+    } else if (lower.includes('harga') || lower.includes('biaya') || lower.includes('tarif') || lower.includes('paket') || lower.includes('daftar')) {
+      replyText = `Layanan konseling kami tersedia dalam 2 pilihan utama:\n1. 🤝 **Teman Cerita (Peer Support)**: Rp 50.000 / sesi (45 menit bersama lulusan S.Psi terlatih).\n2. 👩‍⚕️ **Psikolog Klinis Dewasa**: Rp 175.000 / sesi (60 menit bersama psikolog berizin STR/SIPP).\n\nAdmin manusia kami akan segera memverifikasi ketersediaan jadwal terbaik untuk Anda sebentar lagi.`;
+    } else if (lower.includes('jadwal') || lower.includes('jam') || lower.includes('piket') || lower.includes('kapan')) {
+      replyText = `Jadwal sesi konseling kami aktif setiap hari Senin s.d. Minggu dari pukul 07.00 hingga 21.45 WIB (12 slot waktu). Konselor bertugas Anda saat ini adalah **${conv.counselorName}**. Mohon ditunggu sebentar ya, sistem sedang memanggil konselor Anda.`;
+    } else {
+      replyText = `Pesan Anda telah berhasil diterima oleh sistem Curhati. Konselor Anda (**${conv.counselorName}**) dan staf admin sedang memeriksa ruang chat ini dan akan segera membalas secara langsung.\n\nJika ada hal mendesak atau cerita tambahan yang ingin Anda tuangkan, silakan lanjutkan menulis di sini ya. Kami siap mendengar tanpa penghakiman. 🌿`;
+    }
 
     const aiMsg = {
       id: `m_ai_${Date.now()}`,
       senderId: 'ai-admin-bot',
       senderRole: 'AI_ADMIN',
-      text: `🤖 [ShineBot AI Auto-Reply]: ${randomReply}`,
+      text: `🤖 [Admin by AI - ShineBot]:\n${replyText}`,
       time: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }),
       read: true
     };

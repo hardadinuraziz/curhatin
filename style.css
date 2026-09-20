@@ -2106,68 +2106,129 @@ footer { background:#111827; color:#9CA3AF; padding:80px 24px 30px; }
     box-shadow: 0 0 20px #F59E0B;
 }
 
-/* Pull String / Cord */
+/* Pull String / Cord Assembly */
 .lamp-cord {
     position: absolute;
-    right: 22px;
+    right: 18px;
     top: 60px;
-    z-index: 20;
-    cursor: pointer;
+    z-index: 100;
+    cursor: grab;
     display: flex;
     flex-direction: column;
     align-items: center;
     transform-origin: top center;
-    transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    padding: 2px 8px 10px;
+    padding: 2px 14px 18px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+}
+
+.lamp-cord:active, .lamp-cord.is-dragging {
+    cursor: grabbing;
 }
 
 .lamp-cord:hover {
-    filter: drop-shadow(0 0 6px rgba(253, 224, 71, 0.8));
+    filter: drop-shadow(0 0 8px rgba(253, 224, 71, 0.9));
 }
 
 .lamp-cord.pulling {
-    transform: translateY(22px) scaleY(1.18);
+    transform: translateY(35px) scaleY(1.2);
+    transition: transform 0.12s cubic-bezier(0.2, 0.9, 0.3, 1);
 }
 
 .lamp-cord.recoil {
-    animation: cordSpring 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: cordSpring 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 @keyframes cordSpring {
-    0% { transform: translateY(22px); }
-    45% { transform: translateY(-4px); }
-    70% { transform: translateY(2px); }
+    0% { transform: translateY(var(--recoil-y, 35px)); }
+    35% { transform: translateY(-9px); }
+    65% { transform: translateY(4px); }
+    85% { transform: translateY(-2px); }
     100% { transform: translateY(0); }
 }
 
+.lamp-cord.idle-tug {
+    animation: cordIdleTug 3.2s ease infinite;
+}
+
+@keyframes cordIdleTug {
+    0%, 72%, 100% { transform: translateY(0); }
+    78% { transform: translateY(14px); }
+    85% { transform: translateY(-4px); }
+    92% { transform: translateY(2px); }
+}
+
 .lamp-cord-line {
-    width: 2px;
-    height: 40px;
-    background: #94A3B8;
-    border-radius: 1px;
+    width: 3px;
+    height: 42px;
+    background: #CBD5E1;
+    border-radius: 2px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    transform-origin: top center;
+    transition: height 0.05s linear;
 }
 
 .lamp-cord-bead {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    background: #E2E8F0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    background: #F1F5F9;
+    border: 2px solid #94A3B8;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
     position: relative;
-    transition: all 0.25s ease;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
-.lamp-cord:hover .lamp-cord-bead {
+.lamp-cord:hover .lamp-cord-bead,
+.lamp-cord.is-dragging .lamp-cord-bead {
     background: #FDE047;
-    transform: scale(1.15);
+    border-color: #F59E0B;
+    transform: scale(1.2);
+    box-shadow: 0 0 16px rgba(253, 224, 71, 0.9);
 }
 
 .cord-pulse-ring {
     position: absolute;
-    inset: -4px;
+    inset: -6px;
     border-radius: 50%;
-    border: 2px solid rgba(253, 224, 71, 0.6);
-    animation: beadPulse 2s infinite ease-out;
+    border: 2px solid rgba(253, 224, 71, 0.7);
+    animation: beadPulse 1.8s infinite ease-out;
+}
+
+.consultation-splash.is-lit .cord-pulse-ring {
+    display: none;
+}
+
+/* Cord Pull Tag Tooltip */
+.cord-pull-tag {
+    position: absolute;
+    top: 36px;
+    left: 36px;
+    background: #F59E0B;
+    color: #0F172A;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    animation: tagBounce 1.6s infinite alternate ease-in-out;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes tagBounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(5px); }
+}
+
+.consultation-splash.is-lit .cord-pull-tag {
+    opacity: 0;
+    pointer-events: none;
 }
 
 @keyframes beadPulse {

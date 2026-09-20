@@ -8,7 +8,10 @@ function initConsultationSplash() {
     if (!splash) return;
 
     const lampCord = document.getElementById('lampCord');
+    const lampCordLine = document.getElementById('lampCordLine');
+    const lampCordBead = document.getElementById('lampCordBead');
     const lampHint = document.getElementById('lampHint');
+    const cordPullTag = document.getElementById('cordPullTag');
     const stepHint = document.getElementById('splashStepHint');
     const enterBtn = document.getElementById('btnSplashSkip');
     const themeCards = splash.querySelectorAll('.splash-theme-card');
@@ -22,6 +25,11 @@ function initConsultationSplash() {
     let autoCycleTimer = null;
     let activeCardIndex = 0;
 
+    // Start with subtle idle tug to show cord is interactive
+    if (lampCord) {
+        lampCord.classList.add('idle-tug');
+    }
+
     // Web Audio mechanical switch click sound
     function playLampClick() {
         try {
@@ -32,9 +40,9 @@ function initConsultationSplash() {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.type = 'triangle';
-            osc.frequency.setValueAtTime(520, ctx.currentTime);
+            osc.frequency.setValueAtTime(540, ctx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(130, ctx.currentTime + 0.055);
-            gain.gain.setValueAtTime(0.32, ctx.currentTime);
+            gain.gain.setValueAtTime(0.35, ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.055);
             osc.connect(gain);
             gain.connect(ctx.destination);
@@ -45,21 +53,29 @@ function initConsultationSplash() {
         }
     }
 
-    // Toggle Lamp State (Pull Cord)
-    function pullLampCord() {
+    // Perform the Spring Recoil Pull Animation and Toggle Lamp
+    function triggerPull(recoilDistance = 35) {
         if (exited) return;
 
-        playLampClick();
-
         if (lampCord) {
+            lampCord.classList.remove('idle-tug');
+            lampCord.classList.remove('pulling');
             lampCord.classList.remove('recoil');
-            lampCord.classList.add('pulling');
+            void lampCord.offsetWidth; // force reflow
+
+            lampCord.style.setProperty('--recoil-y', `${recoilDistance}px`);
+            lampCord.classList.add('recoil');
+
             setTimeout(() => {
-                lampCord.classList.remove('pulling');
-                lampCord.classList.add('recoil');
-            }, 140);
+                if (lampCord) {
+                    lampCord.classList.remove('recoil');
+                    lampCord.style.transform = '';
+                }
+                if (lampCordLine) lampCordLine.style.height = '';
+            }, 560);
         }
 
+        playLampClick();
         isLit = !isLit;
 
         if (isLit) {
@@ -71,6 +87,109 @@ function initConsultationSplash() {
             if (stepHint) stepHint.textContent = 'Tarik tali lampu untuk menyalakan kembali';
             stopThemeCycle();
         }
+    }
+
+    // Interactive Drag-and-Drop Physics for Pull Cord
+    let isDragging = false;
+    let startY = 0;
+    let pullDistance = 0;
+    let dragStartTime = 0;
+
+    function onPointerDown(e) {
+        if (exited) return;
+        isDragging = true;
+        startY = e.clientY;
+        pullDistance = 0;
+        dragStartTime = Date.now();
+
+        if (lampCord) {
+            lampCord.classList.remove('idle-tug');
+            lampCord.classList.remove('recoil');
+            lampCord.classList.add('is-dragging');
+            try {
+                lampCord.setPointerCapture(e.pointerId);
+            } catch (err) {}
+        }
+
+        window.addEventListener('pointermove', onPointerMove, { passive: false });
+        window.addEventListener('pointerup', onPointerUp);
+        window.addEventListener('pointercancel', onPointerUp);
+    }
+
+    function onPointerMove(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+
+        const dy = e.clientY - startY;
+        pullDistance = Math.max(0, Math.min(55, dy));
+
+        if (lampCord) {
+            lampCord.style.transform = `translateY(${pullDistance}px)`;
+        }
+        if (lampCordLine) {
+            lampCordLine.style.height = `${42 + pullDistance * 0.7}px`;
+        }
+    }
+
+    function onPointerUp(e) {
+        if (!isDragging) return;
+        isDragging = false;
+
+        window.removeEventListener('pointermove', onPointerMove);
+        window.removeEventListener('pointerup', onPointerUp);
+        window.removeEventListener('pointercancel', onPointerUp);
+
+        if (lampCord) {
+            lampCord.classList.remove('is-dragging');
+            try {
+                lampCord.releasePointerCapture(e.pointerId);
+            } catch (err) {}
+        }
+
+        const dragDuration = Date.now() - dragStartTime;
+
+        // If pulled down sufficiently (>= 14px) or quickly tapped (< 260ms)
+        if (pullDistance >= 14 || dragDuration < 260) {
+            const recoilY = Math.max(28, pullDistance);
+            triggerPull(recoilY);
+        } else {
+            // Reset smoothly without switching
+            if (lampCord) {
+                lampCord.style.transition = 'transform 0.2s cubic-bezier(0.2, 1, 0.3, 1)';
+                lampCord.style.transform = '';
+                setTimeout(() => {
+                    if (lampCord) lampCord.style.transition = '';
+                }, 200);
+            }
+            if (lampCordLine) {
+                lampCordLine.style.height = '';
+            }
+        }
+    }
+
+    if (lampCord) {
+        lampCord.addEventListener('pointerdown', onPointerDown);
+        // Keyboard support
+        lampCord.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                triggerPull(36);
+            }
+        });
+    }
+
+    // Clicking hint pills also triggers pull animation
+    if (lampHint) {
+        lampHint.addEventListener('click', (e) => {
+            e.stopPropagation();
+            triggerPull(36);
+        });
+    }
+    if (cordPullTag) {
+        cordPullTag.addEventListener('click', (e) => {
+            e.stopPropagation();
+            triggerPull(36);
+        });
     }
 
     // Theme Highlights Cycle
@@ -104,27 +223,6 @@ function initConsultationSplash() {
         }, 550);
     }
 
-    // Cord Click & Key Event
-    if (lampCord) {
-        lampCord.addEventListener('click', (e) => {
-            e.stopPropagation();
-            pullLampCord();
-        });
-        lampCord.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                pullLampCord();
-            }
-        });
-    }
-
-    if (lampHint) {
-        lampHint.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (!isLit) pullLampCord();
-        });
-    }
-
     // Enter Website Button
     if (enterBtn) {
         enterBtn.addEventListener('click', (e) => {
@@ -139,13 +237,6 @@ function initConsultationSplash() {
             dismissSplash();
         }
     }, { once: true });
-
-    // Automatic Welcoming Pull after 1.1s if user hasn't pulled yet
-    setTimeout(() => {
-        if (!isLit && !exited) {
-            pullLampCord();
-        }
-    }, 1100);
 }
 
 // Run as soon as DOM is ready

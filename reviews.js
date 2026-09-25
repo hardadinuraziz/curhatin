@@ -41,12 +41,12 @@
     {
       id: 'csl-3',
       name: 'Hanifa Putri Anggraini, S.Psi., Psikolog',
-      role: 'Psikolog Klinis · STR & SIPP Aktif',
-      category: 'klinis',
+      role: 'Psikolog Umum · STR & SIPP Aktif',
+      category: 'umum',
       avatar: 'team-hanifa.jpg',
-      badge: 'Psikolog Berizin (SIPP)',
-      badgeColor: '#4338CA',
-      badgeBg: '#EEF2FF',
+      badge: 'Psikolog Umum (SIPP)',
+      badgeColor: '#0284C7',
+      badgeBg: '#E0F2FE',
       baseRating: 4.90,
       baseCount: 260,
       price: 'Rp 165.000/sesi',
@@ -194,13 +194,39 @@
     }
   ];
 
-  // Seed authentic verified reviews
+  // Helper masking function for privacy protection (e.g. DA***I, RZ***A)
+  function maskClientName(name) {
+    if (!name) return 'KL***N';
+    let clean = String(name).trim();
+    if (clean.includes('***') || clean.toLowerCase().includes('anonim')) return clean;
+
+    let ageMatch = clean.match(/\s*(\(\d+\s*thn?\))/i);
+    let ageSuffix = ageMatch ? ' ' + ageMatch[1] : '';
+    let nameWithoutAge = clean.replace(/\s*\(\d+\s*thn?\)/i, '').trim();
+
+    const parts = nameWithoutAge.split(/\s+/);
+    let masked = '';
+    if (parts.length === 1) {
+      const p = parts[0].toUpperCase();
+      if (p.length <= 2) masked = p + '***';
+      else masked = p.slice(0, 2) + '***' + p.slice(-1);
+    } else {
+      const first = parts[0].toUpperCase();
+      const last = parts[parts.length - 1].toUpperCase();
+      const prefix = first.length >= 2 ? first.slice(0, 2) : first;
+      const suffix = last.slice(-1);
+      masked = `${prefix}***${suffix}`;
+    }
+    return masked + ageSuffix;
+  }
+
+  // Seed authentic verified reviews with masked client identities (e.g. DA***I, RZ***A)
   const SEED_REVIEWS = [
     // Wilda
     {
       id: 'rev-wilda-1',
       counselorId: 'csl-1',
-      clientName: 'Reza Pratama',
+      clientName: 'RZ***A (28 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-15',
@@ -211,7 +237,7 @@
     {
       id: 'rev-wilda-2',
       counselorId: 'csl-1',
-      clientName: 'Siti M. (Klien Terverifikasi)',
+      clientName: 'ST***I (25 thn)',
       isAnonymous: true,
       rating: 5,
       date: '2026-09-10',
@@ -222,7 +248,7 @@
     {
       id: 'rev-wilda-3',
       counselorId: 'csl-1',
-      clientName: 'Fajar K.',
+      clientName: 'FJ***N (31 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-08-28',
@@ -235,7 +261,7 @@
     {
       id: 'rev-haura-1',
       counselorId: 'csl-2',
-      clientName: 'Nadia S.',
+      clientName: 'ND***A (26 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-12',
@@ -259,11 +285,11 @@
     {
       id: 'rev-hanifa-1',
       counselorId: 'csl-3',
-      clientName: 'Nurul Hidayati',
+      clientName: 'NR***I (22 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-14',
-      serviceType: 'Konseling Psikolog Klinis',
+      serviceType: 'Konseling Psikolog Umum',
       tags: ['Stres Skripsi', 'Manajemen Waktu', 'Bikin Tenang'],
       comment: 'Skripsi macet dan kecemasan tinggi teratasi pelan-pelan berkat sesi bersama Kak Hanifa. Penjelasannya mudah dipahami dan sangat suportif.'
     },
@@ -272,7 +298,7 @@
     {
       id: 'rev-rasidia-1',
       counselorId: 'csl-4',
-      clientName: 'Dinda A.',
+      clientName: 'DA***I (24 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-16',
@@ -283,7 +309,7 @@
     {
       id: 'rev-rasidia-2',
       counselorId: 'csl-4',
-      clientName: 'Kevin T.',
+      clientName: 'KV***T (25 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-08',
@@ -296,7 +322,7 @@
     {
       id: 'rev-putri-1',
       counselorId: 'csl-5',
-      clientName: 'Laras W.',
+      clientName: 'LR***S (23 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-11',
@@ -309,7 +335,7 @@
     {
       id: 'rev-anif-1',
       counselorId: 'csl-6',
-      clientName: 'Bagas P.',
+      clientName: 'BG***S (24 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-09',
@@ -322,7 +348,7 @@
     {
       id: 'rev-shabrina-1',
       counselorId: 'csl-7',
-      clientName: 'Maya K.',
+      clientName: 'MY***A (22 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-05',
@@ -335,7 +361,7 @@
     {
       id: 'rev-theresa-1',
       counselorId: 'csl-8',
-      clientName: 'Arif Setiawan',
+      clientName: 'AR***N (27 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-13',
@@ -348,7 +374,7 @@
     {
       id: 'rev-annisa-1',
       counselorId: 'csl-9',
-      clientName: 'Tia R.',
+      clientName: 'TA***R (23 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-07',
@@ -361,7 +387,7 @@
     {
       id: 'rev-binti-1',
       counselorId: 'csl-10',
-      clientName: 'Rian D.',
+      clientName: 'RN***D (26 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-12',
@@ -374,7 +400,7 @@
     {
       id: 'rev-rizki-1',
       counselorId: 'csl-11',
-      clientName: 'Amara G.',
+      clientName: 'AM***A (21 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-04',
@@ -387,7 +413,7 @@
     {
       id: 'rev-syifa-1',
       counselorId: 'csl-12',
-      clientName: 'Hendra B.',
+      clientName: 'HN***A (29 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-14',
@@ -400,7 +426,7 @@
     {
       id: 'rev-siratia-1',
       counselorId: 'csl-13',
-      clientName: 'Vina P.',
+      clientName: 'VN***A (24 thn)',
       isAnonymous: false,
       rating: 5,
       date: '2026-09-10',
@@ -439,7 +465,11 @@
         if (stored) {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed) && parsed.length > 0) {
-            return parsed;
+            // Ensure any existing stored reviews are masked for privacy
+            return parsed.map(r => ({
+              ...r,
+              clientName: maskClientName(r.clientName)
+            }));
           }
         }
       } catch (e) {
@@ -870,7 +900,9 @@
       }
 
       if (isAnon) {
-        clientName = 'Klien Anonim (Terverifikasi)';
+        clientName = 'Anonim (Klien Terverifikasi)';
+      } else {
+        clientName = maskClientName(clientName);
       }
 
       const newReview = {

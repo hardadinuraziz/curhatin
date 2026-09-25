@@ -100,10 +100,11 @@
           ]
         },
         {
-          title: 'KOMUNIKASI & LAPORAN',
+          title: 'KOMUNIKASI & ARTIKEL',
           items: [
             { id: 'chat', label: 'Chat Klien (Web Chat)', icon: 'message-circle', badge: '1' },
-            { id: 'counselor-reports', label: 'Unggah Laporan Sesi', icon: 'upload-cloud' }
+            { id: 'counselor-reports', label: 'Unggah Laporan Sesi', icon: 'upload-cloud' },
+            { id: 'articles', label: 'Tulis Artikel Edukasi', icon: 'file-text' }
           ]
         }
       ];
@@ -161,8 +162,9 @@
             ]
           },
           {
-            title: 'OPERASIONAL & AI',
+            title: 'OPERASIONAL & EDUKASI',
             items: [
+              { id: 'articles', label: 'Publikasi Artikel Edukasi', icon: 'file-text' },
               { id: 'ai-config', label: 'Admin by AI (ShineBot)', icon: 'robot' },
               { id: 'transactions', label: 'Keuangan & Billing', icon: 'dollar-sign' },
               { id: 'audit-logs', label: 'Audit Trail Sistem', icon: 'shield' }
@@ -177,6 +179,7 @@
             items: [
               { id: 'overview', label: 'Overview Sistem', icon: 'shield' },
               { id: 'schedule-all', label: 'Kontrol Jadwal & Status Online', icon: 'calendar-check' },
+              { id: 'articles', label: 'Publikasi Artikel Edukasi', icon: 'file-text', badge: 'Baru' },
               { id: 'users', label: 'Kelola 15 Konselor & 10 Asesor', icon: 'users-cog' },
               { id: 'services', label: 'Kelola Layanan', icon: 'sliders' },
               { id: 'audit-logs', label: 'Audit Logs Keamanan', icon: 'activity' }
@@ -1086,6 +1089,11 @@
     }
     const mySessions = state.counselingSessions.filter(s => s.counselorId === currentCounselor.id);
 
+    if (tab === 'articles') {
+      renderArticlesManagement();
+      return;
+    }
+
     if (tab === 'chat') {
       renderChatUI();
       return;
@@ -1807,6 +1815,11 @@
       return;
     }
 
+    if (tab === 'articles') {
+      renderArticlesManagement();
+      return;
+    }
+
     if (tab === 'users') {
       viewportEl.innerHTML = `
         <div class="flex items-center justify-between" style="margin-bottom: 1.5rem;">
@@ -1838,28 +1851,28 @@
               <tbody>
                 <tr>
                   <td><strong>🛡️ Admin Operasional</strong></td>
-                  <td><code>admin@curhatinshinejourney.com</code></td>
+                  <td><code>admin@curhatishinejourney.com</code></td>
                   <td><span class="badge badge-completed">1 Akun (5 User Aktif)</span></td>
                   <td><span class="badge badge-scheduled">Aktif Simultan</span></td>
                   <td>Akses data, verifikasi reservasi, atur jadwal piket & status online</td>
                 </tr>
                 <tr>
                   <td><strong>👑 Koordinator Layanan</strong></td>
-                  <td><code>koordinator@curhatinshinejourney.com</code></td>
+                  <td><code>koordinator@curhatishinejourney.com</code></td>
                   <td><span class="badge badge-new">1 Akun Master</span></td>
                   <td><span class="badge badge-scheduled">Aktif</span></td>
                   <td>Akses penuh ke seluruh modul, keuangan, dan evaluasi klinis</td>
                 </tr>
                 <tr>
                   <td><strong>💳 Finance & Billing</strong></td>
-                  <td><code>finance@curhatinshinejourney.com</code></td>
+                  <td><code>finance@curhatishinejourney.com</code></td>
                   <td><span class="badge badge-new">1 Akun Personal</span></td>
                   <td><span class="badge badge-scheduled">Aktif</span></td>
                   <td>Rekonsiliasi transaksi, kelola invoice, dan laporan omzet</td>
                 </tr>
                 <tr>
                   <td><strong>🤖 Admin by AI (ShineBot)</strong></td>
-                  <td><code>ai.admin@curhatinshinejourney.com</code></td>
+                  <td><code>ai.admin@curhatishinejourney.com</code></td>
                   <td><span class="badge badge-waiting">Sistem Otomatis</span></td>
                   <td><span class="badge badge-completed">Online 24/7</span></td>
                   <td>Auto-responder empati saat konselor/staf belum merespon chat web klien</td>
@@ -1907,7 +1920,7 @@
                           <strong>${c.name}</strong>
                           <div style="font-size: 0.75rem; color: var(--slate-500);">${c.license || c.education}</div>
                         </td>
-                        <td><span class="badge ${c.serviceType === 'PSIKOLOG_KLINIS' ? 'badge-completed' : 'badge-waiting'}">${c.serviceType === 'PSIKOLOG_KLINIS' ? 'Psikolog Klinis' : 'Teman Cerita'}</span></td>
+                        <td><span class="badge ${c.serviceType === 'PSIKOLOG_KLINIS' ? 'badge-completed' : c.serviceType === 'PSIKOLOG_UMUM' ? 'badge-scheduled' : 'badge-waiting'}">${c.serviceType === 'PSIKOLOG_KLINIS' ? 'Psikolog Klinis' : c.serviceType === 'PSIKOLOG_UMUM' ? 'Psikolog Umum' : 'Teman Cerita'}</span></td>
                         <td>
                           <span class="badge ${st.status === 'online' ? 'badge-completed' : st.status === 'session' ? 'badge-waiting' : 'badge-cancelled'}">
                             ${st.status === 'online' ? '● ' : st.status === 'session' ? '⏳ ' : '○ '}${st.text}
@@ -2005,7 +2018,7 @@
                     return `
                       <tr>
                         <td><strong>${c.name}</strong></td>
-                        <td><span class="badge ${c.serviceType === 'PSIKOLOG_KLINIS' ? 'badge-completed' : 'badge-waiting'}">${c.serviceType === 'PSIKOLOG_KLINIS' ? 'Psikolog Klinis' : 'Teman Cerita'}</span></td>
+                        <td><span class="badge ${c.serviceType === 'PSIKOLOG_KLINIS' ? 'badge-completed' : c.serviceType === 'PSIKOLOG_UMUM' ? 'badge-scheduled' : 'badge-waiting'}">${c.serviceType === 'PSIKOLOG_KLINIS' ? 'Psikolog Klinis' : c.serviceType === 'PSIKOLOG_UMUM' ? 'Psikolog Umum' : 'Teman Cerita'}</span></td>
                         <td>
                           <span class="badge ${st.status === 'online' ? 'badge-completed' : st.status === 'session' ? 'badge-waiting' : 'badge-cancelled'}">
                             ${st.status === 'online' ? '● ' : st.status === 'session' ? '⏳ ' : '○ '}${st.text}
@@ -2087,7 +2100,7 @@
                 return `
                   <tr>
                     <td><strong>${c.name}</strong></td>
-                    <td>${c.serviceType === 'PSIKOLOG_KLINIS' ? 'Psikolog Klinis' : 'Teman Cerita'}</td>
+                    <td>${c.serviceType === 'PSIKOLOG_KLINIS' ? 'Psikolog Klinis' : c.serviceType === 'PSIKOLOG_UMUM' ? 'Psikolog Umum' : 'Teman Cerita'}</td>
                     <td>
                       <span class="badge ${st.status === 'online' ? 'badge-completed' : st.status === 'session' ? 'badge-waiting' : 'badge-cancelled'}">
                         ${st.status === 'online' ? '● ' : st.status === 'session' ? '⏳ ' : '○ '}${st.text}
@@ -2215,6 +2228,10 @@
       renderFinanceView('transactions');
       return;
     }
+    if (tab === 'articles') {
+      renderArticlesManagement();
+      return;
+    }
     if (tab === 'audit-logs') {
       renderAuditLogs();
       return;
@@ -2330,7 +2347,7 @@
         <div class="stat-card">
           <div>
             <div class="stat-label">Akun Integrasi</div>
-            <div class="stat-value">ai.admin@curhatinshinejourney.com</div>
+            <div class="stat-value">ai.admin@curhatishinejourney.com</div>
             <div class="stat-sub">Terhubung ke Web Chat</div>
           </div>
           <div class="stat-icon icon-indigo">💬</div>
@@ -2482,6 +2499,259 @@
     };
   }
 
+  /* ==========================================================================
+     7. ARTICLES MANAGEMENT & PUBLISHING SYSTEM
+     ========================================================================== */
+  function renderArticlesManagement() {
+    const state = store.data;
+    const articles = state.articles || [];
+
+    viewportEl.innerHTML = `
+      <div class="flex items-center justify-between flex-wrap gap-4" style="margin-bottom: 1.5rem;">
+        <div>
+          <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--slate-900);">Publikasi Artikel Edukasi Kesehatan Jiwa</h2>
+          <p style="color: var(--slate-500); font-size: 0.875rem;">Kelola, tulis, dan terbitkan artikel edukatif yang tayang langsung pada web publik <code>curhatishinejourney.com</code>.</p>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <a href="/#articles" target="_blank" class="btn btn-outline btn-sm">
+            🌐 Pratinjau Web Publik
+          </a>
+          <button class="btn btn-primary btn-sm" onclick="window.curhatiApp.openArticleModal()">
+            <i class="fas fa-plus"></i> + Tulis Artikel Baru
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="stats-grid" style="margin-bottom: 1.5rem;">
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Total Artikel</div>
+            <div class="stat-value">${articles.length}</div>
+            <div class="stat-sub positive">${articles.filter(a => a.status === 'PUBLISHED').length} Diterbitkan Aktif</div>
+          </div>
+          <div class="stat-icon icon-indigo">📚</div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Topik Edukasi</div>
+            <div class="stat-value">${new Set(articles.map(a => a.category)).size} Kategori</div>
+            <div class="stat-sub">Kecemasan, Burnout, Relaksasi</div>
+          </div>
+          <div class="stat-icon icon-teal">🏷️</div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Status Integrasi</div>
+            <div class="stat-value">Live Terhubung</div>
+            <div class="stat-sub positive">curhatishinejourney.com</div>
+          </div>
+          <div class="stat-icon icon-emerald">⚡</div>
+        </div>
+      </div>
+
+      <!-- Articles Data Table -->
+      <div class="dashboard-card">
+        <div class="card-header">
+          <div>
+            <h3>Daftar Artikel &amp; Panduan Psikologi</h3>
+            <p>Artikel dapat diedit, dihapus, atau disimpan sebagai draft sebelum dipublikasikan.</p>
+          </div>
+        </div>
+        <div class="data-table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID &amp; Tanggal</th>
+                <th>Judul &amp; Kategori</th>
+                <th>Penulis / Psikolog</th>
+                <th>Ringkasan</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${articles.length > 0 ? articles.map(art => `
+                <tr>
+                  <td>
+                    <code>${art.id}</code>
+                    <div style="font-size: 0.75rem; color: var(--slate-400); margin-top: 2px;">${art.publishedAt || '-'}</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 700; color: var(--slate-900); font-size: 0.9375rem; margin-bottom: 4px;">${art.title}</div>
+                    <span class="badge badge-paid" style="font-size: 0.6875rem;">${art.category}</span>
+                    <span style="font-size: 0.75rem; color: var(--slate-400); margin-left: 6px;">⏱️ ${art.readTime || '5 menit baca'}</span>
+                  </td>
+                  <td>
+                    <strong>${art.author || 'Tim Shine Journey'}</strong>
+                    <div style="font-size: 0.75rem; color: var(--slate-500);">${art.authorRole || 'Psikolog'}</div>
+                  </td>
+                  <td style="max-width: 280px; font-size: 0.8125rem; color: var(--slate-600); line-height: 1.4;">
+                    ${art.summary ? (art.summary.length > 110 ? art.summary.substring(0, 110) + '...' : art.summary) : '-'}
+                  </td>
+                  <td>
+                    <span class="badge ${art.status === 'PUBLISHED' ? 'badge-completed' : 'badge-waiting'}">
+                      ${art.status === 'PUBLISHED' ? '● Diterbitkan' : '○ Draft'}
+                    </span>
+                  </td>
+                  <td>
+                    <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
+                      <button class="btn btn-sm btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="window.curhatiApp.openArticleModal('${art.id}')">
+                        ✏️ Edit
+                      </button>
+                      <button class="btn btn-sm btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.75rem; color: var(--danger); border-color: #fca5a5;" onclick="window.curhatiApp.deleteArticle('${art.id}')">
+                        🗑️ Hapus
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              `).join('') : `
+                <tr>
+                  <td colspan="6" style="text-align: center; padding: 2rem; color: var(--slate-500);">
+                    Belum ada artikel yang dibuat. Klik tombol <strong>+ Tulis Artikel Baru</strong> di atas untuk mempublikasikan artikel pertama.
+                  </td>
+                </tr>
+              `}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+  }
+
+  function openArticleModal(articleId = null) {
+    const state = store.data;
+    const isEdit = Boolean(articleId);
+    const existing = isEdit ? (state.articles || []).find(a => a.id === articleId) : null;
+
+    const modalContainer = document.getElementById('modalContainer');
+    if (!modalContainer) return;
+
+    modalContainer.innerHTML = `
+      <div class="modal-backdrop" id="articleModalBackdrop" style="position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 1rem;">
+        <div class="modal-card" style="background: #ffffff; border-radius: var(--radius-lg); max-width: 650px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); border: 1px solid var(--slate-200);">
+          <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--slate-100); display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="font-size: 1.125rem; font-weight: 700; color: var(--slate-900);">
+              ${isEdit ? '✏️ Edit Artikel Edukasi' : '✍️ Tulis Artikel Baru'}
+            </h3>
+            <button type="button" style="border: none; background: transparent; font-size: 1.25rem; cursor: pointer; color: var(--slate-400);" onclick="document.getElementById('articleModalBackdrop').remove()">×</button>
+          </div>
+
+          <form id="articlePublishForm" style="padding: 1.5rem;" onsubmit="window.curhatiApp.handleSaveArticle(event, '${articleId || ''}')">
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: var(--slate-700); margin-bottom: 0.35rem;">Judul Artikel *</label>
+              <input type="text" id="artTitle" class="admin-input" style="color: var(--slate-900); background: #f8fafc; border: 1px solid var(--slate-300);" placeholder="Contoh: 5 Cara Menenangkan Pikiran Saat Mengalami Overthinking..." value="${existing ? existing.title : ''}" required>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              <div class="form-group">
+                <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: var(--slate-700); margin-bottom: 0.35rem;">Kategori Topik *</label>
+                <select id="artCategory" class="admin-input" style="color: var(--slate-900); background: #f8fafc; border: 1px solid var(--slate-300);">
+                  <option value="Kecemasan" ${existing && existing.category === 'Kecemasan' ? 'selected' : ''}>Kecemasan & Overthinking</option>
+                  <option value="Self-Care" ${existing && existing.category === 'Self-Care' ? 'selected' : ''}>Self-Care & Burnout</option>
+                  <option value="Tidur & Relaksasi" ${existing && existing.category === 'Tidur & Relaksasi' ? 'selected' : ''}>Tidur & Relaksasi</option>
+                  <option value="Relasi & Hubungan" ${existing && existing.category === 'Relasi & Hubungan' ? 'selected' : ''}>Relasi & Hubungan</option>
+                  <option value="Pengembangan Diri" ${existing && existing.category === 'Pengembangan Diri' ? 'selected' : ''}>Pengembangan Diri</option>
+                  <option value="Stres Akademik & Karir" ${existing && existing.category === 'Stres Akademik & Karir' ? 'selected' : ''}>Stres Akademik & Karir</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: var(--slate-700); margin-bottom: 0.35rem;">Estimasi Waktu Baca</label>
+                <input type="text" id="artReadTime" class="admin-input" style="color: var(--slate-900); background: #f8fafc; border: 1px solid var(--slate-300);" placeholder="Contoh: 5 menit baca" value="${existing ? existing.readTime : '5 menit baca'}">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              <div class="form-group">
+                <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: var(--slate-700); margin-bottom: 0.35rem;">Penulis / Psikolog *</label>
+                <input type="text" id="artAuthor" class="admin-input" style="color: var(--slate-900); background: #f8fafc; border: 1px solid var(--slate-300);" placeholder="Nama Psikolog / Penulis" value="${existing ? existing.author : (state.currentUser ? state.currentUser.name : 'Wilda Nurbayani, S.Psi., M.Psi., Psikolog')}" required>
+              </div>
+
+              <div class="form-group">
+                <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: var(--slate-700); margin-bottom: 0.35rem;">Status Publikasi</label>
+                <select id="artStatus" class="admin-input" style="color: var(--slate-900); background: #f8fafc; border: 1px solid var(--slate-300);">
+                  <option value="PUBLISHED" ${existing && existing.status === 'PUBLISHED' ? 'selected' : ''}>Langsung Terbitkan (Published)</option>
+                  <option value="DRAFT" ${existing && existing.status === 'DRAFT' ? 'selected' : ''}>Simpan sebagai Draft</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: var(--slate-700); margin-bottom: 0.35rem;">Ringkasan Singkat (Muncul di Kartu Depan) *</label>
+              <textarea id="artSummary" class="admin-input" rows="2" style="color: var(--slate-900); background: #f8fafc; border: 1px solid var(--slate-300); resize: vertical;" placeholder="1-2 kalimat pengantar yang memikat pembaca..." required>${existing ? existing.summary : ''}</textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+              <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: var(--slate-700); margin-bottom: 0.35rem;">Isi Lengkap Artikel *</label>
+              <textarea id="artContent" class="admin-input" rows="6" style="color: var(--slate-900); background: #f8fafc; border: 1px solid var(--slate-300); resize: vertical; line-height: 1.5;" placeholder="Tuliskan ulasan, tips psikologis, dan panduan lengkap di sini..." required>${existing ? existing.content : ''}</textarea>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 0.75rem; border-top: 1px solid var(--slate-100); padding-top: 1rem;">
+              <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('articleModalBackdrop').remove()">Batal</button>
+              <button type="submit" class="btn btn-primary btn-sm">
+                <i class="fas fa-check"></i> ${isEdit ? 'Simpan Perubahan' : 'Terbitkan Artikel'}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    `;
+  }
+
+  function handleSaveArticle(event, articleId) {
+    event.preventDefault();
+    const title = document.getElementById('artTitle').value.trim();
+    const category = document.getElementById('artCategory').value;
+    const readTime = document.getElementById('artReadTime').value.trim() || '5 menit baca';
+    const author = document.getElementById('artAuthor').value.trim();
+    const status = document.getElementById('artStatus').value;
+    const summary = document.getElementById('artSummary').value.trim();
+    const content = document.getElementById('artContent').value.trim();
+
+    if (!title || !summary || !content) {
+      showToast('Silakan lengkapi seluruh field artikel.', 'error');
+      return;
+    }
+
+    if (articleId) {
+      store.updateArticle(articleId, {
+        title,
+        category,
+        readTime,
+        author,
+        status,
+        summary,
+        content
+      });
+      showToast('Artikel berhasil diperbarui!', 'success');
+    } else {
+      store.addArticle({
+        title,
+        category,
+        readTime,
+        author,
+        status,
+        summary,
+        content
+      });
+      showToast('Artikel baru berhasil diterbitkan!', 'success');
+    }
+
+    const backdrop = document.getElementById('articleModalBackdrop');
+    if (backdrop) backdrop.remove();
+
+    renderArticlesManagement();
+  }
+
+  function deleteArticle(articleId) {
+    if (confirm('Apakah Anda yakin ingin menghapus artikel ini?')) {
+      store.deleteArticle(articleId);
+      showToast('Artikel telah dihapus.', 'success');
+      renderArticlesManagement();
+    }
+  }
+
   // General App Router helper
   window.curhatiApp = {
     navigateTo(tab) {
@@ -2497,6 +2767,15 @@
         renderSidebar();
         renderMainContent();
       }
+    },
+    openArticleModal(articleId) {
+      openArticleModal(articleId);
+    },
+    handleSaveArticle(event, articleId) {
+      handleSaveArticle(event, articleId);
+    },
+    deleteArticle(articleId) {
+      deleteArticle(articleId);
     },
     closeModal() {
       if (modalContainerEl) modalContainerEl.innerHTML = '';

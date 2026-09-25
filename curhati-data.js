@@ -3,7 +3,7 @@
  * Sesuai Curhati Fullstack System Blueprint & Rekomendasi Multi-Role Akun
  */
 
-const CURHATI_STORAGE_KEY = 'SHINEJOURNEY_STATE_V3';
+const CURHATI_STORAGE_KEY = 'SHINEJOURNEY_STATE_V4';
 
 // 15 Counselors (13 Real from Handbook + 2 Spare)
 const SEED_COUNSELORS = [
@@ -13,7 +13,7 @@ const SEED_COUNSELORS = [
     title: 'Psikolog Klinis & Supervisi',
     serviceType: 'PSIKOLOG_KLINIS',
     avatar: 'team-wilda.jpg',
-    email: 'wilda@curhatinshinejourney.com',
+    email: 'wilda@curhatishinejourney.com',
     license: 'STR & SIPP Aktif (HIMPSI)',
     experienceYears: 7,
     topics: ['Kecemasan Akut', 'Trauma & PTSD', 'Burnout', 'Depresi Ringan-Sedang', 'Regulasi Emosi'],
@@ -25,7 +25,7 @@ const SEED_COUNSELORS = [
     title: 'Psikolog Klinis & Asesmen',
     serviceType: 'PSIKOLOG_KLINIS',
     avatar: 'team-haura.jpg',
-    email: 'haura@curhatinshinejourney.com',
+    email: 'haura@curhatishinejourney.com',
     license: 'STR & SIPP Aktif (HIMPSI)',
     experienceYears: 6,
     topics: ['Stres Kerja', 'Quarter-Life Crisis', 'Dinamika Relasi', 'Burnout'],
@@ -34,10 +34,10 @@ const SEED_COUNSELORS = [
   {
     id: 'csl-3',
     name: 'Hanifa Putri Anggraini, S.Psi., Psikolog',
-    title: 'Psikolog Klinis',
-    serviceType: 'PSIKOLOG_KLINIS',
+    title: 'Psikolog Umum',
+    serviceType: 'PSIKOLOG_UMUM',
     avatar: 'team-hanifa.jpg',
-    email: 'hanifa@curhatinshinejourney.com',
+    email: 'hanifa@curhatishinejourney.com',
     license: 'STR & SIPP Aktif (HIMPSI)',
     experienceYears: 5,
     topics: ['Stres Akademik', 'Kecemasan', 'Manajemen Waktu', 'Self-Esteem'],
@@ -49,7 +49,7 @@ const SEED_COUNSELORS = [
     title: 'Koordinator Teman Cerita (Lulusan S.Psi)',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-rasidia.jpg',
-    email: 'rasidia@curhatinshinejourney.com',
+    email: 'rasidia@curhatishinejourney.com',
     license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
     experienceYears: 3,
     topics: ['Teman Curhat', 'Kesepian', 'Overthinking', 'Stres Kuliah & Karir'],
@@ -61,7 +61,7 @@ const SEED_COUNSELORS = [
     title: 'Teman Cerita & Tim Edukasi',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-putri.jpg',
-    email: 'putri@curhatinshinejourney.com',
+    email: 'putri@curhatishinejourney.com',
     license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
     experienceYears: 2,
     topics: ['Hubungan Interpersonal', 'Quarter-Life Crisis', 'Self-Love', 'Stres Kerja'],
@@ -73,7 +73,7 @@ const SEED_COUNSELORS = [
     title: 'Teman Cerita (Peer Support)',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-anif.jpg',
-    email: 'anif@curhatinshinejourney.com',
+    email: 'anif@curhatishinejourney.com',
     license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
     experienceYears: 2,
     topics: ['Prokrastinasi & Motivasi', 'Kesepian', 'Regulasi Emosi'],
@@ -85,7 +85,7 @@ const SEED_COUNSELORS = [
     title: 'Pendengar Aktif Sebaya',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-shabrina.jpg',
-    email: 'shabrina@curhatinshinejourney.com',
+    email: 'shabrina@curhatishinejourney.com',
     license: 'Pendengar Aktif Terlatih (Shine Journey)',
     experienceYears: 2,
     topics: ['Relasi Interpersonal', 'Prokrastinasi', 'Kesepian', 'Self-Growth'],
@@ -97,7 +97,7 @@ const SEED_COUNSELORS = [
     title: 'PIC Edukasi Konten & Teman Cerita',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-theresa.jpg',
-    email: 'theresa@curhatinshinejourney.com',
+    email: 'theresa@curhatishinejourney.com',
     license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
     experienceYears: 2,
     topics: ['Stres Akademik', 'Relasi Keluarga & Pasangan', 'Overthinking'],
@@ -109,7 +109,7 @@ const SEED_COUNSELORS = [
     title: 'Teman Cerita (Peer Support)',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-annisa.jpg',
-    email: 'annisa@curhatinshinejourney.com',
+    email: 'annisa@curhatishinejourney.com',
     license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
     experienceYears: 2,
     topics: ['Relasi Interpersonal', 'Kecemasan Ringan', 'Kesepian'],
@@ -121,7 +121,7 @@ const SEED_COUNSELORS = [
     title: 'Teman Cerita (Peer Support)',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-binti.jpg',
-    email: 'binti@curhatinshinejourney.com',
+    email: 'binti@curhatishinejourney.com',
     license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
     experienceYears: 2,
     topics: ['Relasi Interpersonal', 'Kesepian', 'Self-Esteem', 'Menghadapi Kegagalan'],
@@ -133,7 +133,7 @@ const SEED_COUNSELORS = [
     title: 'Pendengar Aktif Sebaya',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-rizki.jpg',
-    email: 'rizki@curhatinshinejourney.com',
+    email: 'rizki@curhatishinejourney.com',
     license: 'Pendengar Aktif Terlatih (Shine Journey)',
     experienceYears: 2,
     topics: ['Stres Akademik', 'Relasi Interpersonal', 'Manajemen Waktu', 'Kesepian'],
@@ -145,7 +145,7 @@ const SEED_COUNSELORS = [
     title: 'Teman Cerita (Peer Support)',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-syifa.jpg',
-    email: 'syifa@curhatinshinejourney.com',
+    email: 'syifa@curhatishinejourney.com',
     license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
     experienceYears: 3,
     topics: ['Distress', 'Relasi Interpersonal', 'Prokrastinasi', 'Overthinking'],
@@ -157,7 +157,7 @@ const SEED_COUNSELORS = [
     title: 'Teman Cerita (Peer Support)',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-siratia.jpg',
-    email: 'siratia@curhatinshinejourney.com',
+    email: 'siratia@curhatishinejourney.com',
     license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
     experienceYears: 2,
     topics: ['Overthinking', 'Relasi Interpersonal', 'Kecemasan Ringan', 'Stres Akademik'],
@@ -169,7 +169,7 @@ const SEED_COUNSELORS = [
     title: 'Teman Cerita (Konselor 14 - Cadangan)',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-faiqotul.jpg',
-    email: 'faiqotul@curhatinshinejourney.com',
+    email: 'faiqotul@curhatishinejourney.com',
     license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
     experienceYears: 2,
     topics: ['Teman Cerita', 'Overthinking', 'Manajemen Emosi'],
@@ -181,7 +181,7 @@ const SEED_COUNSELORS = [
     title: 'Teman Cerita (Konselor 15 - Cadangan Anggota Baru)',
     serviceType: 'TEMAN_CERITA',
     avatar: 'team-rasidia.jpg',
-    email: 'konselor15@curhatinshinejourney.com',
+    email: 'konselor15@curhatishinejourney.com',
     license: 'Lulusan Sarjana Psikologi Terlatih (Shine Journey)',
     experienceYears: 1,
     topics: ['Teman Cerita', 'Pengembangan Diri'],
@@ -191,16 +191,16 @@ const SEED_COUNSELORS = [
 
 // 10 Assessment Staff (8 Real from Sheet + 2 Spare)
 const SEED_ASSESSMENT_STAFF = [
-  { id: 'asm-1', name: 'Rasidia Nur Kinasti, S.Psi', role: 'Admin + Feedback', email: 'asesor.rasidia@curhatinshinejourney.com', tests: ['16 PF', 'Big Five', 'MBTI', 'DISC', 'WPT', 'RMIB'] },
-  { id: 'asm-2', name: 'Syifa Dyandri Kemaputri, S.Psi', role: 'Admin + Feedback', email: 'asesor.syifa@curhatinshinejourney.com', tests: ['16 PF', 'MBTI', 'DISC', 'CFIT'] },
-  { id: 'asm-3', name: 'Siratia Katana, S.Psi', role: 'Admin + Feedback', email: 'asesor.siratia@curhatinshinejourney.com', tests: ['16 PF', 'Big Five', 'DISC', 'WPT'] },
-  { id: 'asm-4', name: 'Anif Fatul Rohmah, S.Psi', role: 'Admin + Feedback', email: 'asesor.anif@curhatinshinejourney.com', tests: ['16 PF', 'DISC', 'CFIT', 'RMIB'] },
-  { id: 'asm-5', name: 'Rizki Dwi Rahmadani Putri', role: 'Admin + Feedback', email: 'asesor.rizki@curhatinshinejourney.com', tests: ['16 PF', 'MBTI', 'WPT'] },
-  { id: 'asm-6', name: 'Maulia Husna, S.Psi', role: 'Admin + Feedback', email: 'asesor.maulia@curhatinshinejourney.com', tests: ['16 PF', 'Big Five', 'MBTI', 'DISC'] },
-  { id: 'asm-7', name: 'Haura Maulidianawati, S.Psi., Psikolog', role: 'Interpretasi & Validasi', email: 'asesor.haura@curhatinshinejourney.com', tests: ['Seluruh Alat Tes & Laporan Resmi'] },
-  { id: 'asm-8', name: 'Hanifa Putri Anggraini, S.Psi., Psikolog', role: 'Interpretasi & Validasi', email: 'asesor.hanifa@curhatinshinejourney.com', tests: ['Seluruh Alat Tes & Laporan Resmi'] },
-  { id: 'asm-9', name: 'Faiqotul Himmah, S.Psi', role: 'Admin + Feedback (Asesor 9)', email: 'asesor.faiqotul@curhatinshinejourney.com', tests: ['16 PF', 'Big Five', 'DISC'] },
-  { id: 'asm-10', name: 'Asesor Mitra 10', role: 'Admin + Feedback (Asesor 10 - Cadangan)', email: 'asesor10@curhatinshinejourney.com', tests: ['16 PF', 'CFIT', 'MBTI'] }
+  { id: 'asm-1', name: 'Rasidia Nur Kinasti, S.Psi', role: 'Admin + Feedback', email: 'asesor.rasidia@curhatishinejourney.com', tests: ['16 PF', 'Big Five', 'MBTI', 'DISC', 'WPT', 'RMIB'] },
+  { id: 'asm-2', name: 'Syifa Dyandri Kemaputri, S.Psi', role: 'Admin + Feedback', email: 'asesor.syifa@curhatishinejourney.com', tests: ['16 PF', 'MBTI', 'DISC', 'CFIT'] },
+  { id: 'asm-3', name: 'Siratia Katana, S.Psi', role: 'Admin + Feedback', email: 'asesor.siratia@curhatishinejourney.com', tests: ['16 PF', 'Big Five', 'DISC', 'WPT'] },
+  { id: 'asm-4', name: 'Anif Fatul Rohmah, S.Psi', role: 'Admin + Feedback', email: 'asesor.anif@curhatishinejourney.com', tests: ['16 PF', 'DISC', 'CFIT', 'RMIB'] },
+  { id: 'asm-5', name: 'Rizki Dwi Rahmadani Putri', role: 'Admin + Feedback', email: 'asesor.rizki@curhatishinejourney.com', tests: ['16 PF', 'MBTI', 'WPT'] },
+  { id: 'asm-6', name: 'Maulia Husna, S.Psi', role: 'Admin + Feedback', email: 'asesor.maulia@curhatishinejourney.com', tests: ['16 PF', 'Big Five', 'MBTI', 'DISC'] },
+  { id: 'asm-7', name: 'Haura Maulidianawati, S.Psi., Psikolog', role: 'Interpretasi & Validasi', email: 'asesor.haura@curhatishinejourney.com', tests: ['Seluruh Alat Tes & Laporan Resmi'] },
+  { id: 'asm-8', name: 'Hanifa Putri Anggraini, S.Psi., Psikolog', role: 'Interpretasi & Validasi', email: 'asesor.hanifa@curhatishinejourney.com', tests: ['Seluruh Alat Tes & Laporan Resmi'] },
+  { id: 'asm-9', name: 'Faiqotul Himmah, S.Psi', role: 'Admin + Feedback (Asesor 9)', email: 'asesor.faiqotul@curhatishinejourney.com', tests: ['16 PF', 'Big Five', 'DISC'] },
+  { id: 'asm-10', name: 'Asesor Mitra 10', role: 'Admin + Feedback (Asesor 10 - Cadangan)', email: 'asesor10@curhatishinejourney.com', tests: ['16 PF', 'CFIT', 'MBTI'] }
 ];
 
 // Seed Initial State
@@ -225,9 +225,9 @@ const initialCurhatiState = {
     { id: 'ASSESSMENT_STAFF', label: '📋 Divisi Asesmen (10 Tim Asesor)', badge: 'Tim Asesor', color: 'bg-amber-600' },
 
     // 2. 15 Individual Counselor Personal Accounts
-    { id: 'csl-1', label: '👩‍⚕️ Psikolog Wilda Nurbayani, M.Psi.', badge: 'Psikolog', color: 'bg-indigo-600' },
-    { id: 'csl-2', label: '👩‍⚕️ Psikolog Haura Maulidianawati, S.Psi.', badge: 'Psikolog', color: 'bg-indigo-600' },
-    { id: 'csl-3', label: '👩‍⚕️ Psikolog Hanifa Putri Anggraini, S.Psi.', badge: 'Psikolog', color: 'bg-indigo-600' },
+    { id: 'csl-1', label: '👩‍⚕️ Psikolog Klinis Wilda Nurbayani, M.Psi.', badge: 'Psikolog Klinis', color: 'bg-indigo-600' },
+    { id: 'csl-2', label: '👩‍⚕️ Psikolog Klinis Haura Maulidianawati, S.Psi.', badge: 'Psikolog Klinis', color: 'bg-indigo-600' },
+    { id: 'csl-3', label: '👩‍⚕️ Psikolog Umum Hanifa Putri Anggraini, S.Psi.', badge: 'Psikolog Umum', color: 'bg-sky-600' },
     { id: 'csl-4', label: '🤝 Teman Cerita Rasidia Nur Kinasti, S.Psi', badge: 'Peer Support', color: 'bg-amber-500' },
     { id: 'csl-5', label: '🤝 Teman Cerita Putri Dyah, S.Psi', badge: 'Peer Support', color: 'bg-pink-500' },
     { id: 'csl-6', label: '🤝 Teman Cerita Anif Fatul Rohmah, S.Psi', badge: 'Peer Support', color: 'bg-amber-500' },
@@ -261,6 +261,16 @@ const initialCurhatiState = {
       price: 175000,
       badgeColor: 'indigo',
       icon: 'brain'
+    },
+    {
+      id: 'srv-4',
+      name: 'Konseling Psikolog Umum',
+      category: 'PSIKOLOG_UMUM',
+      description: 'Konseling profesional dengan Psikolog Umum berizin (STR & SIPP aktif) untuk stres akademik, bimbingan karir, manajemen waktu, dan pengembangan diri.',
+      durationMinutes: 60,
+      price: 135000,
+      badgeColor: 'sky',
+      icon: 'user-check'
     },
     {
       id: 'srv-3',
@@ -439,6 +449,53 @@ const initialCurhatiState = {
       ipAddress: '180.252.164.21',
       metadata: 'Paid IDR 175,000 via Midtrans'
     }
+  ],
+  articles: [
+    {
+      id: 'art-1',
+      title: '5 Cara Menenangkan Pikiran Saat Mengalami Overthinking Parah',
+      slug: '5-cara-menenangkan-pikiran-overthinking',
+      category: 'Kecemasan',
+      author: 'Wilda Nurbayani, S.Psi., M.Psi., Psikolog',
+      authorRole: 'Psikolog Klinis',
+      readTime: '5 menit baca',
+      summary: 'Pelajari teknik grounding 5-4-3-2-1 dan pernapasan diafragma yang terbukti efektif meredakan cemas dan mengembalikan fokus.',
+      content: 'Overthinking sering kali dipicu oleh kekhawatiran berlebih terhadap masa depan yang belum tentu terjadi atau penyesalan atas masa lalu. Saat pikiran mulai berputar cepat dan tak terkendali, teknik grounding 5-4-3-2-1 dapat membantu menghubungkan panca indra dengan saat ini.',
+      publishedAt: '2026-09-20',
+      status: 'PUBLISHED',
+      views: 342,
+      coverGradient: 'linear-gradient(135deg, #667eea, #764ba2)'
+    },
+    {
+      id: 'art-2',
+      title: 'Mengenal Tanda Burnout dan Kapan Saatnya Anda Butuh Teman Cerita',
+      slug: 'mengenal-tanda-burnout',
+      category: 'Self-Care',
+      author: 'Rasidia Nur Kinasti, S.Psi',
+      authorRole: 'Teman Cerita (Lulusan S.Psi)',
+      readTime: '6 menit baca',
+      summary: 'Jangan tunggu hingga lelah fisik dan mental. Kenali sinyal kejenuhan sejak dini agar kesehatan jiwa tetap terjaga.',
+      content: 'Burnout bukan sekadar rasa malas biasa. Ini adalah kondisi kelelahan emosional, fisik, dan mental yang berkepanjangan akibat stres kerja atau beban hidup yang tak tertangani. Berbagi cerita dengan pendamping yang aman dan terpercaya adalah langkah pertama pemulihan.',
+      publishedAt: '2026-09-18',
+      status: 'PUBLISHED',
+      views: 289,
+      coverGradient: 'linear-gradient(135deg, #f093fb, #f5576c)'
+    },
+    {
+      id: 'art-3',
+      title: 'Kaitan Erat Antara Kualitas Tidur Malam dan Stabilitas Emosional',
+      slug: 'tidur-malam-dan-stabilitas-emosional',
+      category: 'Tidur & Relaksasi',
+      author: 'Hanifa Putri Anggraini, S.Psi., Psikolog',
+      authorRole: 'Psikolog Umum',
+      readTime: '4 menit baca',
+      summary: 'Sulit tidur seringkali menjadi alarm bahwa ada beban pikiran yang belum terurai. Temukan cara meredakannya sebelum istirahat.',
+      content: 'Saat tidur malam terganggu, amigdala di otak menjadi 60% lebih reaktif terhadap stimulus emosional negatif. Menciptakan rutinitas relaksasi sebelum tidur dan mendokumentasikan uneg-uneg dapat membantu menenangkan saraf simpatik.',
+      publishedAt: '2026-09-15',
+      status: 'PUBLISHED',
+      views: 215,
+      coverGradient: 'linear-gradient(135deg, #43e97b, #38f9d7)'
+    }
   ]
 };
 
@@ -455,6 +512,21 @@ class CurhatiStore {
       if (stored) {
         const parsed = JSON.parse(stored);
         if (parsed && parsed.counselors && parsed.counselors.length >= 13) {
+          // Ensure articles exist
+          if (!parsed.articles || !Array.isArray(parsed.articles)) {
+            parsed.articles = JSON.parse(JSON.stringify(initialCurhatiState.articles));
+          }
+          // Ensure Hanifa is marked as PSIKOLOG_UMUM
+          const hanifa = parsed.counselors.find(c => c.id === 'csl-3');
+          if (hanifa) {
+            hanifa.serviceType = 'PSIKOLOG_UMUM';
+            hanifa.title = 'Psikolog Umum';
+          }
+          // Ensure srv-4 exists in services
+          if (!parsed.services.some(s => s.id === 'srv-4')) {
+            const srv4 = initialCurhatiState.services.find(s => s.id === 'srv-4');
+            if (srv4) parsed.services.splice(2, 0, srv4);
+          }
           return parsed;
         }
       }
@@ -502,7 +574,7 @@ class CurhatiStore {
       this.data.currentUser = {
         id: 'adm-01',
         name: 'Admin Operasional (CS & Operasional)',
-        email: 'admin@curhatinshinejourney.com',
+        email: 'admin@curhatishinejourney.com',
         role: 'ADMIN',
         avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80',
         title: '1 Akun Bersama (Multi-Login 5 User)'
@@ -511,7 +583,7 @@ class CurhatiStore {
       this.data.currentUser = {
         id: 'coord-01',
         name: 'Koordinator Layanan',
-        email: 'koordinator@curhatinshinejourney.com',
+        email: 'koordinator@curhatishinejourney.com',
         role: 'COORDINATOR',
         avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&auto=format&fit=crop&q=80',
         title: 'Akses Master Keseluruhan Sistem'
@@ -520,7 +592,7 @@ class CurhatiStore {
       this.data.currentUser = {
         id: 'ai-01',
         name: 'ShineBot AI Assistant',
-        email: 'ai.admin@curhatinshinejourney.com',
+        email: 'ai.admin@curhatishinejourney.com',
         role: 'AI_ADMIN',
         avatar: 'logo-icon.png',
         title: 'Admin AI (Auto-Reply & Triage)'
@@ -529,7 +601,7 @@ class CurhatiStore {
       this.data.currentUser = {
         id: 'fin-01',
         name: 'Siti Rahma, S.E',
-        email: 'finance@curhatinshinejourney.com',
+        email: 'finance@curhatishinejourney.com',
         role: 'FINANCE',
         avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
         title: 'Head of Finance & Billing'
@@ -538,7 +610,7 @@ class CurhatiStore {
       this.data.currentUser = {
         id: 'asm-1',
         name: 'Divisi Asesmen (10 Asesor)',
-        email: 'asesmen@curhatinshinejourney.com',
+        email: 'asesmen@curhatishinejourney.com',
         role: 'ASSESSMENT_STAFF',
         avatar: 'team-rasidia.jpg',
         title: 'Asesor Psikologi Resmi'
@@ -549,8 +621,8 @@ class CurhatiStore {
       this.data.currentUser = {
         id: counselor.id,
         name: counselor.name,
-        email: counselor.email || `${counselor.id}@curhatinshinejourney.com`,
-        role: counselor.serviceType === 'PSIKOLOG_KLINIS' ? 'PSYCHOLOGIST' : 'TEMAN_CERITA',
+        email: counselor.email || `${counselor.id}@curhatishinejourney.com`,
+        role: (counselor.serviceType === 'PSIKOLOG_KLINIS' || counselor.serviceType === 'PSIKOLOG_UMUM') ? 'PSYCHOLOGIST' : 'TEMAN_CERITA',
         counselorId: counselor.id,
         avatar: counselor.avatar,
         title: counselor.title
@@ -758,6 +830,52 @@ class CurhatiStore {
       metadata
     };
     this.data.auditLogs.unshift(log);
+  }
+
+  // Article Publishing Actions
+  addArticle({ title, category, author, authorRole, readTime, summary, content, coverGradient, status = 'PUBLISHED' }) {
+    if (!this.data.articles) this.data.articles = [];
+    const id = `art-${Date.now()}`;
+    const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const newArt = {
+      id,
+      title,
+      slug,
+      category: category || 'Edukasi',
+      author: author || (this.data.currentUser ? this.data.currentUser.name : 'Tim Shine Journey'),
+      authorRole: authorRole || (this.data.currentUser ? this.data.currentUser.title : 'Psikolog / Konselor'),
+      readTime: readTime || '5 menit baca',
+      summary,
+      content,
+      publishedAt: new Date().toISOString().split('T')[0],
+      status: status || 'PUBLISHED',
+      views: 1,
+      coverGradient: coverGradient || 'linear-gradient(135deg, #4f46e5, #0d9488)'
+    };
+    this.data.articles.unshift(newArt);
+    this.addAuditLog('PUBLISH_ARTICLE', 'Article', id, `Published article "${title}"`);
+    this.saveState();
+    return newArt;
+  }
+
+  updateArticle(id, updates) {
+    if (!this.data.articles) return null;
+    const art = this.data.articles.find(a => a.id === id);
+    if (!art) return null;
+    Object.assign(art, updates);
+    this.addAuditLog('UPDATE_ARTICLE', 'Article', id, `Updated article "${art.title}"`);
+    this.saveState();
+    return art;
+  }
+
+  deleteArticle(id) {
+    if (!this.data.articles) return false;
+    const idx = this.data.articles.findIndex(a => a.id === id);
+    if (idx === -1) return false;
+    const removed = this.data.articles.splice(idx, 1)[0];
+    this.addAuditLog('DELETE_ARTICLE', 'Article', id, `Deleted article "${removed ? removed.title : id}"`);
+    this.saveState();
+    return true;
   }
 
   resetToDefault() {

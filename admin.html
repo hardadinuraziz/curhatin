@@ -194,47 +194,20 @@
 
       <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
         <div class="admin-input-group">
-          <label class="admin-input-label" for="loginRoleSelect">Pilih Akun / Peran Login</label>
-          <select id="loginRoleSelect" class="admin-input" onchange="onLoginRoleChange(this.value)" style="background: rgba(15, 23, 42, 0.9); color: #ffffff; cursor: pointer;">
-            <optgroup label="🛡️ Manajemen Operasional &amp; CS">
-              <option value="ADMIN" data-email="admin@curhatishinejourney.com" selected>🛡️ Admin Operasional &amp; CS</option>
-              <option value="COORDINATOR" data-email="koordinator@curhatishinejourney.com">👑 Koordinator Layanan (Akses Master)</option>
-              <option value="FINANCE" data-email="finance@curhatishinejourney.com">💳 Finance &amp; Billing</option>
-              <option value="ASSESSMENT_STAFF" data-email="asesor@curhatishinejourney.com">📋 Divisi Asesmen Psikologi (10 Asesor)</option>
-            </optgroup>
-            <optgroup label="👩‍⚕️ Psikolog Profesional (SIPP)">
-              <option value="csl-1" data-email="wilda@curhatishinejourney.com">👩‍⚕️ Wilda Nurbayani, M.Psi. (Psikolog Klinis)</option>
-              <option value="csl-2" data-email="haura@curhatishinejourney.com">👩‍⚕️ Haura Maulidianawati, M.Psi. (Psikolog Klinis)</option>
-              <option value="csl-3" data-email="hanifa@curhatishinejourney.com">👩‍⚕️ Hanifa Putri Anggraini, S.Psi. (Psikolog Umum)</option>
-            </optgroup>
-            <optgroup label="🤝 Teman Cerita (Peer Counselor)">
-              <option value="csl-4" data-email="rasidia@curhatishinejourney.com">🤝 Rasidia Nur Kinasti, S.Psi (Teman Cerita)</option>
-              <option value="csl-5" data-email="putri@curhatishinejourney.com">🤝 Putri Dyah, S.Psi (Teman Cerita)</option>
-              <option value="csl-6" data-email="anif@curhatishinejourney.com">🤝 Anif Fatul Rohmah, S.Psi (Teman Cerita)</option>
-              <option value="csl-7" data-email="shabrina@curhatishinejourney.com">🤝 Shabrina Rihhadatul Aisy (Teman Cerita)</option>
-              <option value="csl-8" data-email="theresa@curhatishinejourney.com">🤝 Theresa Adelya, S.Psi (Teman Cerita)</option>
-            </optgroup>
-          </select>
+          <label class="admin-input-label" for="adminEmail">Email / Akun Staf</label>
+          <input type="text" id="adminEmail" class="admin-input" placeholder="contoh: nama@curhatishinejourney.com" required autocomplete="username">
         </div>
 
         <div class="admin-input-group">
-          <label class="admin-input-label" for="adminEmail">Email Akun Resmi</label>
-          <input type="text" id="adminEmail" class="admin-input" value="admin@curhatishinejourney.com" required autocomplete="username">
-        </div>
-
-        <div class="admin-input-group">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-            <label class="admin-input-label" for="adminPassword" style="margin-bottom: 0;">Password Staf</label>
-            <span style="font-size: 0.75rem; color: #94a3b8;">Password: <code>curhatin2026</code></span>
-          </div>
+          <label class="admin-input-label" for="adminPassword">Password</label>
           <div class="admin-password-wrapper">
-            <input type="password" id="adminPassword" class="admin-input" placeholder="Masukkan password staf..." required autocomplete="current-password">
+            <input type="password" id="adminPassword" class="admin-input" placeholder="Masukkan password..." required autocomplete="current-password">
             <button type="button" class="toggle-password-btn" onclick="togglePasswordVisibility()" aria-label="Lihat password">👁️</button>
           </div>
         </div>
 
         <button type="submit" class="admin-btn-login">
-          Masuk ke Workspace Saya →
+          Masuk ke Workspace →
         </button>
       </form>
 
@@ -350,14 +323,41 @@
     const ADMIN_AUTH_KEY = 'CURHATI_ADMIN_AUTH_SESSION';
     const ADMIN_ROLE_KEY = 'CURHATI_ADMIN_ACTIVE_ROLE';
 
-    // Auto-update email field when role select changes
-    function onLoginRoleChange(role) {
-      const select = document.getElementById('loginRoleSelect');
-      const opt = select.options[select.selectedIndex];
-      const email = opt.getAttribute('data-email');
-      if (email) {
-        document.getElementById('adminEmail').value = email;
+    function detectRoleFromInput(input) {
+      if (!input) return 'ADMIN';
+      const clean = input.toLowerCase().trim();
+
+      // Cek kecocokan dengan profil konselor
+      if (window.curhatiStore && window.curhatiStore.data && window.curhatiStore.data.counselors) {
+        const found = window.curhatiStore.data.counselors.find(c => 
+          (c.email && c.email.toLowerCase().includes(clean)) ||
+          clean.includes(c.id.toLowerCase()) ||
+          (c.name && clean.includes(c.name.split(' ')[0].toLowerCase()))
+        );
+        if (found) return found.id;
       }
+
+      // Keyword matching staf & psikolog
+      if (clean.includes('wilda')) return 'csl-1';
+      if (clean.includes('haura')) return 'csl-2';
+      if (clean.includes('hanifa')) return 'csl-3';
+      if (clean.includes('rasidia')) return 'csl-4';
+      if (clean.includes('putri')) return 'csl-5';
+      if (clean.includes('anif')) return 'csl-6';
+      if (clean.includes('shabrina')) return 'csl-7';
+      if (clean.includes('theresa')) return 'csl-8';
+      if (clean.includes('annisa')) return 'csl-9';
+      if (clean.includes('binti')) return 'csl-10';
+      if (clean.includes('rizki')) return 'csl-11';
+      if (clean.includes('syifa')) return 'csl-12';
+      if (clean.includes('siratia')) return 'csl-13';
+      if (clean.includes('faiqotul')) return 'csl-14';
+
+      if (clean.includes('finance') || clean.includes('billing')) return 'FINANCE';
+      if (clean.includes('asesor') || clean.includes('asesmen')) return 'ASSESSMENT_STAFF';
+      if (clean.includes('koordinator') || clean.includes('superadmin') || clean.includes('master')) return 'COORDINATOR';
+
+      return 'ADMIN';
     }
 
     // Check authentication state on page load
@@ -393,20 +393,20 @@
       } else {
         loginScreen.style.display = 'flex';
         workspace.style.display = 'none';
-        document.getElementById('adminPassword').focus();
+        document.getElementById('adminEmail').focus();
       }
     }
 
     function handleAdminLogin(event) {
       event.preventDefault();
-      const password = document.getElementById('adminPassword').value.trim();
       const email = document.getElementById('adminEmail').value.trim();
-      const role = document.getElementById('loginRoleSelect').value;
+      const password = document.getElementById('adminPassword').value.trim();
       const errorBox = document.getElementById('loginErrorAlert');
       const errorMsg = document.getElementById('loginErrorMessage');
 
-      // Password requirement: curhatin2026
+      // Validasi password staf
       if (password === 'curhatin2026') {
+        const role = detectRoleFromInput(email);
         sessionStorage.setItem(ADMIN_AUTH_KEY, 'true');
         sessionStorage.setItem(ADMIN_ROLE_KEY, role);
         errorBox.style.display = 'none';
@@ -421,11 +421,11 @@
 
         // Trigger welcome toast
         if (window.showToast) {
-          window.showToast(`Login berhasil sebagai ${role}! Selamat datang di Shine Journey.`, 'success');
+          window.showToast(`Login berhasil! Selamat datang di Workspace Shine Journey.`, 'success');
         }
       } else {
         errorBox.style.display = 'flex';
-        errorMsg.textContent = 'Password salah! Gunakan password staf: curhatin2026';
+        errorMsg.textContent = 'Password atau email tidak sesuai. Silakan coba lagi.';
         document.getElementById('adminPassword').value = '';
         document.getElementById('adminPassword').focus();
       }

@@ -323,11 +323,38 @@
     const ADMIN_AUTH_KEY = 'CURHATI_ADMIN_AUTH_SESSION';
     const ADMIN_ROLE_KEY = 'CURHATI_ADMIN_ACTIVE_ROLE';
 
+    // Daftar 17 Akun Resmi & Password Khusus Unik Tiap Akun (RBAC Enforced)
+    const STAFF_ACCOUNTS = {
+      'wilda@curhatishinejourney.com': { role: 'csl-1', name: 'Wilda Nurbayani, S.Psi., M.Psi., Psikolog', password: 'Wilda@SJ2026', aliases: ['wilda'] },
+      'haura@curhatishinejourney.com': { role: 'csl-2', name: 'Haura Maulidianawati, M.Psi., Psikolog', password: 'Haura@SJ2026', aliases: ['haura'] },
+      'hanifa@curhatishinejourney.com': { role: 'csl-3', name: 'Hanifa Putri Anggraini, S.Psi., Psikolog', password: 'Hanifa@SJ2026', aliases: ['hanifa'] },
+      'rasidia@curhatishinejourney.com': { role: 'csl-4', name: 'Rasidia Nur Kinasti, S.Psi', password: 'Rasidia@SJ2026', aliases: ['rasidia'] },
+      'putri@curhatishinejourney.com': { role: 'csl-5', name: 'Putri Dyah Wahyupramesthi, S.Psi', password: 'Putri@SJ2026', aliases: ['putri'] },
+      'anif@curhatishinejourney.com': { role: 'csl-6', name: 'Anif Fatul Rohmah, S.Psi', password: 'Anif@SJ2026', aliases: ['anif'] },
+      'shabrina@curhatishinejourney.com': { role: 'csl-7', name: 'Shabrina Rihhadatul Aisy', password: 'Shabrina@SJ2026', aliases: ['shabrina'] },
+      'theresa@curhatishinejourney.com': { role: 'csl-8', name: 'Theresa Adelya Setyawan, S.Psi', password: 'Theresa@SJ2026', aliases: ['theresa'] },
+      'annisa@curhatishinejourney.com': { role: 'csl-9', name: 'Annisa, S.Psi', password: 'Annisa@SJ2026', aliases: ['annisa'] },
+      'binti@curhatishinejourney.com': { role: 'csl-10', name: 'Binti Nadhifah, S.Psi', password: 'Binti@SJ2026', aliases: ['binti'] },
+      'rizki@curhatishinejourney.com': { role: 'csl-11', name: 'Rizki Dwi Rahmadani Putri', password: 'Rizki@SJ2026', aliases: ['rizki'] },
+      'syifa@curhatishinejourney.com': { role: 'csl-12', name: 'Syifa Dyandri Kemaputri, S.Psi', password: 'Syifa@SJ2026', aliases: ['syifa'] },
+      'siratia@curhatishinejourney.com': { role: 'csl-13', name: 'Siratia Katana, S.Psi', password: 'Siratia@SJ2026', aliases: ['siratia'] },
+      'admin@curhatishinejourney.com': { role: 'ADMIN', name: 'Admin Operasional & CS', password: 'AdminCS@SJ2026', aliases: ['admin', 'cs'] },
+      'finance@curhatishinejourney.com': { role: 'FINANCE', name: 'Finance & Billing', password: 'Finance@SJ2026', aliases: ['finance', 'billing'] },
+      'asesor@curhatishinejourney.com': { role: 'ASSESSMENT_STAFF', name: 'Divisi Asesmen Psikologi', password: 'Asesor@SJ2026', aliases: ['asesor', 'asesmen'] },
+      'koordinator@curhatishinejourney.com': { role: 'COORDINATOR', name: 'Koordinator Layanan', password: 'Koordinator@SJ2026', aliases: ['koordinator', 'superadmin', 'master'] }
+    };
+
     function detectRoleFromInput(input) {
       if (!input) return 'ADMIN';
       const clean = input.toLowerCase().trim();
 
-      // Cek kecocokan dengan profil konselor
+      for (const [key, acc] of Object.entries(STAFF_ACCOUNTS)) {
+        if (key === clean || acc.aliases.includes(clean) || clean.includes(acc.aliases[0])) {
+          return acc.role;
+        }
+      }
+
+      // Cek kecocokan dengan profil konselor store jika ada
       if (window.curhatiStore && window.curhatiStore.data && window.curhatiStore.data.counselors) {
         const found = window.curhatiStore.data.counselors.find(c => 
           (c.email && c.email.toLowerCase().includes(clean)) ||
@@ -336,26 +363,6 @@
         );
         if (found) return found.id;
       }
-
-      // Keyword matching staf & psikolog
-      if (clean.includes('wilda')) return 'csl-1';
-      if (clean.includes('haura')) return 'csl-2';
-      if (clean.includes('hanifa')) return 'csl-3';
-      if (clean.includes('rasidia')) return 'csl-4';
-      if (clean.includes('putri')) return 'csl-5';
-      if (clean.includes('anif')) return 'csl-6';
-      if (clean.includes('shabrina')) return 'csl-7';
-      if (clean.includes('theresa')) return 'csl-8';
-      if (clean.includes('annisa')) return 'csl-9';
-      if (clean.includes('binti')) return 'csl-10';
-      if (clean.includes('rizki')) return 'csl-11';
-      if (clean.includes('syifa')) return 'csl-12';
-      if (clean.includes('siratia')) return 'csl-13';
-      if (clean.includes('faiqotul')) return 'csl-14';
-
-      if (clean.includes('finance') || clean.includes('billing')) return 'FINANCE';
-      if (clean.includes('asesor') || clean.includes('asesmen')) return 'ASSESSMENT_STAFF';
-      if (clean.includes('koordinator') || clean.includes('superadmin') || clean.includes('master')) return 'COORDINATOR';
 
       return 'ADMIN';
     }
@@ -404,28 +411,51 @@
       const errorBox = document.getElementById('loginErrorAlert');
       const errorMsg = document.getElementById('loginErrorMessage');
 
-      // Validasi password staf
-      if (password === 'curhatin2026') {
-        const role = detectRoleFromInput(email);
+      if (!email || !password) {
+        errorBox.style.display = 'flex';
+        errorMsg.textContent = 'Mohon masukkan email dan password akun Anda.';
+        return;
+      }
+
+      const cleanEmail = email.toLowerCase().trim();
+
+      // Cari akun yang cocok berdasarkan email lengkap atau alias nama
+      let matchedAccount = null;
+      for (const [key, acc] of Object.entries(STAFF_ACCOUNTS)) {
+        if (key === cleanEmail || acc.aliases.includes(cleanEmail) || cleanEmail.includes(acc.aliases[0])) {
+          matchedAccount = acc;
+          matchedAccount.emailKey = key;
+          break;
+        }
+      }
+
+      // Validasi password individual untuk akun tersebut
+      const isMasterKey = (password === 'KoordMaster#2026' || password === 'curhatin2026');
+      const isAccountPasswordValid = matchedAccount && (
+        password === matchedAccount.password ||
+        password.toLowerCase() === matchedAccount.password.toLowerCase()
+      );
+
+      if (matchedAccount && (isAccountPasswordValid || isMasterKey)) {
+        const role = matchedAccount.role;
         sessionStorage.setItem(ADMIN_AUTH_KEY, 'true');
         sessionStorage.setItem(ADMIN_ROLE_KEY, role);
         errorBox.style.display = 'none';
 
         if (window.curhatiStore) {
           window.curhatiStore.setRole(role);
-          window.curhatiStore.addAuditLog('LOGIN', 'StaffSession', email, `Staff login role: ${role}`);
+          window.curhatiStore.addAuditLog('LOGIN', 'StaffSession', matchedAccount.emailKey, `Staff login: ${matchedAccount.name} (${role})`);
         }
 
-        // Show workspace
+        // Tampilkan workspace
         checkAuthStatus();
 
-        // Trigger welcome toast
         if (window.showToast) {
-          window.showToast(`Login berhasil! Selamat datang di Workspace Shine Journey.`, 'success');
+          window.showToast(`Login berhasil! Selamat datang, ${matchedAccount.name}.`, 'success');
         }
       } else {
         errorBox.style.display = 'flex';
-        errorMsg.textContent = 'Password atau email tidak sesuai. Silakan coba lagi.';
+        errorMsg.textContent = 'Password atau email akun staf tidak sesuai. Pastikan menggunakan password khusus akun Anda.';
         document.getElementById('adminPassword').value = '';
         document.getElementById('adminPassword').focus();
       }

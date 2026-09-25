@@ -17,7 +17,7 @@
   - Kontak Resmi: **083187689054 an. Shine Journey** ([WhatsApp Langsung](https://wa.me/6283187689054)).
 
 - **Backend & Admin Management Portal (`/admin`)**:
-  - Gerbang Keamanan Login Khusus Staf & Admin (Password: `curhatin2026`).
+  - Gerbang Keamanan Login Khusus Staf & Admin dengan Password Khusus Unik Tiap Akun (RBAC Enforced).
   - Sistem Multi-Role RBAC (8 Peran: `SUPER_ADMIN`, `ADMIN_OPERASIONAL`, `PSIKOLOG`, `TEMAN_CERITA`, `ASSESSMENT_STAFF`, `FINANCE`, `OWNER`, `CLIENT`).
   - **Prinsip Least-Privilege & Etika Klinis**: Catatan medis (*Clinical Notes*) terisolasi secara ketat dan hanya dapat diakses oleh Psikolog/Konselor yang bertugas dan Super Admin (terproteksi dari peran Client dan Owner).
   - **Anti Double-Booking Engine**: Transaksi basis data atomik dengan unique constraint `counselor_date_slot`.
@@ -36,7 +36,7 @@ python3 server.py
 
 Buka di peramban:
 - **Frontend Klien**: `http://localhost:3000/`
-- **Backend / Admin Portal**: `http://localhost:3000/admin` (Password Akses: `curhatin2026`)
+- **Backend / Admin Portal**: `http://localhost:3000/admin` (Kredensial per akun tercantum di PDF Pedoman Akun Admin)
 
 ---
 

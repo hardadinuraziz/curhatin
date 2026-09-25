@@ -62,6 +62,11 @@
     if (topUserAvatarEl) topUserAvatarEl.src = state.currentUser.avatar;
     if (topUserNameEl) topUserNameEl.textContent = state.currentUser.name;
     if (topUserRoleEl) topUserRoleEl.textContent = state.currentUser.title || state.currentUser.role;
+
+    const topActiveNameEl = document.getElementById('topActiveName');
+    const topActiveRoleEl = document.getElementById('topActiveRoleBadge');
+    if (topActiveNameEl) topActiveNameEl.textContent = (state.currentUser.name || 'Staf').split(' (')[0];
+    if (topActiveRoleEl) topActiveRoleEl.textContent = state.currentUser.title || state.currentUser.role;
   }
 
   function bindEvents() {
@@ -175,14 +180,13 @@
       case 'ADMIN':
         return [
           {
-            title: 'ADMIN OPERASIONAL (1 AKUN - 5 USER)',
+            title: 'ADMIN OPERASIONAL & CS',
             items: [
-              { id: 'overview', label: 'Overview Sistem', icon: 'shield' },
+              { id: 'overview', label: 'Overview Operasional CS', icon: 'shield' },
               { id: 'schedule-all', label: 'Kontrol Jadwal & Status Online', icon: 'calendar-check' },
+              { id: 'reservations-mgmt', label: 'Reservasi & Broadcast WA', icon: 'calendar-plus', badge: 'Aktif' },
               { id: 'articles', label: 'Publikasi Artikel Edukasi', icon: 'file-text', badge: 'Baru' },
-              { id: 'users', label: 'Kelola 15 Konselor & 10 Asesor', icon: 'users-cog' },
-              { id: 'services', label: 'Kelola Layanan', icon: 'sliders' },
-              { id: 'audit-logs', label: 'Audit Logs Keamanan', icon: 'activity' }
+              { id: 'services', label: 'Katalog Layanan & Tarif', icon: 'sliders' }
             ]
           }
         ];
@@ -2048,66 +2052,148 @@
       return;
     }
 
+    if (tab === 'reservations-mgmt') {
+      const pendingRes = state.reservations || [];
+      viewportEl.innerHTML = `
+        <div class="flex items-center justify-between" style="margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem;">
+          <div>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--slate-900);">Manajemen Reservasi &amp; Notifikasi Klien</h2>
+            <p style="color: var(--slate-500); font-size: 0.875rem;">Verifikasi jadwal temu klien, konfirmasi pembayaran, dan kirim pengingat sesi konsultasi via WhatsApp.</p>
+          </div>
+          <button class="btn btn-primary" onclick="showToast('Sistem notifikasi WhatsApp terhubung otomatis', 'success')">📲 Cek Status Gateway WA</button>
+        </div>
+
+        <div class="dashboard-card" style="margin-bottom: 1.5rem;">
+          <div class="card-header">
+            <div>
+              <h3>Daftar Reservasi Klien Terkini</h3>
+              <p>Kelola jadwal konsultasi Psikolog Klinis, Psikolog Umum, dan Teman Cerita.</p>
+            </div>
+          </div>
+          <div class="data-table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>No. Booking</th>
+                  <th>Klien &amp; Kontak</th>
+                  <th>Layanan &amp; Konselor</th>
+                  <th>Jadwal Sesi</th>
+                  <th>Status Reservasi</th>
+                  <th>Aksi Operasional CS</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${pendingRes.length > 0 ? pendingRes.map(r => `
+                  <tr>
+                    <td><code>${r.id}</code></td>
+                    <td>
+                      <strong>${r.clientName}</strong>
+                      <div style="font-size: 0.75rem; color: var(--slate-500);">${r.clientPhone || '0831-8768-9054'}</div>
+                    </td>
+                    <td>
+                      <span class="badge ${r.serviceType.includes('Klinis') ? 'badge-completed' : r.serviceType.includes('Umum') ? 'badge-scheduled' : 'badge-waiting'}">${r.serviceType}</span>
+                      <div style="font-size: 0.75rem; color: var(--slate-600); margin-top: 2px;">${r.counselorName}</div>
+                    </td>
+                    <td>
+                      <strong>${r.date}</strong>
+                      <div style="font-size: 0.75rem; color: var(--slate-500);">${r.timeSlot}</div>
+                    </td>
+                    <td>
+                      <span class="badge ${r.status === 'CONFIRMED' || r.status === 'PAID' ? 'badge-completed' : 'badge-waiting'}">${r.status || 'PENDING'}</span>
+                    </td>
+                    <td>
+                      <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
+                        <button class="btn btn-sm btn-primary" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="store.confirmReservation('${r.id}'); showToast('Reservasi ${r.id} berhasil dikonfirmasi!', 'success'); renderView();">Konfirmasi</button>
+                        <a href="https://wa.me/${(r.clientPhone || '6283187689054').replace(/[^0-9]/g, '')}?text=Halo%20kak%20${encodeURIComponent(r.clientName)},%20kami%20dari%20Admin%20Shine%20Journey%20ingin%20mengonfirmasi%20jadwal%20konseling%20pada%20${encodeURIComponent(r.date)}%20pukul%20${encodeURIComponent(r.timeSlot)}." target="_blank" class="btn btn-sm btn-outline" style="padding: 0.25rem 0.6rem; font-size: 0.75rem; color: #059669; border-color: #10b981;">📲 WA Klien</a>
+                      </div>
+                    </td>
+                  </tr>
+                `).join('') : `
+                  <tr><td colspan="6" style="text-align: center; color: var(--slate-500); padding: 1.5rem;">Belum ada data reservasi masuk</td></tr>
+                `}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    const onlineCounselors = state.counselors.filter(c => {
+      const st = window.counselorSchedule ? window.counselorSchedule.getCounselorLiveStatus(c.id) : { status: 'offline' };
+      return st.status === 'online';
+    });
+
     viewportEl.innerHTML = `
       <div class="stats-grid">
         <div class="stat-card">
           <div>
-            <div class="stat-label">Total Akun Terdaftar</div>
-            <div class="stat-value">29 Akun</div>
-            <div class="stat-sub">15 Konselor, 10 Asesor, 4 Inti</div>
+            <div class="stat-label">Konselor Online / Standby</div>
+            <div class="stat-value">${onlineCounselors.length} Konselor</div>
+            <div class="stat-sub positive">● Aktif di Web Publik</div>
           </div>
-          <div class="stat-icon icon-teal">👥</div>
+          <div class="stat-icon icon-emerald">👥</div>
         </div>
         <div class="stat-card">
           <div>
-            <div class="stat-label">Audit Events Tercatat</div>
-            <div class="stat-value">${state.auditLogs.length}</div>
-            <div class="stat-sub positive">In-memory / LocalStorage Log</div>
+            <div class="stat-label">Reservasi Klien Terjadwal</div>
+            <div class="stat-value">${(state.reservations || []).length} Sesi</div>
+            <div class="stat-sub positive">Klinis, Umum &amp; Teman Cerita</div>
           </div>
-          <div class="stat-icon icon-indigo">📜</div>
+          <div class="stat-icon icon-indigo">📅</div>
         </div>
         <div class="stat-card">
           <div>
-            <div class="stat-label">Admin by AI (ShineBot)</div>
-            <div class="stat-value">Aktif 24/7</div>
-            <div class="stat-sub positive">Auto-Reply Standby</div>
+            <div class="stat-label">Artikel Edukasi Tayang</div>
+            <div class="stat-value">${(state.articles || []).length} Artikel</div>
+            <div class="stat-sub positive">Materi Literasi Jiwa</div>
           </div>
-          <div class="stat-icon icon-emerald">🤖</div>
+          <div class="stat-icon icon-teal">📝</div>
+        </div>
+        <div class="stat-card">
+          <div>
+            <div class="stat-label">Kesiapan CS &amp; WhatsApp</div>
+            <div class="stat-value">Standby</div>
+            <div class="stat-sub positive">+62 831-8768-9054</div>
+          </div>
+          <div class="stat-icon icon-amber">💬</div>
         </div>
       </div>
 
       <div class="dashboard-card" style="margin-bottom: 1.5rem;">
         <div class="card-header">
           <div>
-            <h3>Pemantauan Status Ketersediaan Konselor Hari Ini</h3>
-            <p>Dihitung otomatis dari JADWAL PIKET TIM CURHATI.xlsx (WIB)</p>
+            <h3>Kontrol Cepat Ketersediaan Konselor di Web Publik</h3>
+            <p>Admin CS dapat menyesuaikan status psikolog/konselor jika berhalangan atau sedang sesi.</p>
           </div>
-          <button class="btn btn-outline btn-sm" onclick="window.curhatiApp.navigateTo('schedule-all')">Kelola Seluruh Jadwal</button>
+          <button class="btn btn-outline btn-sm" onclick="window.curhatiApp.navigateTo('schedule-all')">Lihat Matriks Jadwal Lengkap</button>
         </div>
         <div class="data-table-wrapper">
           <table class="data-table">
             <thead>
               <tr>
                 <th>Nama Konselor</th>
-                <th>Layanan</th>
-                <th>Status Ketersediaan Web</th>
-                <th>Aksi</th>
+                <th>Kategori Layanan</th>
+                <th>Status Realtime di Web</th>
+                <th>Aksi Cepat Admin CS</th>
               </tr>
             </thead>
             <tbody>
-              ${state.counselors.slice(0, 6).map(c => {
+              ${state.counselors.slice(0, 7).map(c => {
                 const st = window.counselorSchedule ? window.counselorSchedule.getCounselorLiveStatus(c.id) : { status: 'offline', text: 'Offline' };
                 return `
                   <tr>
                     <td><strong>${c.name}</strong></td>
-                    <td>${c.serviceType === 'PSIKOLOG_KLINIS' ? 'Psikolog Klinis' : c.serviceType === 'PSIKOLOG_UMUM' ? 'Psikolog Umum' : 'Teman Cerita'}</td>
+                    <td><span class="badge ${c.serviceType === 'PSIKOLOG_KLINIS' ? 'badge-completed' : c.serviceType === 'PSIKOLOG_UMUM' ? 'badge-scheduled' : 'badge-waiting'}">${c.serviceType === 'PSIKOLOG_KLINIS' ? 'Psikolog Klinis' : c.serviceType === 'PSIKOLOG_UMUM' ? 'Psikolog Umum' : 'Teman Cerita'}</span></td>
                     <td>
                       <span class="badge ${st.status === 'online' ? 'badge-completed' : st.status === 'session' ? 'badge-waiting' : 'badge-cancelled'}">
                         ${st.status === 'online' ? '● ' : st.status === 'session' ? '⏳ ' : '○ '}${st.text}
                       </span>
                     </td>
                     <td>
-                      <button class="btn btn-sm btn-outline" onclick="if(window.counselorSchedule) window.counselorSchedule.openScheduleModal('${c.id}')">Lihat Shift</button>
+                      <div style="display: flex; gap: 0.25rem;">
+                        <button class="btn btn-sm btn-outline" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="if(window.counselorSchedule) window.counselorSchedule.openScheduleModal('${c.id}')">Ubah Status</button>
+                      </div>
                     </td>
                   </tr>
                 `;
@@ -2120,39 +2206,37 @@
       <div class="dashboard-card">
         <div class="card-header">
           <div>
-            <h3>Audit Trail Keamanan Sistem Terkini</h3>
-            <p>Mencatat Login, Reservasi, Transaksi, dan Pengunggahan Berkas</p>
+            <h3>Reservasi Klien Memerlukan Konfirmasi CS</h3>
+            <p>Jadwal konsultasi yang perlu dikonfirmasi atau dikirimkan pengingat WhatsApp.</p>
           </div>
-          <button class="btn btn-outline btn-sm" onclick="window.curhatiApp.navigateTo('audit-logs')">Buka Log Lengkap</button>
+          <button class="btn btn-outline btn-sm" onclick="window.curhatiApp.navigateTo('reservations-mgmt')">Kelola Semua Reservasi</button>
         </div>
         <div class="data-table-wrapper">
           <table class="data-table">
             <thead>
               <tr>
-                <th>Waktu (WIB)</th>
-                <th>Pengguna</th>
-                <th>Aksi</th>
-                <th>Resource</th>
-                <th>Detail Aktivitas</th>
+                <th>Klien</th>
+                <th>Layanan</th>
+                <th>Jadwal Sesi</th>
+                <th>Status</th>
+                <th>Aksi CS</th>
               </tr>
             </thead>
             <tbody>
-              ${state.auditLogs
-                .slice(0, 6)
-                .map(
-                  log => `
+              ${(state.reservations || []).slice(0, 5).map(r => `
                 <tr>
-                  <td><span style="font-family: monospace; font-size: 0.8125rem;">${log.timestamp}</span></td>
-                  <td><strong>${log.userName}</strong></td>
-                  <td><span class="badge badge-new">${log.action}</span></td>
-                  <td>${log.resource} (${log.resourceId})</td>
-                  <td style="color: var(--slate-600);">${log.metadata}</td>
+                  <td><strong>${r.clientName}</strong></td>
+                  <td>${r.serviceType}</td>
+                  <td>${r.date} (${r.timeSlot})</td>
+                  <td><span class="badge ${r.status === 'CONFIRMED' ? 'badge-completed' : 'badge-waiting'}">${r.status || 'PENDING'}</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-primary" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;" onclick="store.confirmReservation('${r.id}'); showToast('Reservasi dikonfirmasi!', 'success'); renderView();">Konfirmasi</button>
+                  </td>
                 </tr>
-              `
-                )
-                .join('')}
+              `).join('')}
             </tbody>
           </table>
+        </div>
         </div>
       </div>
     `;

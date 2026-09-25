@@ -183,9 +183,18 @@ function initConsultationSplash() {
         }, 550);
     }
 
-    // Dismiss if clicking backdrop area
+    // Support ?splash=1 or ?splash=true URL parameter to force splash display
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('splash') === '1' || urlParams.get('splash') === 'true') {
+        splash.style.display = 'flex';
+        splash.classList.remove('splash-exit');
+        document.body.style.overflow = 'hidden';
+        exited = false;
+    }
+
+    // Dismiss only if explicitly clicking the empty backdrop outside the stage
     splash.addEventListener('click', (e) => {
-        if (e.target === splash || e.target.classList.contains('psycho-stage')) {
+        if (e.target === splash) {
             dismissOpening();
         }
     });
@@ -196,6 +205,15 @@ function initConsultationSplash() {
             dismissOpening();
         }
     }, { once: true });
+
+    // Expose programmatic trigger for debugging and testing
+    window.showConsultationSplash = function() {
+        exited = false;
+        splash.style.display = 'flex';
+        splash.classList.remove('splash-exit');
+        document.body.style.overflow = 'hidden';
+        if (slides.length > 1) startSlideshow();
+    };
 }
 
 // Run as soon as DOM is ready

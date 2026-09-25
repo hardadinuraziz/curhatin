@@ -2370,6 +2370,7 @@ footer { background:#111827; color:#9CA3AF; padding:80px 24px 30px; }
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 22%;
     display: block;
     transform: scale(1);
     transition: transform 6s ease-out;
@@ -2601,13 +2602,14 @@ footer { background:#111827; color:#9CA3AF; padding:80px 24px 30px; }
    ========================================================================== */
 @media (max-width: 960px) {
     .psycho-stage {
-        padding: 16px 20px 14px;
+        padding: 14px 18px 10px;
     }
     .psycho-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 14px;
         overflow-y: auto;
-        padding-right: 4px;
+        padding-right: 2px;
+        -webkit-overflow-scrolling: touch;
     }
     .psycho-visual-col {
         order: 1;
@@ -2617,17 +2619,21 @@ footer { background:#111827; color:#9CA3AF; padding:80px 24px 30px; }
         max-width: 100%;
         text-align: center;
         align-items: center;
+        gap: 10px;
     }
     .psycho-art-card {
-        max-height: 38vh;
+        max-height: 28vh;
+        min-height: 170px;
         aspect-ratio: 16 / 9;
-        border-radius: 24px;
+        border-radius: 22px;
+        max-width: 440px;
+        margin: 0 auto;
     }
     .psycho-main-title {
-        font-size: 2.6rem;
+        font-size: 2.3rem;
     }
     .psycho-handwritten-tagline {
-        font-size: 1.7rem;
+        font-size: 1.55rem;
     }
     .psycho-channels-row {
         justify-content: center;
@@ -2639,52 +2645,170 @@ footer { background:#111827; color:#9CA3AF; padding:80px 24px 30px; }
 
 @media (max-width: 540px) {
     .psycho-stage {
-        padding: 12px 14px 10px;
-    }
-    .psycho-brand-name {
-        font-size: 1.1rem;
-    }
-    .psycho-brand-tag {
-        font-size: 0.65rem;
-    }
-    .psycho-art-card {
-        max-height: 34vh;
-        aspect-ratio: 16 / 9;
-    }
-    .psycho-main-title {
-        font-size: 2.1rem;
-    }
-    .psycho-handwritten-tagline {
-        font-size: 1.45rem;
-    }
-    .psycho-description {
-        font-size: 0.85rem;
-    }
-    .psycho-channels-row {
-        gap: 10px;
-    }
-    .psycho-channel-btn {
-        padding: 6px 12px;
+        padding: 10px 12px 6px;
+        height: 100%;
+        max-height: 100dvh;
         gap: 6px;
     }
-    .psycho-channel-icon {
-        width: 26px; height: 26px;
-        font-size: 0.8rem;
+
+    /* Top Navigation Bar on Mobile */
+    .psycho-topbar {
+        gap: 6px;
     }
-    .psycho-channel-title {
-        font-size: 0.8rem;
+    .psycho-brand-logo {
+        width: 32px;
+        height: 32px;
     }
-    .btn-psycho-primary-cta {
-        padding: 12px 24px;
-        font-size: 0.95rem;
+    .psycho-brand-name {
+        font-size: 1.05rem;
+        line-height: 1.1;
+    }
+    .psycho-brand-tag {
+        font-size: 0.58rem;
+        letter-spacing: 0.5px;
+    }
+    .psycho-topbar-actions {
+        gap: 6px;
+    }
+    .psycho-theme-switcher {
+        padding: 3px 6px;
+        gap: 3px;
+    }
+    .theme-color-chip {
+        width: 11px;
+        height: 11px;
+    }
+    .btn-psycho-skip {
+        padding: 5px 12px;
+        font-size: 0.74rem;
+        gap: 4px;
+        white-space: nowrap;
+    }
+
+    /* Main Grid Layout on Mobile */
+    .psycho-grid {
+        gap: 6px;
+        margin: 2px 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .psycho-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Visual Column & Art Frame */
+    .psycho-art-card {
+        max-height: 22vh;
+        min-height: 135px;
+        aspect-ratio: 16 / 9;
+        border-radius: 18px;
         width: 100%;
+        max-width: 330px;
+        margin: 0 auto;
+    }
+    .psycho-art-image {
+        object-position: center 18% !important;
+    }
+    .psycho-slide-indicators {
+        bottom: 6px;
+        padding: 3px 8px;
+        gap: 4px;
+    }
+    .slide-dot {
+        width: 5px;
+        height: 5px;
+    }
+    .slide-dot.active {
+        width: 14px;
+    }
+
+    /* Content & Typography on Mobile */
+    .psycho-content-col {
+        gap: 5px;
+        padding: 0 4px;
+    }
+    .psycho-subhead {
+        font-size: 0.65rem;
+        letter-spacing: 1.2px;
+        margin-bottom: 0;
+    }
+    .psycho-main-title {
+        font-size: 1.65rem;
+        line-height: 1.05;
+        letter-spacing: -0.3px;
+    }
+    .psycho-handwritten-tagline {
+        font-size: 1.18rem;
+        margin: 1px 0 2px;
+        line-height: 1.15;
+    }
+    .psycho-description {
+        font-size: 0.76rem;
+        line-height: 1.38;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    /* Channels Selection on Mobile */
+    .psycho-channels-wrap {
+        gap: 3px;
+        margin-top: 1px;
+    }
+    .psycho-channels-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+    .psycho-channels-row {
+        gap: 6px;
         justify-content: center;
     }
-    .psycho-quote-text {
-        font-size: 1.35rem;
+    .psycho-channel-btn {
+        padding: 4px 10px;
+        gap: 5px;
     }
+    .psycho-channel-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+    }
+    .psycho-channel-title {
+        font-size: 0.74rem;
+    }
+
+    /* CTA Button on Mobile */
+    .psycho-cta-wrap {
+        margin-top: 1px;
+    }
+    .btn-psycho-primary-cta {
+        padding: 8px 18px;
+        font-size: 0.82rem;
+        border-radius: 10px;
+        width: auto;
+        max-width: 260px;
+        margin: 0 auto;
+        gap: 8px;
+    }
+
+    /* Handwritten Quote on Mobile */
+    .psycho-quote-clean {
+        margin-top: 1px;
+        padding: 0;
+    }
+    .psycho-quote-text {
+        font-size: 1.05rem;
+        line-height: 1.15;
+    }
+
+    /* Bottom Contact Strip on Mobile */
     .psycho-footer {
-        gap: 8px 16px;
-        font-size: 0.72rem;
+        padding: 5px 0 1px !important;
+        gap: 4px 12px;
+        font-size: 0.65rem;
+    }
+    .psycho-footer-item {
+        font-size: 0.65rem;
+        gap: 3px;
     }
 }
